@@ -69,8 +69,11 @@
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHakzqHkKOPapGRxmlOhcK/EbL60l+pv8AyF0ssQqsRK"
       ];
-      extraGroups = [ "wheel", "networkmanager", "docker"
- ];
+      extraGroups = [ 
+        "wheel" 
+        "networkmanager"
+        "video"
+        "audio" ];
     };
   };
 
@@ -84,4 +87,13 @@
     passwordAuthentication = false;
   };
 
+services.xserver.windowManager.i3.enable = true;
+services.xserver.desktopManager = {
+  xterm.enable = false;
+  xfce = {
+    enable = true;
+    noDesktop = true;
+    enableXfwm = false;
+  };
+};
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
