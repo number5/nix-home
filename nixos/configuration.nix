@@ -9,7 +9,7 @@
 
     # Or modules from other flakes (such as nixos-hardware):
     inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-ssd
+    inputs.hardware.nixosModules.common-gpu-amd
 
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
@@ -87,13 +87,14 @@
     passwordAuthentication = false;
   };
 
-services.xserver.windowManager.i3.enable = true;
-services.xserver.desktopManager = {
-  xterm.enable = false;
-  xfce = {
-    enable = true;
-    noDesktop = true;
-    enableXfwm = false;
+  services.xserver.windowManager.i3.enable = true;
+  services.xserver.desktopManager = {
+    xterm.enable = false;
+    xfce = {
+      enable = true;
+      noDesktop = true;
+      enableXfwm = false;
+    };
   };
-};
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+}
