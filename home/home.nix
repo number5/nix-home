@@ -3,10 +3,6 @@
 let
   stablePackages = with pkgs; [
     # Applications
-    vscode
-    discord
-    peek
-    obs-studio
     vlc
 
     # Desktop
@@ -25,33 +21,19 @@ let
     unrar
 
     # Programming
+    asdf-vm
     nix-prefetch-git
-    nodejs
     yarn
     rnix-lsp
     postman
-    purescript
-    spago
-    nodePackages.purty
-    nodePackages.purescript-language-server
-    nodePackages.prettier
     nasm
     esbuild
   ];
   unstablePackages = with pkgs.unstable; [
     # Applications
-    signal-desktop
-    spotify
     ledger-live-desktop
-    bitwarden
-    ryujinx
-    parsec-bin
-
     #Libraries
     ffmpeg-full
-  ];
-  nurPackages = with pkgs.nur.repos; [
-    #iagocq.parsec
   ];
 in {
   ${username} = home-manager.lib.homeManagerConfiguration {
@@ -61,7 +43,7 @@ in {
       programs.home-manager.enable = true;
       services.blueman-applet.enable = true;
 
-      home.packages = stablePackages ++ unstablePackages ++ nurPackages;
+      home.packages = stablePackages ++ unstablePackages;
 
       # Restart services on change
       systemd.user.startServices = "sd-switch";
