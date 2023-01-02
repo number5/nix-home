@@ -36,27 +36,26 @@ let
     ffmpeg-full
   ];
 in {
-  ${username} = home-manager.lib.homeManagerConfiguration {
-    inherit pkgs system username stateVersion;
-    homeDirectory = "/home/${username}";
-    configuration = {
-      programs.home-manager.enable = true;
-      services.blueman-applet.enable = true;
+   home = {
+     username = username;
+     homeDirectory = "/home/${username}";
+   };
 
-      programs.direnv.enable = true;
-      programs.direnv.nix-direnv.enable = true;
-      # optional for nix flakes support in home-manager 21.11, not required in home-manager unstable or 22.05
-      programs.direnv.nix-direnv.enableFlakes = true;
+   programs.home-manager.enable = true;
+   services.blueman-applet.enable = true;
 
-      programs.zsh.enable = true;
+   programs.direnv.enable = true;
+   programs.direnv.nix-direnv.enable = true;
+   # optional for nix flakes support in home-manager 21.11, not required in home-manager unstable or 22.05
+   programs.direnv.nix-direnv.enableFlakes = true;
 
-      home.packages = stablePackages ++ unstablePackages;
+   programs.zsh.enable = true;
 
-      # Restart services on change
-      systemd.user.startServices = "sd-switch";
+   home.packages = stablePackages ++ unstablePackages;
 
-      imports = (import ./programs) ++ (import ./services);
-    };
-  };
+   # Restart services on change
+   systemd.user.startServices = "sd-switch";
+
+   imports = (import ./programs) ++ (import ./services);
 }
 
