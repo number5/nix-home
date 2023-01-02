@@ -1,10 +1,14 @@
 [
   ./alacritty
   ./bash
+  ./direnv
   ./chromium
   ./firefox
+  ./font
   ./git
+  ./gpg
   ./i3-gaps
   ./neovim
   ./rofi
+  ./rust
 ]
