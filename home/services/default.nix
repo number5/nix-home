@@ -1,0 +1,5 @@
+[
+  ./flameshot
+  ./polybar
+  ./picom
+]
