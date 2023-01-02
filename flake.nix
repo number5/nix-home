@@ -2,29 +2,28 @@
   description = "NixOS flake configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nurpkgs = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #nurpkgs = {
+    #  url = "github:nix-community/NUR";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, nurpkgs, ... }:
+  outputs = { self, nixpkgs, unstable, home-manager, ... }:
     let
-      username = "qwbarch";
-      hostName = "edward-nixos";
+      username = "bruce";
+      hostName = "chestnut";
       system = "x86_64-linux";
       config = {
         allowUnfree = true;
         permittedInsecurePackages = ["libav-11.12"];
       };
       localOverlay = prev: final: {
-        polybar-spotify = final.callPackage ./home/overlays/polybar-spotify.nix { };
         unstable = import unstable { 
           inherit config;
           system = final.system; 
@@ -32,11 +31,7 @@
       };
       pkgs = import nixpkgs {
         inherit system config;
-        overlays = [ localOverlay nurpkgs.overlay ];
-      };
-      nur = import nurpkgs {
-        inherit pkgs;
-        nurpkgs = pkgs;
+        overlays = [ localOverlay ];
       };
       # This value determines the NixOS release from which the default
       # settings for stateful data, like file locations and database versions
@@ -44,7 +39,7 @@
       # this value at the release version of the first install of this system.
       # Before changing this value read the documentation for this option
       # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-      stateVersion = "22.05"; # Did you read the comment?
+      stateVersion = "22.11"; # Did you read the comment?
     in {
       nixosConfigurations = import ./system/configuration.nix {
         inherit pkgs system username hostName stateVersion;

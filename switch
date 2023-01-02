@@ -14,7 +14,7 @@ popd () {
 
 home() {
   pushd $repository
-  nix build .#homeManagerConfiguration.qwbarch.activationPackage
+  nix build .#homeManagerConfiguration.bruce.activationPackage
   ./result/activate
   popd
 }
