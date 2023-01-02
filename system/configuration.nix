@@ -86,7 +86,8 @@
           PATH = [ 
             "\${XDG_BIN_HOME}"
           ];
-        }
+        };
+
         # Disable gui prompt when git asks for a password.
         extraInit = ''
           unset -v SSH_ASKPASS
