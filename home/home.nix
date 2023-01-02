@@ -44,11 +44,6 @@ in {
    programs.home-manager.enable = true;
    services.blueman-applet.enable = true;
 
-   programs.direnv.enable = true;
-   programs.direnv.nix-direnv.enable = true;
-   # optional for nix flakes support in home-manager 21.11, not required in home-manager unstable or 22.05
-   programs.direnv.nix-direnv.enableFlakes = true;
-
    programs.zsh.enable = true;
 
    home.packages = stablePackages ++ unstablePackages;
