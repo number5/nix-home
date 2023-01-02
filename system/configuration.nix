@@ -24,7 +24,7 @@
 
       services = {
         blueman.enable = true;
-        getty.autologinUser = username;
+        getty.autologinUser = "${username}";
 
         dbus = {
           enable = true;
@@ -50,7 +50,7 @@
 
             autoLogin = {
               enable = true;
-              user = username;
+              user = "${username}";
             };
           };
 

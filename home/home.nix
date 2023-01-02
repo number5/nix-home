@@ -38,7 +38,7 @@ let
 in {
    
    home = {
-     username = username;
+     username = "${username}";
      homeDirectory = "/home/${username}";
      stateVersion = "22.11";
    };
