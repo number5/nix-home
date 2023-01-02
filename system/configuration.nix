@@ -17,23 +17,14 @@
       };
 
       # Set your time zone.
-      time.timeZone = "EST5EDT";
+      time.timeZone = "Australia/Melbourne";
 
       # Select internationalisation properties.
       i18n.defaultLocale = "en_US.utf8";
 
       services = {
-        joycond.enable = true;
         blueman.enable = true;
         getty.autologinUser = username;
-
-        udev.extraRules = ''
-          # Nintendo Switch Pro Controller over USB hidraw
-          KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2009", MODE="0660", TAG+="uaccess"
-
-          # Nintendo Switch Pro Controller over bluetooth hidraw
-          KERNEL=="hidraw*", KERNELS=="*057E:2009*", MODE="0660", TAG+="uaccess"
-        '';
 
         dbus = {
           enable = true;
@@ -44,7 +35,7 @@
           enable = true;
           layout = "us";
           xkbOptions = "caps:swapescape"; # Swap caps-lock with escape.
-          videoDrivers = [ "nvidia" ];
+          videoDrivers = [ "amdgpu" ];
           libinput = {
             enable = true;
             mouse = {
