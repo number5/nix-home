@@ -8,10 +8,6 @@
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #nurpkgs = {
-    #  url = "github:nix-community/NUR";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
   };
 
   outputs = { self, nixpkgs, unstable, home-manager, ... }:
@@ -45,8 +41,18 @@
         inherit pkgs system username hostName stateVersion;
         lib = nixpkgs.lib;
       };
-      homeManagerConfiguration = import ./home/home.nix {
-        inherit pkgs home-manager system username stateVersion;
+      homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [
+          ./home/home.nix
+          {
+            home = {
+              username = username;
+              homeDirectory = "/home/${username}";
+              stateVersion = "22.11";
+            };
+          }
+        ];
       };
     };
 }
