@@ -1,7 +1,7 @@
 [
   ./alacritty
   ./bash
-  ./direnv
+  #./direnv
   ./chromium
   ./firefox
   ./font
