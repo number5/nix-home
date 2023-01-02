@@ -4,9 +4,8 @@ let
   modifier = "Mod4";
   workspace = {
     terminal = "terminal";
-    code = "code";
+    neovim = "code";
     browser = "browser";
-    spotify = "spotify";
     discord = "discord";
     bitwarden = "bitwarden";
     signal = "signal";
@@ -35,18 +34,12 @@ in {
               criteria = { class = "Chromium-browser"; };
             }
 
-            # Start vscode in fullscreen by default.
+            # Start vsneovim in fullscreen by default.
             {
               command = "fullscreen enable";
               criteria = { class = "Code"; };
             }
 
-            # Bind spotify workspace.
-            # This is a workaround for spotify not working with "assigns".
-            {
-              command = "move to workspace ${workspace.spotify}";
-              criteria = { class = "Spotify"; };
-            }
           ];
         };
 
@@ -74,10 +67,9 @@ in {
 
           # Workspaces
           "${modifier}+space" = "workspace ${workspace.terminal}";
-          "${modifier}+m" = "workspace ${workspace.code}";
+          "${modifier}+m" = "workspace ${workspace.neovim}";
           "${modifier}+comma" = "workspace ${workspace.browser}";
           "${modifier}+period" = "workspace ${workspace.bitwarden}";
-          "${modifier}+slash" = "workspace ${workspace.spotify}";
           "${modifier}+u" = "workspace ${workspace.discord}";
           "${modifier}+i" = "workspace ${workspace.signal}";
           "${modifier}+o" = "workspace ${workspace.ledger}";
@@ -92,7 +84,7 @@ in {
         };
 
         assigns = {
-          ${workspace.code} = [{ class = "Code"; }];
+          ${workspace.neovim} = [{ class = "Code"; }];
           ${workspace.browser} = [{ class = "Chromium-browser"; }];
           ${workspace.bitwarden} = [{ class = "Bitwarden"; }];
           ${workspace.discord} = [{ class = "discord"; }];
@@ -136,11 +128,6 @@ in {
           }
           {
             command = "${pkgs.unstable.bitwarden}/bin/bitwarden";
-            always = false;
-            notification = false;
-          }
-          {
-            command = "${pkgs.unstable.spotify}/bin/spotify";
             always = false;
             notification = false;
           }
