@@ -41,7 +41,7 @@
         inherit pkgs system username hostName stateVersion;
         lib = nixpkgs.lib;
       };
-      homeConfigurations."${username}}@${hostName}" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         modules = [
           ./home/home.nix
