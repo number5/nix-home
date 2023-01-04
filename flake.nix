@@ -1,53 +1,71 @@
 {
-  description = "NixOS flake configuration";
+  description = "Your new nix config";
 
   inputs = {
+    # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
+    # Home manager
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = {
     self,
     nixpkgs,
-    unstable,
     home-manager,
     ...
-  }: let
-    username = "bruce";
-    hostName = "chestnut";
-    system = "x86_64-linux";
-    config = {
-      allowUnfree = true;
-      permittedInsecurePackages = ["libav-11.12"];
-    };
-    localOverlay = prev: final: {
-      unstable = import unstable {
-        inherit config;
-        system = final.system;
+  } @ inputs: let
+    inherit (self) outputs;
+    forAllSystems = nixpkgs.lib.genAttrs [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+  in rec {
+    # Your custom packages
+    # Acessible through 'nix build', 'nix shell', etc
+    packages = forAllSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        import ./pkgs {inherit pkgs;}
+    );
+    # Devshell for bootstrapping
+    # Acessible through 'nix develop' or 'nix-shell' (legacy)
+    devShells = forAllSystems (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        import ./shell.nix {inherit pkgs;}
+    );
+
+    # Your custom packages and modifications, exported as overlays
+    #overlays = import ./overlays;
+    # Reusable nixos modules you might want to export
+    # These are usually stuff you would upstream into nixpkgs
+    #nixosModules = import ./modules/nixos;
+    # Reusable home-manager modules you might want to export
+    # These are usually stuff you would upstream into home-manager
+    #homeManagerModules = import ./modules/home-manager;
+
+    # NixOS configuration entrypoint
+    # Available through 'nixos-rebuild --flake .#your-hostname'
+    nixosConfigurations = {
+      chestnut = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./system/configuration.nix
+        ];
       };
     };
-    pkgs = import nixpkgs {
-      inherit system config;
-      overlays = [localOverlay];
-    };
-    # This value determines the NixOS release from which the default
-    # settings for stateful data, like file locations and database versions
-    # on your system were taken. It‘s perfectly fine and recommended to leave
-    # this value at the release version of the first install of this system.
-    # Before changing this value read the documentation for this option
-    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    stateVersion = "22.11"; # Did you read the comment?
-  in {
-    nixosConfigurations = import ./system/configuration.nix {
-      inherit pkgs system username hostName stateVersion;
-      lib = nixpkgs.lib;
-    };
+
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
