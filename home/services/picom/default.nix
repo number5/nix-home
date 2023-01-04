@@ -16,16 +16,16 @@
     inactiveOpacity = "0.8";
     fade = true;
 
-    opacityRule = [
+    opacityRules = [
       "100:class_g *?= 'Rofi'"
       "100:class_g *?= 'firefox'"
     ];
 
-    settings = ''
+    settings = [
       corner-radius = 8;
       rounded-corners-exclude = [
         "class_i = 'polybar'"
       ];
-    '';
+    ];
   };
 }
