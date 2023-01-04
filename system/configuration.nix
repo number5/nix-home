@@ -1,5 +1,4 @@
 { inputs, outputs, lib, config, pkgs, username, hostName, ... }: {
-{
       imports = [ 
         # Or modules from other flakes (such as nixos-hardware):
         inputs.hardware.nixosModules.common-cpu-amd
