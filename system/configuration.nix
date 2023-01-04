@@ -4,7 +4,15 @@
   ${hostName} = lib.nixosSystem {
     inherit system;
     modules = [{
-      imports = [ ./hardware-configuration.nix ];
+      imports = [ 
+        # Or modules from other flakes (such as nixos-hardware):
+        inputs.hardware.nixosModules.common-cpu-amd
+        inputs.hardware.nixosModules.common-gpu-amd
+
+        # my own stuff
+        ./local.nix 
+        ./hardware-configuration.nix 
+      ];
 
       # Bootloader.
       boot.loader.systemd-boot.enable = true;
@@ -69,19 +77,13 @@
         ledger.enable = true; # Allow ledger devices to connect.
       };
 
-      users.users.${username} = {
-        isNormalUser = true;
-        extraGroups = [ "networkmanager" "wheel" "audio" ];
-        packages = with pkgs; [ ];
-      };
-
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;
 
       environment = {
         # List packages installed in system profile. To search, run:
         # $ nix search wget
-        systemPackages = with pkgs; [ git ];
+        systemPackages = with pkgs; [ git curl wget ripgrep ];
 
       	sessionVariables = rec {
           XDG_CACHE_HOME  = "\${HOME}/.cache";

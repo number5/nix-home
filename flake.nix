@@ -8,44 +8,57 @@
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hardware.url = "github:nixos/nixos-hardware";
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, ... }:
-    let
-      username = "bruce";
-      hostName = "chestnut";
-      system = "x86_64-linux";
-      config = {
-        allowUnfree = true;
-        permittedInsecurePackages = ["libav-11.12"];
+  outputs = {
+    self,
+    nixpkgs,
+    unstable,
+    home-manager,
+    ...
+  }: let
+    username = "bruce";
+    hostName = "chestnut";
+    system = "x86_64-linux";
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = ["libav-11.12"];
+    };
+    localOverlay = prev: final: {
+      unstable = import unstable {
+        inherit config;
+        system = final.system;
       };
-      localOverlay = prev: final: {
-        unstable = import unstable { 
-          inherit config;
-          system = final.system; 
-        };
-      };
-      pkgs = import nixpkgs {
-        inherit system config;
-        overlays = [ localOverlay ];
-      };
-      # This value determines the NixOS release from which the default
-      # settings for stateful data, like file locations and database versions
-      # on your system were taken. It‘s perfectly fine and recommended to leave
-      # this value at the release version of the first install of this system.
-      # Before changing this value read the documentation for this option
-      # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-      stateVersion = "22.11"; # Did you read the comment?
-    in {
-      nixosConfigurations = import ./system/configuration.nix {
-        inherit pkgs system username hostName stateVersion;
-        lib = nixpkgs.lib;
-      };
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+    };
+    pkgs = import nixpkgs {
+      inherit system config;
+      overlays = [localOverlay];
+    };
+    # This value determines the NixOS release from which the default
+    # settings for stateful data, like file locations and database versions
+    # on your system were taken. It‘s perfectly fine and recommended to leave
+    # this value at the release version of the first install of this system.
+    # Before changing this value read the documentation for this option
+    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+    stateVersion = "22.11"; # Did you read the comment?
+  in {
+    nixosConfigurations = import ./system/configuration.nix {
+      inherit pkgs system username hostName stateVersion;
+      lib = nixpkgs.lib;
+    };
+    # Standalone home-manager configuration entrypoint
+    # Available through 'home-manager --flake .#your-username@your-hostname'
+    homeConfigurations = {
+      "bruce@chestnut" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
         modules = [
+          # > Our main home-manager configuration file <
           ./home/home.nix
         ];
       };
     };
+  };
 }
