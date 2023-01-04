@@ -60,7 +60,7 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       chestnut = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs hostName;};
+        specialArgs = {inherit inputs outputs username hostName;};
         modules = [
           # > Our main nixos configuration file <
           ./system/configuration.nix
@@ -73,7 +73,7 @@
     homeConfigurations = {
       "bruce@chestnut" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {inherit inputs outputs username;};
         modules = [
           # > Our main home-manager configuration file <
           ./home/home.nix

@@ -1,4 +1,4 @@
-{ pkgs, system, home-manager, username, stateVersion, ... }:
+{ pkgs, system, home-manager, username, ... }:
 
 let
   stablePackages = with pkgs; [
