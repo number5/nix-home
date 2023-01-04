@@ -9,9 +9,9 @@
         inputs.hardware.nixosModules.common-cpu-amd
         inputs.hardware.nixosModules.common-gpu-amd
 
-        # my own stuff
-        ./local.nix 
         ./hardware-configuration.nix 
+        ./hidpi.nix
+        ./misc.nix
       ];
 
       # Bootloader.
