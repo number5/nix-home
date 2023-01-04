@@ -1,4 +1,4 @@
-{ pkgs, lib, system, username, hostName, stateVersion, ... }:
+{ inputs, pkgs, lib, system, username, hostName, stateVersion, ... }:
 
 {
   ${hostName} = lib.nixosSystem {
