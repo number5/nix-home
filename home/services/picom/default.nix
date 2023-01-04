@@ -21,7 +21,7 @@
       "100:class_g *?= 'firefox'"
     ];
 
-    extraOptions = ''
+    settings = ''
       corner-radius = 8;
       rounded-corners-exclude = [
         "class_i = 'polybar'"

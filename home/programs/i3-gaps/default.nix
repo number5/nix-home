@@ -4,11 +4,8 @@ let
   modifier = "Mod4";
   workspace = {
     terminal = "terminal";
-    neovim = "code";
-    browser = "browser";
-    discord = "discord";
-    bitwarden = "bitwarden";
-    signal = "signal";
+    neovim = "nvim";
+    browser = "firefox";
     ledger = "ledger";
     extra = "extra";
   };
@@ -37,7 +34,7 @@ in {
             # Start vsneovim in fullscreen by default.
             {
               command = "fullscreen enable";
-              criteria = { class = "Code"; };
+              criteria = { class = "neovim"; };
             }
 
           ];
@@ -69,9 +66,6 @@ in {
           "${modifier}+space" = "workspace ${workspace.terminal}";
           "${modifier}+m" = "workspace ${workspace.neovim}";
           "${modifier}+comma" = "workspace ${workspace.browser}";
-          "${modifier}+period" = "workspace ${workspace.bitwarden}";
-          "${modifier}+u" = "workspace ${workspace.discord}";
-          "${modifier}+i" = "workspace ${workspace.signal}";
           "${modifier}+o" = "workspace ${workspace.ledger}";
           "${modifier}+p" = "workspace ${workspace.extra}";
 
@@ -86,9 +80,6 @@ in {
         assigns = {
           ${workspace.neovim} = [{ class = "Code"; }];
           ${workspace.browser} = [{ class = "Chromium-browser"; }];
-          ${workspace.bitwarden} = [{ class = "Bitwarden"; }];
-          ${workspace.discord} = [{ class = "discord"; }];
-          ${workspace.signal} = [ {class = "Signal"; }];
           ${workspace.ledger} = [ {class = "Ledger Live";} ];
         };
 
@@ -123,16 +114,6 @@ in {
           }
           {
             command = "${pkgs.chromium}/bin/chromium --restore-last-session";
-            always = false;
-            notification = false;
-          }
-          {
-            command = "${pkgs.unstable.bitwarden}/bin/bitwarden";
-            always = false;
-            notification = false;
-          }
-          {
-            command = "${pkgs.unstable.ledger-live-desktop}/bin/ledger-live-desktop";
             always = false;
             notification = false;
           }
