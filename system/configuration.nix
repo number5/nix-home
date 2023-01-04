@@ -1,9 +1,5 @@
-{ inputs, pkgs, lib, system, username, hostName, stateVersion, ... }:
-
+{ inputs, outputs, lib, config, pkgs, username, hostName, ... }: {
 {
-  ${hostName} = lib.nixosSystem {
-    inherit system;
-    modules = [{
       imports = [ 
         # Or modules from other flakes (such as nixos-hardware):
         inputs.hardware.nixosModules.common-cpu-amd
@@ -33,11 +29,6 @@
       services = {
         blueman.enable = true;
         getty.autologinUser = "${username}";
-
-        dbus = {
-          enable = true;
-          packages = [ pkgs.dconf ];
-        };
 
         xserver = {
           enable = true;
@@ -130,15 +121,4 @@
         };
       };
 
-      services.openssh = {
-        enable = true;
-        # Forbid root login through SSH.
-        permitRootLogin = "no";
-        # Use keys only. Remove if you want to SSH using password (not recommended)
-        passwordAuthentication = false;
-      };
-
-      system.stateVersion = stateVersion;
-    }];
-  };
 }
