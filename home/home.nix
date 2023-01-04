@@ -29,12 +29,12 @@ let
     nasm
     esbuild
   ];
-  unstablePackages = with pkgs.unstable; [
-    # Applications
-    ledger-live-desktop
-    #Libraries
-    ffmpeg-full
-  ];
+#  unstablePackages = with pkgs.unstable; [
+#    # Applications
+#    ledger-live-desktop
+#    #Libraries
+#    ffmpeg-full
+#  ];
 in {
    
    home = {
@@ -48,7 +48,7 @@ in {
 
    programs.zsh.enable = true;
 
-   home.packages = stablePackages ++ unstablePackages;
+   home.packages = stablePackages;
 
    # Restart services on change
    systemd.user.startServices = "sd-switch";
