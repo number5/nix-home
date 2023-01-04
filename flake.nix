@@ -20,6 +20,8 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+    hostName = "chestnut";
+    username = "bruce";
     forAllSystems = nixpkgs.lib.genAttrs [
       "aarch64-linux"
       "i686-linux"
