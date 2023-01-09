@@ -12,8 +12,8 @@
       };
     });
 
-    activeOpacity = "1.0";
-    inactiveOpacity = "0.8";
+    activeOpacity = 1;
+    inactiveOpacity = 0.8;
     fade = true;
 
     opacityRules = [
@@ -21,11 +21,11 @@
       "100:class_g *?= 'firefox'"
     ];
 
-    settings = [
+    settings = {
       corner-radius = 8;
       rounded-corners-exclude = [
         "class_i = 'polybar'"
-      ];
-    ];
+	];
+    };
   };
 }
