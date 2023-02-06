@@ -30,4 +30,4 @@ jobs:
         uses: cachix/install-nix-action@v15
 
       - name: "Build Home Manager config 🏠"
-        run: nix build .#homeManagerConfiguration.bruce.activationPackage -L
+        run: nix-rebuild build --flake .#
