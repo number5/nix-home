@@ -10,6 +10,6 @@
       pulseSupport = true;
     };
     script = "polybar &";
-    extraConfig = (builtins.readFile ./modules.ini); 
+    extraConfig = builtins.readFile ./modules.ini; 
   };
 }
