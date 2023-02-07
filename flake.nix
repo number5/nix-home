@@ -69,19 +69,18 @@
           formatter = config.treefmt.build.wrapper;
         };
         # CI
-        # flake.hydraJobs =
-        #   let
-        #     inherit (nixpkgs) lib;
-        #     buildHomeManager = arch:
-        #       lib.mapAttrs' (name: config: lib.nameValuePair "home-manager-${name}-${arch}" config.activation-script) self.legacyPackages.${arch}.homeConfigurations;
-        #   in
-        #   (lib.mapAttrs' (name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel) self.nixosConfigurations)
-        #   // (buildHomeManager "x86_64-linux")
-        #   // (buildHomeManager "aarch64-linux")
-        #   // (buildHomeManager "aarch64-darwin")
-        #   // {
-        #     inherit (self.checks.x86_64-linux) treefmt;
-        #   };
+        flake.hydraJobs = let
+          inherit (nixpkgs) lib;
+          buildHomeManager = arch:
+            lib.mapAttrs' (name: config: lib.nameValuePair "home-manager-${name}-${arch}" config.activation-script) self.legacyPackages.${arch}.homeConfigurations;
+        in
+          (lib.mapAttrs' (name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel) self.nixosConfigurations)
+          // (buildHomeManager "x86_64-linux")
+          // (buildHomeManager "aarch64-linux")
+          // (buildHomeManager "aarch64-darwin")
+          // {
+            inherit (self.checks.x86_64-linux) treefmt;
+          };
       })
     .config
     .flake;
