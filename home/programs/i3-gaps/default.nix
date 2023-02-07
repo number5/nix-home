@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   modifier = "Mod4";
   workspace = {
     terminal = "terminal";
@@ -18,7 +20,7 @@ in {
       config = {
         inherit modifier;
 
-        bars = [ ];
+        bars = [];
 
         window = {
           border = 0;
@@ -28,15 +30,14 @@ in {
             # Start chromium in fullscreen by default.
             {
               command = "fullscreen enable";
-              criteria = { class = "Chromium-browser"; };
+              criteria = {class = "Chromium-browser";};
             }
 
             # Start vsneovim in fullscreen by default.
             {
               command = "fullscreen enable";
-              criteria = { class = "neovim"; };
+              criteria = {class = "neovim";};
             }
-
           ];
         };
 
@@ -78,9 +79,9 @@ in {
         };
 
         assigns = {
-          ${workspace.neovim} = [{ class = "Code"; }];
-          ${workspace.browser} = [{ class = "Chromium-browser"; }];
-          ${workspace.ledger} = [ {class = "Ledger Live";} ];
+          ${workspace.neovim} = [{class = "Code";}];
+          ${workspace.browser} = [{class = "Chromium-browser";}];
+          ${workspace.ledger} = [{class = "Ledger Live";}];
         };
 
         modes.resize = {

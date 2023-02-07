@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   services.polybar = {
     enable = true;
     config = ./config.ini;
@@ -10,6 +8,6 @@
       pulseSupport = true;
     };
     script = "polybar &";
-    extraConfig = builtins.readFile ./modules.ini; 
+    extraConfig = builtins.readFile ./modules.ini;
   };
 }

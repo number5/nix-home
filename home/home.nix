@@ -1,6 +1,10 @@
-{ pkgs, system, home-manager, username, ... }:
-
-let
+{
+  pkgs,
+  system,
+  home-manager,
+  username,
+  ...
+}: let
   stablePackages = with pkgs; [
     # Applications
     vlc
@@ -29,30 +33,28 @@ let
     nasm
     esbuild
   ];
-#  unstablePackages = with pkgs.unstable; [
-#    # Applications
-#    ledger-live-desktop
-#    #Libraries
-#    ffmpeg-full
-#  ];
+  #  unstablePackages = with pkgs.unstable; [
+  #    # Applications
+  #    ledger-live-desktop
+  #    #Libraries
+  #    ffmpeg-full
+  #  ];
 in {
-   
-   home = {
-     username = "${username}";
-     homeDirectory = "/home/${username}";
-     stateVersion = "22.11";
-   };
+  home = {
+    username = "${username}";
+    homeDirectory = "/home/${username}";
+    stateVersion = "22.11";
+  };
 
-   programs.home-manager.enable = true;
-   services.blueman-applet.enable = true;
+  programs.home-manager.enable = true;
+  services.blueman-applet.enable = true;
 
-   programs.zsh.enable = true;
+  programs.zsh.enable = true;
 
-   home.packages = stablePackages;
+  home.packages = stablePackages;
 
-   # Restart services on change
-   systemd.user.startServices = "sd-switch";
+  # Restart services on change
+  systemd.user.startServices = "sd-switch";
 
-   imports = (import ./programs) ++ (import ./services);
+  imports = (import ./programs) ++ (import ./services);
 }
-

@@ -1,10 +1,8 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
+    (nerdfonts.override {fonts = ["JetBrainsMono" "Noto"];})
     source-han-code-jp
     source-han-sans
     source-han-mono

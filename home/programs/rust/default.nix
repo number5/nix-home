@@ -1,11 +1,13 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home = {
     packages = with pkgs; [
       rustup
       gcc
     ];
-    sessionPath = [ "$HOME/.cargo/bin" ];
+    sessionPath = ["$HOME/.cargo/bin"];
   };
 }
