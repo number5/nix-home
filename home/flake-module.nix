@@ -22,8 +22,8 @@
               ./common.nix
               inputs.nur.hmModules.nur
             ];
-          home.username = "joerg";
-          home.homeDirectory = "/home/joerg";
+          home.username = "bruce";
+          home.homeDirectory = "/home/bruce";
         }
       ];
       pkgs = inputs.nixpkgs.legacyPackages.${system};
@@ -34,7 +34,7 @@
       program = "${pkgs.writeShellScriptBin "hm" ''
         set -x
         export PATH=${pkgs.lib.makeBinPath [pkgs.git pkgs.coreutils pkgs.nix pkgs.jq pkgs.unixtools.hostname]}
-        declare -A profiles=(["turingmachine"]="desktop" ["eddie"]="desktop" ["eve"]="eve" ["bernie"]="bernie")
+        declare -A profiles=(["chestnut"]="chestnut")
         profile="common"
         hostname
         if [[ -n ''${profiles[$(hostname)]:-} ]]; then
@@ -49,27 +49,17 @@
           common = homeManagerConfiguration {};
         }
         // lib.optionalAttrs (pkgs.hostPlatform.system == "x86_64-linux") {
-          desktop = homeManagerConfiguration {
+          chestnut = homeManagerConfiguration {
             extraModules = [
               ./desktop.nix
               inputs.nix-index-database.hmModules.nix-index
-              inputs.hyprland.homeManagerModules.default
               ({pkgs, ...}: {
-                programs.waybar.package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
-                wayland.windowManager.hyprland.enable = true;
                 home.packages = [
-                  inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
                 ];
               })
             ];
           };
-
-          eve = homeManagerConfiguration {
-            extraModules = [./eve.nix];
-          };
-          bernie = homeManagerConfiguration {
-            extraModules = [./bernie.nix];
-          };
+          
         };
     };
   };
