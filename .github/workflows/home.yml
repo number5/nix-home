@@ -31,7 +31,8 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: "Build Home Manager config 🏠"
-        run: nix build
+      - name: "check nix flake"
+        run: nix flake check
 
-      - run: nix flake check
+      - name: "statix check"
+        run: nix run nixpkgs#statix -- check
