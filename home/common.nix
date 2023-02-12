@@ -4,11 +4,12 @@
   lib,
   ...
 }: {
-  imports = [
-    #./modules/neovim.nix
-    ./programs
-    ./services
-  ];
+  imports =
+    [
+      #./modules/neovim.nix
+    ]
+    ++ (import ./programs)
+    ++ (import ./services);
 
   config = {
     home.packages = with pkgs; [
