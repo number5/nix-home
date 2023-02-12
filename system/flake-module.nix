@@ -32,23 +32,13 @@
         "nur=${inputs.nur}"
       ];
 
-      #nix.extraOptions = let
-      #  registry = pkgs.runCommand "flake-registry.json" {} ''
-      #    jq 'setpath(;)' < ${flake-registry}/flake-registry.json > $out
-      #  '';
-      #in ''
-      #  flake-registry = ${registry}/flake-registry.json
-      #'';
-      #nix.extraOptions = ''
-      #  flake-registry = ${inputs.flake-registry}/flake-registry.json
-      #'';
-      #srvos.flake = self;
       documentation.info.enable = false;
-      #services.envfs.enable = true;
 
       imports = [
+        ./modules/nix-daemon.nix
+        ./modules/hidpi.nix
+        ./modules/misc.nix
         inputs.nur.nixosModules.nur
-
         inputs.sops-nix.nixosModules.sops
       ];
     })
@@ -60,7 +50,7 @@ in {
       modules =
         defaultModules
         ++ [
-          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s
           inputs.home-manager.nixosModules.home-manager
           ./configuration.nix
         ];

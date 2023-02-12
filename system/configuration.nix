@@ -9,13 +9,7 @@
   ...
 }: {
   imports = [
-    # Or modules from other flakes (such as nixos-hardware):
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-amd
-
     ./hardware-configuration.nix
-    ./hidpi.nix
-    ./misc.nix
   ];
 
   # Bootloader.
@@ -104,29 +98,4 @@
   };
 
   fonts.fonts = with pkgs; [nerdfonts];
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-
-  nix = {
-    package = pkgs.nixFlakes;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
-      trusted-public-keys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-      ];
-      substituters = [
-        "https://cache.nixos.org"
-        "https://cache.iog.io"
-      ];
-    };
-  };
 }
