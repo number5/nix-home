@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   services.picom = {
     enable = true;
     package = pkgs.picom.overrideAttrs (_: {
@@ -25,7 +23,7 @@
       corner-radius = 8;
       rounded-corners-exclude = [
         "class_i = 'polybar'"
-	];
+      ];
     };
   };
 }

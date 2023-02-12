@@ -1,11 +1,11 @@
-name: Home
+name: Check Nix Flake
 
 on:
   workflow_dispatch:  # allows manual triggering
   pull_request:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - 'GNOME.md'
       - 'README.md'
@@ -27,7 +27,12 @@ jobs:
       - uses: actions/checkout@v2.3.2
 
       - name: "Install Nix ❄️"
-        uses: cachix/install-nix-action@v15
+        uses: cachix/install-nix-action@v18
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: "Build Home Manager config 🏠"
-        run: nix build .#homeManagerConfiguration.bruce.activationPackage -L
+      - name: "check nix flake"
+        run: nix flake check --show-trace
+
+      - name: "statix check"
+        run: nix run nixpkgs#statix -- check

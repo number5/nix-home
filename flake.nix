@@ -1,81 +1,81 @@
 {
-  description = "Your new nix config";
+  description = "NixOS configuration with flakes";
 
+  # To update all inputs:
+  # $ nix flake update
   inputs = {
-    # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
-    # Home manager
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-systemd.url = "github:pennae/nixpkgs/systemd-oom";
+    nur.url = "github:nix-community/NUR";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    hardware.url = "github:nixos/nixos-hardware";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+
+    # Nix linter
+    statix = {
+      url = "github:nerdypepper/statix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
+    flake-parts,
     nixpkgs,
-    home-manager,
     ...
-  } @ inputs: let
-    inherit (self) outputs;
-    hostName = "chestnut";
-    username = "bruce";
-    forAllSystems = nixpkgs.lib.genAttrs [
-      "x86_64-linux"
-      "aarch64-darwin"
-    ];
-  in rec {
-    # Your custom packages
-    # Acessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        import ./pkgs {inherit pkgs;}
-    );
-    # Devshell for bootstrapping
-    # Acessible through 'nix develop' or 'nix-shell' (legacy)
-    devShells = forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        import ./shell.nix {inherit pkgs;}
-    );
-
-    # Your custom packages and modifications, exported as overlays
-    #overlays = import ./overlays;
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    #nixosModules = import ./modules/nixos;
-    # Reusable home-manager modules you might want to export
-    # These are usually stuff you would upstream into home-manager
-    #homeManagerModules = import ./modules/home-manager;
-
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      chestnut = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs username hostName;};
-        modules = [
-          # > Our main nixos configuration file <
-          ./system/configuration.nix
+  }:
+    (flake-parts.lib.evalFlakeModule
+      {inherit inputs;}
+      {
+        imports = [
+          ./system/flake-module.nix
+          ./home/flake-module.nix
+          ./devshell/flake-module.nix
         ];
-      };
-    };
-
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "bruce@chestnut" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs username;};
-        modules = [
-          # > Our main home-manager configuration file <
-          ./home/home.nix
-        ];
-      };
-    };
-  };
+        systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
+        perSystem = {
+          config,
+          inputs',
+          system,
+          ...
+        }: {
+          # make pkgs available to all `perSystem` functions
+          _module.args.pkgs = inputs'.nixpkgs.legacyPackages;
+          
+          formatter = config.treefmt.build.wrapper;
+        };
+        # CI
+        flake.hydraJobs = let
+          inherit (nixpkgs) lib;
+          buildHomeManager = arch:
+            lib.mapAttrs' (name: config: lib.nameValuePair "home-manager-${name}-${arch}" config.activation-script) self.legacyPackages.${arch}.homeConfigurations;
+        in
+          (lib.mapAttrs' (name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel) self.nixosConfigurations)
+          // (buildHomeManager "x86_64-linux")
+          // (buildHomeManager "aarch64-linux")
+          // (buildHomeManager "aarch64-darwin")
+          // {
+            inherit (self.checks.x86_64-linux) treefmt;
+          };
+      })
+    .config
+    .flake;
 }
