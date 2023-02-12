@@ -4,7 +4,7 @@
   ...
 }: {
   config = {
-    #programs.steam.enable = true;
+    programs.steam.enable = true;
 
     home.packages = with pkgs; [
       bottles

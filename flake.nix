@@ -9,24 +9,17 @@
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    #systemd.url = "git+file:///home/joerg/git/systemd";
-    #systemd.flake = false;
 
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #nixpkgs.url = "github:Mic92/nixpkgs/main";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-systemd.url = "github:pennae/nixpkgs/systemd-oom";
-    # for development
-    #nixpkgs.url = "/home/joerg/git/nixpkgs";
     nur.url = "github:nix-community/NUR";
-    # for development
-    #sops-nix.url = "/home/joerg/git/sops-nix";
-    sops-nix.url = "github:Mic92/sops-nix";
 
+    sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
@@ -62,9 +55,15 @@
           config,
           inputs',
           ...
-        }: {
+        }: let
+          nixPkgs = import inputs.nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        in {
           # make pkgs available to all `perSystem` functions
-          _module.args.pkgs = inputs'.nixpkgs.legacyPackages;
+          #_module.args.pkgs = inputs'.nixpkgs.legacyPackages;
+          _module.args.pkgs = nixPkgs;
 
           formatter = config.treefmt.build.wrapper;
         };
