@@ -54,16 +54,16 @@
         perSystem = {
           config,
           inputs',
+          system,
           ...
-        }: let
-          nixPkgs = import inputs.nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-          };
-        in {
+        }: {
           # make pkgs available to all `perSystem` functions
           #_module.args.pkgs = inputs'.nixpkgs.legacyPackages;
-          _module.args.pkgs = nixPkgs;
+          _module.args.pkgs = import self.inputs.nixpkgs {
+            inherit system;
+            overlays = [self.overlays.default];
+            config.allowUnfree = true;
+          };
 
           formatter = config.treefmt.build.wrapper;
         };
