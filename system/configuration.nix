@@ -5,7 +5,6 @@
   config,
   pkgs,
   username,
-  hostName,
   ...
 }: {
   imports = [
@@ -18,7 +17,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/";
 
   networking = {
-    inherit hostName;
+    hostName = "chestnut";
     networkmanager.enable = true;
   };
 
