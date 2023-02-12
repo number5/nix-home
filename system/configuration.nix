@@ -4,11 +4,11 @@
   lib,
   config,
   pkgs,
-  username,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./modules/users.nix
   ];
 
   # Bootloader.
@@ -29,7 +29,7 @@
 
   services = {
     blueman.enable = true;
-    getty.autologinUser = "${username}";
+    getty.autologinUser = "bruce";
 
     xserver = {
       enable = true;
@@ -50,7 +50,7 @@
 
         autoLogin = {
           enable = true;
-          user = "${username}";
+          user = "bruce";
         };
       };
 
