@@ -61,7 +61,7 @@
           #_module.args.pkgs = inputs'.nixpkgs.legacyPackages;
           _module.args.pkgs = import self.inputs.nixpkgs {
             inherit system;
-            overlays = [self.overlays.default];
+            # overlays = [self.overlays.default];
             config.allowUnfree = true;
           };
 

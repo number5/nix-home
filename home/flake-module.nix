@@ -16,6 +16,11 @@
         {
           _module.args.self = self;
           _module.args.inputs = self.inputs;
+          _module.args.pkgs = import self.inputs.nixpkgs {
+            inherit system;
+            # overlays = [self.overlays.default];
+            config.allowUnfree = true;
+          };
           imports =
             extraModules
             ++ [
