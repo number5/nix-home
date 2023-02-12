@@ -58,13 +58,8 @@
           ...
         }: {
           # make pkgs available to all `perSystem` functions
-          #_module.args.pkgs = inputs'.nixpkgs.legacyPackages;
-          _module.args.pkgs = import self.inputs.nixpkgs {
-            inherit system;
-            # overlays = [self.overlays.default];
-            config.allowUnfree = true;
-          };
-
+          _module.args.pkgs = inputs'.nixpkgs.legacyPackages;
+          
           formatter = config.treefmt.build.wrapper;
         };
         # CI

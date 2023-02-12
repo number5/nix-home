@@ -12,15 +12,16 @@
       extraModules ? [],
       system ? "x86_64-linux",
     }: (inputs.home-manager.lib.homeManagerConfiguration {
+
+       pkgs = import self.inputs.nixpkgs {
+            inherit system;
+            # overlays = [self.overlays.default];
+            config.allowUnfree = true;
+       };
       modules = [
         {
           _module.args.self = self;
           _module.args.inputs = self.inputs;
-          _module.args.pkgs = import self.inputs.nixpkgs {
-            inherit system;
-            # overlays = [self.overlays.default];
-            config.allowUnfree = true;
-          };
           imports =
             extraModules
             ++ [
@@ -31,7 +32,7 @@
           home.homeDirectory = "/home/bruce";
         }
       ];
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      # pkgs = inputs.nixpkgs.legacyPackages.${system};
     });
   in {
     apps.hm = {
