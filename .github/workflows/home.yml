@@ -1,4 +1,4 @@
-name: Home
+name: Check Nix Flake
 
 on:
   workflow_dispatch:  # allows manual triggering
@@ -32,7 +32,7 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "check nix flake"
-        run: nix flake check
+        run: nix flake check --show-trace
 
       - name: "statix check"
         run: nix run nixpkgs#statix -- check
