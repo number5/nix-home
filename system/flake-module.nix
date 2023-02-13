@@ -50,7 +50,7 @@ in {
       modules =
         defaultModules
         ++ [
-          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd
           inputs.home-manager.nixosModules.home-manager
           ./configuration.nix
         ];

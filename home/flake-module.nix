@@ -40,7 +40,7 @@
         set -x
         export PATH=${pkgs.lib.makeBinPath [pkgs.git pkgs.coreutils pkgs.nix pkgs.jq pkgs.unixtools.hostname]}
         declare -A profiles=(["chestnut"]="chestnut")
-        profile="common"
+        profile="bruce"
         hostname
         if [[ -n ''${profiles[$(hostname)]:-} ]]; then
           profile=''${profiles[$(hostname)]}
@@ -51,7 +51,7 @@
     legacyPackages = {
       homeConfigurations =
         {
-          common = homeManagerConfiguration {};
+          bruce = homeManagerConfiguration {};
         }
         // lib.optionalAttrs (pkgs.hostPlatform.system == "x86_64-linux") {
           chestnut = homeManagerConfiguration {
