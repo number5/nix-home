@@ -12,12 +12,11 @@
       extraModules ? [],
       system ? "x86_64-linux",
     }: (inputs.home-manager.lib.homeManagerConfiguration {
-
-       pkgs = import self.inputs.nixpkgs {
-            inherit system;
-            # overlays = [self.overlays.default];
-            config.allowUnfree = true;
-       };
+      pkgs = import self.inputs.nixpkgs {
+        inherit system;
+        # overlays = [self.overlays.default];
+        config.allowUnfree = true;
+      };
       modules = [
         {
           _module.args.self = self;
