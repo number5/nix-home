@@ -1,3 +1,4 @@
+---
 name: Check Nix Flake
 
 on:
@@ -30,6 +31,9 @@ jobs:
         uses: cachix/install-nix-action@v18
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Install Alejandra "
+        run: nix profile install github:kamadorueda/alejandra/3.0.0
 
       - name: "check nix flake"
         run: nix flake check --show-trace

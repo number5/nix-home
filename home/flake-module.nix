@@ -12,12 +12,11 @@
       extraModules ? [],
       system ? "x86_64-linux",
     }: (inputs.home-manager.lib.homeManagerConfiguration {
-
-       pkgs = import self.inputs.nixpkgs {
-            inherit system;
-            # overlays = [self.overlays.default];
-            config.allowUnfree = true;
-       };
+      pkgs = import self.inputs.nixpkgs {
+        inherit system;
+        # overlays = [self.overlays.default];
+        config.allowUnfree = true;
+      };
       modules = [
         {
           _module.args.self = self;
@@ -41,7 +40,7 @@
         set -x
         export PATH=${pkgs.lib.makeBinPath [pkgs.git pkgs.coreutils pkgs.nix pkgs.jq pkgs.unixtools.hostname]}
         declare -A profiles=(["chestnut"]="chestnut")
-        profile="common"
+        profile="bruce"
         hostname
         if [[ -n ''${profiles[$(hostname)]:-} ]]; then
           profile=''${profiles[$(hostname)]}
@@ -52,7 +51,7 @@
     legacyPackages = {
       homeConfigurations =
         {
-          common = homeManagerConfiguration {};
+          bruce = homeManagerConfiguration {};
         }
         // lib.optionalAttrs (pkgs.hostPlatform.system == "x86_64-linux") {
           chestnut = homeManagerConfiguration {

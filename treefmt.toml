@@ -1,5 +1,5 @@
 # One CLI to format the code tree - https://github.com/numtide/treefmt
 [formatter.nix]
-command = "/Users/bruce.wang/bin/alejandra"
+command = "alejandra"
 includes = ["*.nix"]
 
