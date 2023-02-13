@@ -7,7 +7,6 @@
     source-han-sans
     source-han-mono
     source-han-serif
-    fira-code
     roboto-mono
   ];
 }
