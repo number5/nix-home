@@ -46,7 +46,6 @@
         imports = [
           ./system/flake-module.nix
           ./home/flake-module.nix
-          ./devshell/flake-module.nix
         ];
         systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
         perSystem = {
