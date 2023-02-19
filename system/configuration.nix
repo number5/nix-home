@@ -31,6 +31,18 @@
     blueman.enable = true;
     getty.autologinUser = "bruce";
 
+    # gvfs for easy workflows with external drives
+    gvfs.enable = true;
+
+    upower.enable = true;
+
+    logind.extraConfig = ''
+      LidSwitchIgnoreInhibited=no
+      HandlePowerKey=ignore
+    '';
+
+    journald.extraConfig = "SystemMaxUse=1G";
+
     xserver = {
       enable = true;
       layout = "us";
@@ -64,7 +76,6 @@
   console.useXkbConfig = true;
 
   hardware = {
-    pulseaudio.enable = true;
     bluetooth.enable = true;
     ledger.enable = true; # Allow ledger devices to connect.
   };
