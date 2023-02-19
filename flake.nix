@@ -27,8 +27,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-
     # Nix linter
     statix = {
       url = "github:nerdypepper/statix";
@@ -73,7 +71,6 @@
           // (buildHomeManager "aarch64-linux")
           // (buildHomeManager "aarch64-darwin")
           // {
-            inherit (self.checks.x86_64-linux) treefmt;
           };
       })
     .config
