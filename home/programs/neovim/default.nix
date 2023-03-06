@@ -1,10 +1,11 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   programs.neovim = {
     enable = true;
     vimAlias = true;
+  };
+
     xdg.configFile."nvim" = {
-      source = "${dot_zsh}/";
+      source = "${inputs.dot_vim}/";
       recursive = true;
     };
-  };
 }
