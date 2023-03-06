@@ -2,6 +2,9 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
-    extraConfig = builtins.readFile ./init.vim;
+    xdg.configFile."nvim" = {
+      source = "${dot_zsh}/";
+      recursive = true;
+    };
   };
 }

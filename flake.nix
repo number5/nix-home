@@ -27,11 +27,11 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Nix linter
-    statix = {
-      url = "github:nerdypepper/statix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    dot_vim.url = "github:number5/dot_vim";
+    dot_vim.flake = false;
+
+    dotzsh.url = "github:number5/dotzsh";
+    dotzsh.flake = false;
   };
 
   outputs = inputs @ {
