@@ -32,6 +32,7 @@
 
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
+
   };
 
   outputs = inputs @ {
