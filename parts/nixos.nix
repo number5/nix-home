@@ -35,11 +35,11 @@
       documentation.info.enable = false;
 
       imports = [
-        ./modules/nix-daemon.nix
-        ./modules/hidpi.nix
-        ./modules/misc.nix
+        ../system/modules/nix-daemon.nix
+        ../system/modules/hidpi.nix
+        ../system/modules/misc.nix
         # ./modules/caddy.nix
-        ./modules/pipewire.nix
+        ../system/modules/pipewire.nix
         inputs.nur.nixosModules.nur
         inputs.sops-nix.nixosModules.sops
       ];
@@ -57,7 +57,7 @@ in {
           inputs.nixos-hardware.nixosModules.common-gpu-amd
 
           inputs.home-manager.nixosModules.home-manager
-          ./configuration.nix
+          ../system/configuration.nix
         ];
     };
   };

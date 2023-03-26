@@ -24,7 +24,7 @@
           imports =
             extraModules
             ++ [
-              ./common.nix
+              ../home/common.nix
               inputs.nur.hmModules.nur
             ];
           home.username = "bruce";
