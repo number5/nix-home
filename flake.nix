@@ -27,50 +27,15 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    dot_vim.url = "github:number5/dot_vim";
-    dot_vim.flake = false;
-
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
 
   };
 
-  outputs = inputs @ {
-    self,
-    flake-parts,
-    nixpkgs,
-    ...
-  }:
-    (flake-parts.lib.evalFlakeModule
-      {inherit inputs;}
-      {
-        imports = [
-          ./system/flake-module.nix
-          ./home/flake-module.nix
-        ];
-        systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
-        perSystem = {
-          config,
-          inputs',
-          system,
-          ...
-        }: {
-          # make pkgs available to all `perSystem` functions
-          _module.args.pkgs = inputs'.nixpkgs.legacyPackages;
-        };
-        # CI
-        flake.hydraJobs = let
-          inherit (nixpkgs) lib;
-          buildHomeManager = arch:
-            lib.mapAttrs' (name: config: lib.nameValuePair "home-manager-${name}-${arch}" config.activation-script) self.legacyPackages.${arch}.homeConfigurations;
-        in
-          (lib.mapAttrs' (name: config: lib.nameValuePair "nixos-${name}" config.config.system.build.toplevel) self.nixosConfigurations)
-          // (buildHomeManager "x86_64-linux")
-          // (buildHomeManager "aarch64-linux")
-          // (buildHomeManager "aarch64-darwin")
-          // {
-          };
-      })
-    .config
-    .flake;
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [./parts];
+      systems = ["aarch64-darwin" "x86_64-darwin" "x86_64-linux"];
+    };
+
 }
