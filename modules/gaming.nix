@@ -1,10 +1,9 @@
 {
   pkgs,
-  config,
   ...
 }: {
-  config = {
     home.packages = with pkgs; [
+      steam
       bottles
       dosbox
       protontricks
@@ -13,5 +12,4 @@
       wine64
       winetricks
     ];
-  };
 }

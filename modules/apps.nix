@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    kitty
     firefox
     xfce.thunar
     lxappearance
@@ -23,7 +24,6 @@
     yarn
     rnix-lsp
     postman
-    esbuild
 
     # CLI
     ripgrep
@@ -32,6 +32,10 @@
     exa
     fzf
     fd
+    starship
+    tmux
+    sudo
+
   ];
 
   xdg.mimeApps = {
