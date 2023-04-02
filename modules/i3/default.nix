@@ -47,8 +47,8 @@ in {
         };
 
         keybindings = {
-          # Alacritty terminal
-          "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+          # kitty terminal
+          "${modifier}+Return" = "exec ${pkgs.kitty}/bin/kitty";
 
           # Rofi
           "${modifier}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
@@ -124,7 +124,7 @@ in {
             notification = false;
           }
           {
-            command = "${pkgs.alacritty}/bin/alacritty";
+            command = "${pkgs.kitty}/bin/kitty";
             always = false;
             notification = false;
           }

@@ -3,7 +3,6 @@
   ./chromium
   ./git
   ./gpg
-  ./i3-gaps
   ./neovim
   ./rofi
   ./rust
