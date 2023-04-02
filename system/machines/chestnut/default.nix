@@ -14,16 +14,12 @@
     ../../modules/pipewire.nix
     ../../modules/xrdb.nix
     ../../modules/zsh.nix
+    ../../modules/gui-support.nix
   ];
 
   environment.systemPackages = [];
 
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
-
-  location = {
-    latitude = 0.0;
-    longitude = 0.0;
-  };
 
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
