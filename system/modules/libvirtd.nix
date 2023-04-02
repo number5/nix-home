@@ -10,5 +10,8 @@
         unix_sock_group = "libvirtd"
       '';
     };
+
+    virtualisation.spiceUSBRedirection.enable = true;
+
   };
 }
