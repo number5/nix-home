@@ -6,6 +6,7 @@
       enable = true;
       onBoot = "ignore";
       qemu.runAsRoot = false;
+      qemu.package = pkgs.qemu_kvm;
       extraConfig = ''
         unix_sock_group = "libvirtd"
       '';
