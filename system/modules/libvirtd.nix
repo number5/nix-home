@@ -12,6 +12,5 @@
     };
 
     virtualisation.spiceUSBRedirection.enable = true;
-
   };
 }

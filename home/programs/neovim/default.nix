@@ -7,6 +7,4 @@
     enable = true;
     vimAlias = true;
   };
-
-  };
 }

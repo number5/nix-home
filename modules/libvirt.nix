@@ -1,6 +1,6 @@
 {pkgs, ...}: {
-    home.packages = with pkgs; [
-      virt-manager
-      virt-viewer
-    ];
+  home.packages = with pkgs; [
+    virt-manager
+    virt-viewer
+  ];
 }
