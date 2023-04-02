@@ -1,6 +1,5 @@
 {...}: {
-  imports =
-    [
-      ./libvirt.nix
-    ]
+  imports = [
+    ./libvirt.nix
+  ];
 }
