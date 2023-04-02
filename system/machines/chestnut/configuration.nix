@@ -6,11 +6,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./hardware-configuration.nix
-    ./modules/users.nix
-  ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -21,11 +16,6 @@
     networkmanager.enable = true;
   };
 
-  # Set your time zone.
-  time.timeZone = "Australia/Melbourne";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.utf8";
 
   services = {
     blueman.enable = true;

@@ -1,64 +1,43 @@
 {
-  self,
   inputs,
+  lib,
+  self,
+  withSystem,
   ...
-}: let
-  inherit (inputs.nixpkgs) lib;
-  inherit (inputs) nixpkgs;
+}: {
+  flake = {
+    nixosConfigurations = withSystem "x86_64-linux" ({
+      pkgs,
+      system,
+      ...
+    }: let
+      mkNixOs = machineConfig:
+        inputs.nixpkgs.lib.nixosSystem {
+          inherit pkgs system;
 
-  nixosSystem = args:
-    (lib.makeOverridable lib.nixosSystem)
-    (lib.recursiveUpdate args {
-      modules =
-        args.modules
-        ++ [
-          {
-            config.nixpkgs.pkgs = lib.mkDefault args.pkgs;
-            config.nixpkgs.localSystem = lib.mkDefault args.pkgs.stdenv.hostPlatform;
-          }
-        ];
+          modules = [
+            {
+              config._module.args = {
+                inherit inputs;
+                flake = self;
+              };
+            }
+            inputs.nixpkgs.nixosModules.notDetected
+            inputs.home-manager.nixosModules.home-manager
+            machineConfig
+            (_: {
+              nix.registry =
+                builtins.mapAttrs (_name: flake: {inherit flake;}) inputs;
+            })
+          ];
+        };
+    in {
+      chestnut = mkNixOs ../system/machines/chestnut;
     });
 
-  defaultModules = [
-    # make flake inputs accessiable in NixOS
-    {
-      _module.args.self = self;
-      _module.args.inputs = self.inputs;
-    }
-    ({pkgs, ...}: {
-      nix.nixPath = [
-        "nixpkgs=${pkgs.path}"
-        "home-manager=${inputs.home-manager}"
-        "nur=${inputs.nur}"
-      ];
-
-      documentation.info.enable = false;
-
-      imports = [
-        ../system/modules/nix-daemon.nix
-        ../system/modules/hidpi.nix
-        ../system/modules/misc.nix
-        # ./modules/caddy.nix
-        ../system/modules/pipewire.nix
-        inputs.nur.nixosModules.nur
-        inputs.sops-nix.nixosModules.sops
-      ];
-    })
-  ];
-in {
-  flake.nixosConfigurations = {
-    chestnut = nixosSystem {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules =
-        defaultModules
-        ++ [
-          inputs.nixos-hardware.nixosModules.common-cpu-amd
-          inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-          inputs.nixos-hardware.nixosModules.common-gpu-amd
-
-          inputs.home-manager.nixosModules.home-manager
-          ../system/configuration.nix
-        ];
-    };
+    packages.x86_64-linux = lib.attrsets.mapAttrs' (name: value:
+      lib.attrsets.nameValuePair "nixos-${name}"
+      value.config.system.build.toplevel)
+    self.outputs.nixosConfigurations;
   };
 }

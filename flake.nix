@@ -29,7 +29,6 @@
 
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
-
   };
 
   outputs = inputs @ {flake-parts, ...}:
@@ -37,5 +36,4 @@
       imports = [./parts];
       systems = ["aarch64-darwin" "x86_64-darwin" "x86_64-linux"];
     };
-
 }
