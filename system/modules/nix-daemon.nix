@@ -5,9 +5,6 @@
 }: {
   # this extends srvos's common settings
   nix = {
-    gc.automatic = true;
-    gc.dates = "03:15";
-    gc.options = "--delete-older-than 10d";
     # should be enough?
     nrBuildUsers = lib.mkDefault 32;
 
@@ -25,7 +22,7 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
 
-      trusted-users = ["@wheel" "root"];
+      trusted-users = ["@wheel" "root" "bruce"];
 
       fallback = true;
       warn-dirty = false;
