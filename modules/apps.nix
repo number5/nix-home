@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
+    wezterm
     kitty
     firefox
     xfce.thunar
@@ -35,6 +36,12 @@
     starship
     tmux
     sudo
+
+    # Security
+    _1password
+    _1password_gui
+
+    logseq
   ];
 
   xdg.mimeApps = {
