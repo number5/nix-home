@@ -15,6 +15,7 @@
     ../../modules/xrdb.nix
     ../../modules/zsh.nix
     ../../modules/gui-support.nix
+    ../../modules/nix-path.nix
   ];
 
   environment.systemPackages = [];
@@ -25,8 +26,6 @@
   nix.gc.dates = "daily";
   nix.gc.persistent = true;
   nix.gc.randomizedDelaySec = "30min";
-
-  nix.nixPath = [];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

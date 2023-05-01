@@ -75,7 +75,7 @@
   environment = {
     # List packages installed in system profile. To search, run:
     # $ nix search wget
-    systemPackages = with pkgs; [git curl wget ripgrep];
+    systemPackages = with pkgs; [git curl wget ripgrep openssh];
 
     sessionVariables = rec {
       XDG_CACHE_HOME = "\${HOME}/.cache";
@@ -88,6 +88,7 @@
       PATH = [
         "\${XDG_BIN_HOME}"
       ];
+      GIT_SSH = "${pkgs.openssh}/bin/ssh";
     };
 
     # Disable gui prompt when git asks for a password.
