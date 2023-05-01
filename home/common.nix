@@ -38,7 +38,7 @@
 
         dot_nvim = {
           branch = "main";
-          repo = "ssh://git@github.com:number5/dot_vim.git";
+          repo = "git@github.com:number5/dot_vim.git";
           target = "${config.xdg.configHome}/nvim";
         };
       };
