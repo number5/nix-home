@@ -10,7 +10,7 @@ with lib; let
 
   cloneIfNotExists = target: repo: branch: ''
     if [ ! -e "${target}" ]; then
-      $DRY_RUN_CMD ${pkgs.git}/bin/git clone \
+      $DRY_RUN_CMD GIT_SSH_COMMAND=${pkgs.openssh}/bin/ssh ${pkgs.git}/bin/git clone \
         --branch "${branch}" \
         --recursive \
         -- \

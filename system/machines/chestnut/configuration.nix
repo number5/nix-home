@@ -88,6 +88,7 @@
       PATH = [
         "\${XDG_BIN_HOME}"
       ];
+      GIT_SSH = "${pkgs.openssh}/bin/ssh";
     };
 
     # Disable gui prompt when git asks for a password.
