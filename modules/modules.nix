@@ -5,5 +5,7 @@
     ./gaming.nix
     ./i3
     ./libvirt.nix
+
+    ./mutablerepos.nix
   ];
 }
