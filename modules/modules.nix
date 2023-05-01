@@ -7,5 +7,6 @@
     ./libvirt.nix
 
     ./mutablerepos.nix
+    ./nix-path.nix
   ];
 }
