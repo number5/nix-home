@@ -16,7 +16,6 @@
     };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-systemd.url = "github:pennae/nixpkgs/systemd-oom";
     nur.url = "github:nix-community/NUR";
 
     sops-nix.url = "github:Mic92/sops-nix";
