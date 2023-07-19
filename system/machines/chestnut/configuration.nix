@@ -35,7 +35,7 @@
     xserver = {
       enable = true;
       layout = "us";
-      xkbOptions = "caps:swapescape"; # Swap caps-lock with escape.
+      xkbOptions = "caps:escape"; # Caps-lock is the new Escape.
       videoDrivers = ["amdgpu"];
       libinput = {
         enable = true;

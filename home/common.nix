@@ -21,7 +21,7 @@
 
     home.enableNixpkgsReleaseCheck = false;
 
-    home.stateVersion = "23.05";
+    home.stateVersion = "23.11";
     home.username = "bruce";
     home.homeDirectory = "/home/bruce";
     programs.home-manager.enable = true;
