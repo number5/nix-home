@@ -36,7 +36,7 @@
       enable = true;
       layout = "us";
       xkbOptions = "caps:escape"; # Caps-lock is the new Escape.
-      videoDrivers = ["amdgpu"];
+      # videoDrivers = ["amdgpu"];
       libinput = {
         enable = true;
         mouse = {
