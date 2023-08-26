@@ -18,7 +18,7 @@
   withPlayerctld = lib.optionalString config.services.playerctld.enable "-p playerctld";
 in {
   xsession.windowManager.i3.config.keybindings = {
-    "${mod}+Shift+q" = exec-no-startup "${binaries.logout}";
+    # "${mod}+Shift+q" = exec-no-startup "${binaries.logout}";
     "${mod}+Shift+d" = "kill";
 
     "${mod}+d" = exec "${binaries.launcher}";
@@ -27,7 +27,7 @@ in {
     "${mod}+Shift+Return" = exec-no-startup "${binaries.floating-term}";
 
     "${mod}+BackSpace" = exec-no-startup "${binaries.locker}";
-    "${mod}+Ctrl+BackSpace" = exec-no-startup "${binaries.logout}";
+    # "${mod}+Ctrl+BackSpace" = exec-no-startup "${binaries.logout}";
 
     "${mod}+p" = exec "${binaries.menu}";
 
