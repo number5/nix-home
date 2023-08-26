@@ -39,7 +39,7 @@
 
     # Security
     _1password
-    _1password_gui
+    _1password-gui
 
     logseq
   ];
