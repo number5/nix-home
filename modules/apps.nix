@@ -1,23 +1,31 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    wezterm
-    kitty
-    firefox
-    xfce.thunar
-    lxappearance
-    vlc
-    htop-vim
-    nvtop
+    dconf
+    dunst
     feh
-    playerctl
-    xbanish
-    neofetch
-    xclip
-    xmousepasteblock
+    firefox
+    haskellPackages.greenclip
+    htop-vim
     jq
-    unzip
+    kitty
+    lxappearance
+    neofetch
+    nvtop
     p7zip
+    playerctl
+    rofi
+    rofimoji
     unrar
+    unzip
+    vlc
+    wezterm
+    xbanish
+    xclip
+    xdotool
+    xfce.thunar
+    xmousepasteblock
+    xsecurelock
+    xss-lock
 
     # Programming
     asdf-vm

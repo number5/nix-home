@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (config.i3) binaries;
   ws = config.i3.workspaces;
 
@@ -15,7 +18,7 @@ let
   };
 
   # Hack to always leave enough space for polybar at the top
-  polybarCfg = config.services.polybar.config."bar/main" or { };
+  polybarCfg = config.services.polybar.config."bar/main" or {};
   topGaps = (polybarCfg.height or 0) + 2 * (polybarCfg.offset-y or 0);
   xrdbHackCmd = ''
     ${lib.getBin pkgs.xorg.xrdb}/bin/xrdb -merge ${pkgs.writeText "i3-flashback-xresources" ''
@@ -29,7 +32,7 @@ in {
       ${xrdbHackCmd}
     fi
   '';
-  home.activation.flashback-xrdb = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.flashback-xrdb = lib.hm.dag.entryAfter ["writeBoundary"] ''
     if [[ "''${XDG_CURRENT_DESKTOP-}" =~ "GNOME-Flashback" ]]; then
       $DRY_RUN_CMD ${xrdbHackCmd}
     fi
@@ -39,13 +42,13 @@ in {
     inherit (binaries) terminal;
 
     fonts = {
-      names = [ "FontAwesome" "FontAwesome5Free" "Fira Sans" "DejaVu Sans Mono" ];
+      names = ["FontAwesome" "FontAwesome5Free" "Fira Sans" "DejaVu Sans Mono"];
       size = 10.0;
     };
 
     menu = binaries.launcher;
 
-    bars = [ ];
+    bars = [];
 
     gaps = {
       inner = 5;
@@ -55,8 +58,8 @@ in {
 
     assigns = {
       ${ws.WS7} = [
-        { con_mark = "_social.*"; }
-        { con_mark = "_music-player.*"; }
+        {con_mark = "_social.*";}
+        {con_mark = "_music-player.*";}
       ];
     };
     window = {
@@ -65,25 +68,34 @@ in {
       hideEdgeBorders = "smart";
       commands = lib.flatten [
         (map mkInhibitFullscreen [
-          { class = "Firefox"; }
-          { instance = "Steam"; }
-          { instance = "lutris"; }
-          { title = "^Zoom Cloud.*"; }
+          {class = "Firefox";}
+          {instance = "Steam";}
+          {instance = "lutris";}
+          {title = "^Zoom Cloud.*";}
         ])
-        (map (x: { command = "floating enable, border none"; criteria = x; }) [
-          { instance = "xfce4-appfinder"; }
-          { instance = "pavucontrol"; }
-          { instance = "gnome-panel"; title = "Calendar"; }
-          { instance = "gnome-control-center"; }
-          { instance = "avizo-service"; }
-        ])
-        (map (x: { command = "floating enable"; criteria = x; }) [
-          { instance = "floating-term"; }
-        ])
-        (mkMarkSocial "element" { class = "Element"; })
-        (mkMarkSocial "signal" { class = "Signal"; })
-        (mkMarkSocial "bitwarden" { class = "Bitwarden"; })
-        (mkMarkSocial "caprine" { class = "Caprine"; })
+        (map (x: {
+            command = "floating enable, border none";
+            criteria = x;
+          }) [
+            {instance = "xfce4-appfinder";}
+            {instance = "pavucontrol";}
+            {
+              instance = "gnome-panel";
+              title = "Calendar";
+            }
+            {instance = "gnome-control-center";}
+            {instance = "avizo-service";}
+          ])
+        (map (x: {
+            command = "floating enable";
+            criteria = x;
+          }) [
+            {instance = "floating-term";}
+          ])
+        (mkMarkSocial "element" {class = "Element";})
+        (mkMarkSocial "signal" {class = "Signal";})
+        (mkMarkSocial "bitwarden" {class = "Bitwarden";})
+        (mkMarkSocial "caprine" {class = "Caprine";})
       ];
     };
     floating = {
@@ -93,19 +105,23 @@ in {
     workspaceLayout = "default";
     workspaceAutoBackAndForth = false;
 
-    startup =
-      map (v: v // {
+    startup = map (v:
+      v
+      // {
         command = "${v.command}";
         notification = v.notification or false;
       }) [
-        { command = binaries.disableCompositing; always = true; }
-        { command = binaries.startX11SessionTarget; }
-        { command = binaries.spotify; }
-        { command = binaries.element-desktop; }
-        { command = binaries.light-locker; }
-        { command = binaries.wallpaper; }
-        { command = binaries.unclutter; }
-      ];
+      {
+        command = binaries.disableCompositing;
+        always = true;
+      }
+      {command = binaries.startX11SessionTarget;}
+      {command = binaries.spotify;}
+      {command = binaries.element-desktop;}
+      {command = binaries.light-locker;}
+      {command = binaries.wallpaper;}
+      {command = binaries.unclutter;}
+    ];
   };
 
   xsession.windowManager.i3.extraConfig = ''

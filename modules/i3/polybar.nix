@@ -1,19 +1,21 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   height = 30;
   margin = 5;
   border = 1;
-in
-{
+in {
   systemd.user.services.polybar = lib.mkIf (config.services.polybar.enable) {
-    Unit.ConditionEnvironment = [ "XDG_CURRENT_DESKTOP=none+i3" ];
-    Install.WantedBy = [ "x11-session.target" ];
+    Unit.ConditionEnvironment = ["XDG_CURRENT_DESKTOP=none+i3"];
+    Install.WantedBy = ["x11-session.target"];
   };
 
   services.polybar = {
     enable = true;
-    package = pkgs.polybar.override { i3GapsSupport = true; };
+    package = pkgs.polybar.override {i3GapsSupport = true;};
 
     # script = "${pkgs.bash}/bin/bash -lc 'polybar --reload spacer & polybar --reload main &'";
     script = "${pkgs.bash}/bin/bash -lc 'polybar --reload main &'";
@@ -220,7 +222,6 @@ in
 
         menu-1-0 = "";
         menu-1-0-exec = "";
-
       };
     };
   };

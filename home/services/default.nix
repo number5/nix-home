@@ -1,5 +1,3 @@
 [
   ./flameshot
-  ./polybar
-  ./picom
 ]

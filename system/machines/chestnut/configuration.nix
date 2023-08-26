@@ -31,7 +31,7 @@
     '';
 
     fprintd.enable = true;
-    
+
     journald.extraConfig = "SystemMaxUse=1G";
 
     xserver = {

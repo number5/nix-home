@@ -1,19 +1,22 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (config.i3) binaries;
   inherit (config.xsession.windowManager.i3.config) left up right down;
   mod = config.xsession.windowManager.i3.config.modifier;
   ws = config.i3.workspaces;
 
   # Wrapper around `exec` to always use a login shell (and inherit environment variables)
-  exec = n: exec-no-startup "${lib.escapeShellArg pkgs.bash}/bin/bash -lc "
+  exec = n:
+    exec-no-startup "${lib.escapeShellArg pkgs.bash}/bin/bash -lc "
     + lib.escapeShellArg (toString n);
   exec-no-startup = n: "exec --no-startup-id " + n;
 
   withPlayerctld = lib.optionalString config.services.playerctld.enable "-p playerctld";
-in
-{
+in {
   xsession.windowManager.i3.config.keybindings = {
     "${mod}+Shift+q" = exec-no-startup "${binaries.logout}";
     "${mod}+Shift+d" = "kill";
@@ -23,26 +26,26 @@ in
     "${mod}+Return" = exec-no-startup "${binaries.terminal}";
     "${mod}+Shift+Return" = exec-no-startup "${binaries.floating-term}";
 
-    "${mod}+BackSpace"      = exec-no-startup "${binaries.locker}";
+    "${mod}+BackSpace" = exec-no-startup "${binaries.locker}";
     "${mod}+Ctrl+BackSpace" = exec-no-startup "${binaries.logout}";
 
     "${mod}+p" = exec "${binaries.menu}";
 
     # Browser
-    "${mod}+n"       = exec binaries.browser;
+    "${mod}+n" = exec binaries.browser;
     "${mod}+Shift+n" = exec binaries.browser-private;
-    "${mod}+Ctrl+n"  = exec binaries.browser-work-profile;
+    "${mod}+Ctrl+n" = exec binaries.browser-work-profile;
 
-    "${mod}+z"       = "focus child";
+    "${mod}+z" = "focus child";
     "${mod}+Shift+Z" = "focus parent";
     "${mod}+Shift+minus" = "move to scratchpad";
-    "${mod}+minus"       = "scratchpad show";
-    "${mod}+space"       = "focus mode_toggle";
+    "${mod}+minus" = "scratchpad show";
+    "${mod}+space" = "focus mode_toggle";
     "${mod}+Shift+space" = "floating toggle, border normal";
 
-    "${mod}+f"       = "fullscreen toggle";
+    "${mod}+f" = "fullscreen toggle";
     "${mod}+Shift+f" = "fullscreen toggle global";
-    "${mod}+c"       = "border toggle";
+    "${mod}+c" = "border toggle";
 
     "${mod}+h" = "focus left";
     "${mod}+j" = "focus down";
@@ -66,26 +69,26 @@ in
     "${mod}+Shift+s" = "sticky toggle";
 
     "XF86AudioPause" = exec "${binaries.playerctl} ${withPlayerctld} pause";
-    "XF86AudioPlay"  = exec "${binaries.playerctl} ${withPlayerctld} play";
-    "XF86AudioPrev"  = exec "${binaries.playerctl} previous";
-    "Pause"          = exec "${binaries.playerctl} ${withPlayerctld} play-pause";
+    "XF86AudioPlay" = exec "${binaries.playerctl} ${withPlayerctld} play";
+    "XF86AudioPrev" = exec "${binaries.playerctl} previous";
+    "Pause" = exec "${binaries.playerctl} ${withPlayerctld} play-pause";
 
     # Volume stuff
     # "XF86AudioRaiseVolume" = exec "${binaries.volume} 'increase'";
     # "XF86AudioLowerVolume" = exec "${binaries.volume} 'decrease'";
     # "XF86AudioMute"        = exec "${binaries.volume} 'toggle-mute'";
     # "XF86AudioMicMute"     = exec "${binaries.volume} 'mic-mute'";
-    "Scroll_Lock"          = exec "${binaries.volume} 'mic-mute'";
+    "Scroll_Lock" = exec "${binaries.volume} 'mic-mute'";
 
-    "--release Print"       = exec "${binaries.screenshot} 'selection'";
-    "--release Alt+Print"   = exec "${binaries.screenshot} 'window'";
+    "--release Print" = exec "${binaries.screenshot} 'selection'";
+    "--release Alt+Print" = exec "${binaries.screenshot} 'window'";
     "--release Shift+Print" = exec "${binaries.screenshot} 'screen'";
-    "--release Ctrl+Print"  = exec "${binaries.screenshot} 'everything'";
+    "--release Ctrl+Print" = exec "${binaries.screenshot} 'everything'";
 
     # Switch focus on workspaces
-    "${mod}+u"       = "workspace back_and_forth";
+    "${mod}+u" = "workspace back_and_forth";
     "${mod}+Shift+u" = "move container to workspace back_and_forth";
-    "${mod}+Ctrl+u"  = "move container to workspace back_and_forth; workspace back_and_forth";
+    "${mod}+Ctrl+u" = "move container to workspace back_and_forth; workspace back_and_forth";
 
     "${mod}+1" = "workspace ${ws.WS1}";
     "${mod}+2" = "workspace ${ws.WS2}";

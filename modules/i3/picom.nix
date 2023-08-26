@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   services.picom = {
     enable = true;
     backend = "glx";
@@ -31,5 +34,5 @@
     };
   };
 
-  systemd.user.services.picom.Install.WantedBy = lib.mkForce [ "x11-session.target" ];
+  systemd.user.services.picom.Install.WantedBy = lib.mkForce ["x11-session.target"];
 }
