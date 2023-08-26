@@ -99,5 +99,5 @@
     '';
   };
 
-  fonts.fonts = with pkgs; [nerdfonts];
+  fonts.packages = with pkgs; [nerdfonts];
 }
