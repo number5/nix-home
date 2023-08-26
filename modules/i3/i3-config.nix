@@ -111,13 +111,9 @@ in {
         command = "${v.command}";
         notification = v.notification or false;
       }) [
-      {
-        command = binaries.disableCompositing;
-        always = true;
-      }
       {command = binaries.startX11SessionTarget;}
-      {command = binaries.spotify;}
-      {command = binaries.element-desktop;}
+      #{command = binaries.spotify;}
+      #{command = binaries.element-desktop;}
       {command = binaries.light-locker;}
       {command = binaries.wallpaper;}
       {command = binaries.unclutter;}

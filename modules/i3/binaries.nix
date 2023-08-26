@@ -3,9 +3,8 @@
   ib,
   pkgs,
   ...
-}: let
-  inherit (config.lib.my) getScript;
-in {
+}: 
+{
   i3.binaries = rec {
     # Things directly referenced in the config file
     terminal = "${config.my.defaults.terminal} --working-directory ${config.home.homeDirectory}";
@@ -20,8 +19,8 @@ in {
     locker = pkgs.writeShellScript "locker" ''
       ${pkgs.lightlocker}/bin/light-locker-command -l
     '';
-    screenshot = "${getScript "screenshot.sh"}";
-    volume = "${getScript "volume.sh"}";
+    screenshot = "${./screenshot.sh}";
+    volume = "${./volume.sh}";
 
     light-locker = pkgs.writeShellScript "lockscreen" ''
       ${pkgs.lightlocker}/bin/light-locker --idle-hint --lock-on-suspend --lock-after-screensaver=5 --late-locking
