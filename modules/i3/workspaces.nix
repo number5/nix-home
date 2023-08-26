@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
 
-  options.workspaces = lib.mkOption {
+  options.i3.workspaces = lib.mkOption {
     type = lib.types.attrsOf lib.types.str;
   };
 
