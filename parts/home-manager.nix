@@ -25,6 +25,7 @@
             extraModules
             ++ [
               ../home/common.nix
+              ../home/home-manager-options.nix
               ../modules/modules.nix
               inputs.nur.hmModules.nur
             ];
