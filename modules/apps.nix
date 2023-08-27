@@ -28,6 +28,9 @@
     xss-lock
 
     # Programming
+    gnumake
+    cmake
+
     asdf-vm
     nix-prefetch-git
     yarn
