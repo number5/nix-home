@@ -23,7 +23,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     dotzsh.url = "github:number5/dotzsh";
@@ -33,6 +33,6 @@
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [./parts];
-      systems = ["aarch64-darwin" "x86_64-darwin" "x86_64-linux"];
+      systems = ["aarch64-darwin" "x86_64-linux"];
     };
 }
