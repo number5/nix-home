@@ -22,7 +22,8 @@ in {
     # "${mod}+Shift+q" = exec-no-startup "${binaries.logout}";
     "${mod}+Shift+d" = "kill";
 
-    "${mod}+d" = exec "${binaries.launcher}";
+    # Rofi
+    "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
 
     "${mod}+Return" = exec-no-startup "${binaries.terminal}";
     "${mod}+Shift+Return" = exec-no-startup "${binaries.floating-term}";
