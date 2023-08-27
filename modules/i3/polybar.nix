@@ -15,7 +15,7 @@ in {
 
   services.polybar = {
     enable = true;
-    package = pkgs.polybar.override {i3GapsSupport = true;};
+    # package = pkgs.polybar.override {i3GapsSupport = true;};
 
     # script = "${pkgs.bash}/bin/bash -lc 'polybar --reload spacer & polybar --reload main &'";
     script = "${pkgs.bash}/bin/bash -lc 'polybar --reload main &'";

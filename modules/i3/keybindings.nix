@@ -29,7 +29,7 @@ in {
     "${mod}+BackSpace" = exec-no-startup "${binaries.locker}";
     # "${mod}+Ctrl+BackSpace" = exec-no-startup "${binaries.logout}";
 
-    "${mod}+p" = exec "${binaries.menu}";
+    # "${mod}+p" = exec "${binaries.menu}";
 
     # Browser
     "${mod}+n" = exec binaries.browser;
