@@ -45,7 +45,7 @@ in {
 
         # Yes, this is a static hardcoded monitor output, but I only use
         # X11 on a specific pc with a static configuration.
-        monitor = "DP-4";
+        # monitor = "DP-4";
         monitor-fallback = "";
 
         # Don't make i3 aware of the bar (requires fake transparent spacer bar)
@@ -58,7 +58,7 @@ in {
         # or i3-nagbar get rendered on top of polybar
         wm-restack = "i3";
 
-        width = "1200";
+        width = "100%";
         offset-x = "50%:-600";
         offset-y = margin;
 

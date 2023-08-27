@@ -6,7 +6,8 @@
 }: let
   inherit (config.i3) binaries;
   inherit (config.xsession.windowManager.i3.config) left up right down;
-  mod = config.xsession.windowManager.i3.config.modifier;
+  #mod = config.xsession.windowManager.i3.config.modifier;
+  mod = "Mod4";
   ws = config.i3.workspaces;
 
   # Wrapper around `exec` to always use a login shell (and inherit environment variables)

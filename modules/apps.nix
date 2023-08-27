@@ -51,7 +51,7 @@
     _1password
     _1password-gui
 
-    logseq
+    # logseq
   ];
 
   xdg.mimeApps = {
