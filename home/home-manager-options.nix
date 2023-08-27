@@ -40,8 +40,8 @@ with lib; {
 
   options.my.defaults.terminal = mkOption {
     type = types.oneOf [types.path types.str types.package];
-    default = "${pkgs.alacritty}/bin/alacritty";
-    defaultText = literalExpression ''"''${pkgs.alacritty}/bin/alacritty"'';
+    default = "${pkgs.wezterm}/bin/wezterm";
+    defaultText = literalExpression ''"''${pkgs.wezterm}/bin/wezterm"'';
     apply = toString;
     description = "File explorer to use in different applications";
   };

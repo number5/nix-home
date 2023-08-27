@@ -31,7 +31,6 @@
     asdf-vm
     nix-prefetch-git
     yarn
-    rnix-lsp
     postman
 
     # CLI
