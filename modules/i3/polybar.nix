@@ -59,7 +59,7 @@ in {
         wm-restack = "i3";
 
         width = "100%";
-        offset-x = "0";
+        offset-x = margin;
         offset-y = margin;
 
         border-size = border;
