@@ -27,7 +27,7 @@
               ../home/common.nix
               ../home/home-manager-options.nix
               ../modules/modules.nix
-              inputs.nur.hmModules.nur
+              #inputs.nur.hmModules.nur
             ];
           home.username = "bruce";
           home.homeDirectory = "/home/bruce";
