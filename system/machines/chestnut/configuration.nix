@@ -1,4 +1,4 @@
-{
+
   inputs,
   outputs,
   lib,
@@ -7,9 +7,17 @@
   ...
 }: {
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/";
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/";
+    };
+
+    # use latest kernel
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelParams = ["amd_pstate=active"];
+  };
 
   networking = {
     hostName = "chestnut";
@@ -59,7 +67,7 @@
 
       windowManager.i3 = {
         enable = true;
-        package = pkgs.i3-gaps;
+        package = pkgs.i3;
       };
     };
   };
@@ -98,6 +106,4 @@
       unset -v SSH_ASKPASS
     '';
   };
-
-  fonts.packages = with pkgs; [nerdfonts];
 }

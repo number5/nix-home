@@ -16,6 +16,4 @@
     # Use keys only. Remove if you want to SSH using password (not recommended)
     settings.PasswordAuthentication = false;
   };
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 }
