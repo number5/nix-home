@@ -1,47 +1,38 @@
 {
+  mode,
   config,
-  lib,
   pkgs,
+  lib,
+  master,
   ...
-}: {
-  imports = [
-    ./workspaces.nix
-    ./i3-config.nix
-    ./keybindings.nix
-    ./binaries.nix
-    ./services.nix
-    ./picom.nix
-    ./polybar.nix
-  ];
-
-  options.i3.binaries = lib.mkOption {
-    type = lib.types.attrsOf (lib.types.oneOf [lib.types.str lib.types.package]);
+}:
+with lib; let
+  cfg = config.soxin.services.xserver.windowManager.i3;
+in {
+  options = {
+    soxin.services.xserver.windowManager.i3 = {
+      enable = mkEnableOption "i3";
+    };
   };
 
-  config = {
-    home.packages = [
-      pkgs.xclip # copy/paste
-      pkgs.lightlocker # lockscreen that integrates with lightdm
-    ];
+  config = mkIf cfg.enable (mkMerge [
+    (optionalAttrs (mode == "home-manager") {
+      xsession = {
+        enable = true;
 
-    my.defaults.terminal = "${pkgs.wezterm}/bin/wezterm";
-    my.defaults.file-explorer = "${pkgs.xfce.thunar}/bin/thunar";
+        windowManager = {
+          i3 = import ./i3-config.lib.nix {inherit config pkgs lib master;};
+        };
 
-    xsession.enable = true;
+        initExtra = ''
+          exec &> ~/.xsession-errors
 
-    systemd.user.targets.x11-session = {
-      Unit = {
-        Description = "X11 compositor session";
-        Documentation = ["man:systemd.special(7)"];
-        BindsTo = ["graphical-session.target"];
-        Wants = ["graphical-session-pre.target"];
-        After = ["graphical-session-pre.target"];
+          # fix the look of Java applications
+          export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+        '';
+
+        scriptPath = ".hm-xsession";
       };
-    };
-
-    xsession.windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-    };
-  };
+    })
+  ]);
 }
