@@ -1,4 +1,5 @@
 
+{
   imports = [
     ./apps.nix
     ./fonts.nix
