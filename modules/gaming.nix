@@ -5,7 +5,5 @@
     dosbox
     protontricks
     shattered-pixel-dungeon
-    wine64
-    winetricks
   ];
 }
