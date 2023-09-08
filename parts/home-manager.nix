@@ -58,7 +58,6 @@
         // lib.optionalAttrs (pkgs.hostPlatform.system == "x86_64-linux") {
           chestnut = homeManagerConfiguration {
             extraModules = [
-              inputs.nix-index-database.hmModules.nix-index
               ({pkgs, ...}: {
                 home.packages = [
                 ];
