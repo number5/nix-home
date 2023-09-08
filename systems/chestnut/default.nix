@@ -7,15 +7,15 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./configuration.nix
-    ../../modules/users.nix
-    ../../modules/libvirtd.nix
-    ../../modules/misc.nix
-    ../../modules/nix-daemon.nix
-    ../../modules/pipewire.nix
-    ../../modules/xrdb.nix
-    ../../modules/zsh.nix
-    ../../modules/gui-support.nix
-    ../../modules/nix-path.nix
+    ../../modules/system/users.nix
+    ../../modules/system/libvirtd.nix
+    ../../modules/system/misc.nix
+    ../../modules/system/nix-daemon.nix
+    ../../modules/system/pipewire.nix
+    ../../modules/system/xrdb.nix
+    ../../modules/system/zsh.nix
+    ../../modules/system/gui-support.nix
+    ../../modules/system/nix-path.nix
   ];
 
   environment.systemPackages = [];
