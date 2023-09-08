@@ -27,7 +27,7 @@
       systems = [ "x86_64-linux" ];
       imports = [
         inputs.nixos-flake.flakeModule
-        ./nixos/nix.nix
+        ./nixos
       ];
 
       flake =
@@ -41,7 +41,6 @@
               nixpkgs.hostPlatform = "x86_64-linux";
               imports = [
                 self.nixosModules.common # See below for "nixosModules"!
-                self.nixosModules.linux
                 # Your machine's configuration.nix goes here
                 ./systems/chestnut/default.nix
                 
@@ -60,21 +59,6 @@
                   };
                 }
               ];
-            };
-          };
-
-          # All nixos/nix-darwin configurations are kept here.
-          nixosModules = {
-            # Common nixos/nix-darwin configuration shared between Linux and macOS.
-            common = { pkgs, ... }: {
-              environment.systemPackages = with pkgs; [
-                hello
-              ];
-            };
-            # NixOS specific configuration
-            linux = { pkgs, ... }: {
-              users.users.${myUserName}.isNormalUser = true;
-              services.netdata.enable = true;
             };
           };
 

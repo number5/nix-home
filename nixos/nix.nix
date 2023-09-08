@@ -11,7 +11,6 @@
       flake.inputs.nuenv.overlays.nuenv
       flake.inputs.nixd.overlays.default
       flake.inputs.nuenv.overlays.default
-      (import ../packages/overlay.nix)
     ];
   };
 
