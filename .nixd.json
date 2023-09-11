@@ -1,0 +1,1 @@
+{"eval":{"depth":5,"target":{"args":["-f","default.nix"],"installable":"/flakeref#homeConfigurations.bruce"}},"formatting":{"command":"treefmt"},"options":{"enable":true,"target":{"args":[],"installable":"/flakeref#debug.options"}}}
