@@ -31,10 +31,6 @@ with lib; let
 
     window = {
       commands = [
-        {
-          command = "floating enable";
-          criteria = {workspace = "^studio$";};
-        }
 
         {
           command = "floating enable";
@@ -79,12 +75,8 @@ with lib; let
       "discord" = [{class = "^discord$";}];
       "element" = [{class = "^Element$";}];
       "keybase" = [{class = "^Keybase$";}];
-      "signal" = [{class = "^Signal$";}];
-      "whatsapp" = [{class = "^Whatsapp-for-linux$";}];
       "slack" = [{class = "^Slack$";}];
-      "studio" = [{class = "^obs$";}];
       "tor" = [{class = "^Tor Browser";}];
-      "virtualbox" = [{class = "^VirtualBox";}];
     };
 
     modifier = "Mod4";
@@ -150,12 +142,6 @@ with lib; let
       # switch between the current and the previously focused one
       "${meta}+Tab" = "workspace back_and_forth";
       "${meta}+${shift}+Tab" = "move container to workspace back_and_forth";
-
-      # dynamic workspaces
-      "${meta}+space" = "exec rofi -show i3SwapWorkspaces";
-      "${alt}+space" = "exec rofi -show i3Workspaces";
-      "${meta}+${shift}+space" = "exec rofi -show i3MoveContainer";
-      "${meta}+${alt}+space" = "exec rofi -show i3RenameWorkspace";
 
       # focus the parent container
       "${meta}+a" = "focus parent";
