@@ -1,0 +1,4 @@
+disabled = ["repeated_keys"]
+nix_version = '2.17'
+ignore = ['.direnv']
+

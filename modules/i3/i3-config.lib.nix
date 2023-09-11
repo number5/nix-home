@@ -17,8 +17,7 @@ with lib; let
 
   nosid = "--no-startup-id";
   locker = "xset s activate";
-
-  in {
+in {
   enable = true;
 
   config = {
@@ -31,7 +30,6 @@ with lib; let
 
     window = {
       commands = [
-
         {
           command = "floating enable";
           criteria = {class = "^Arandr";};
@@ -52,7 +50,6 @@ with lib; let
           command = "floating enable";
           criteria = {class = "^net-filebot-Main$";};
         }
-
       ];
     };
 

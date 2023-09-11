@@ -328,7 +328,6 @@ in {
   inherit script;
 
   config = mkMerge [
-
     modulesConfig
 
     {

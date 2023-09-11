@@ -1,6 +1,8 @@
-{ self, config, ... }:
-
 {
+  self,
+  config,
+  ...
+}: {
   # Configuration common to all Linux systems
   flake = {
     nixosModules = {

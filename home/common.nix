@@ -5,10 +5,11 @@
   ...
 }: {
   imports =
-    [
-      #./modules/neovim.nix
-    ]
-    ++ (import ./programs)
+    #[
+    #./modules/neovim.nix
+    #]
+    #++
+    (import ./programs)
     ++ (import ./services);
 
   config = {
@@ -19,11 +20,14 @@
     #    ffmpeg-full
     #  ];
 
-    home.enableNixpkgsReleaseCheck = false;
+    home = {
+      enableNixpkgsReleaseCheck = false;
 
-    home.stateVersion = "23.05";
-    home.username = "bruce";
-    home.homeDirectory = "/home/bruce";
+      stateVersion = "23.05";
+      username = "bruce";
+      homeDirectory = "/home/bruce";
+    };
+
     programs.home-manager.enable = true;
 
     mutable = {

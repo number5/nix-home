@@ -6,7 +6,6 @@
   ...
 }:
 with lib; let
-
   timezoneModule = types.submodule {
     options = {
       timezone = mkOption {
@@ -212,13 +211,13 @@ in {
   };
 
   config = {
-      services.polybar =
-        recursiveUpdate
-        (import ./polybar.lib.nix {inherit config pkgs lib;})
-        {enable = true;};
+    services.polybar =
+      recursiveUpdate
+      (import ./polybar.lib.nix {inherit config pkgs lib;})
+      {enable = true;};
 
-      programs.autorandr.hooks.postswitch.restart-polybar = ''
-        systemctl --no-block --user restart polybar.service
-      '';
-    };
+    programs.autorandr.hooks.postswitch.restart-polybar = ''
+      systemctl --no-block --user restart polybar.service
+    '';
+  };
 }
