@@ -6,7 +6,7 @@
   ...
 }:
 with lib; let
-  cfg = config.soxin.services.xserver.windowManager.bar;
+  cfg = config.services.xserver.windowManager.bar;
 
   script = ''
     set -euo pipefail
@@ -328,7 +328,6 @@ in {
   inherit script;
 
   config = mkMerge [
-    config.soxin.settings.theme.polybar.extraConfig
 
     modulesConfig
 

@@ -5,17 +5,9 @@
   lib,
   ...
 }:
-with lib; let
-  cfg = config.soxin.services.dunst;
-in {
-  options = {
-    soxin.services.dunst = {
-      enable = mkEnableOption "dunst, the notification daemon";
-    };
-  };
+{
 
-  config = mkIf cfg.enable (mkMerge [
-    (optionalAttrs (mode == "home-manager") {
+  config = {
       services.dunst = {
         enable = true;
         settings = {
@@ -88,7 +80,7 @@ in {
             # The width can be negative.  In this case the actual width is the
             # screen width minus the width defined in within the geometry option.
             #geometry = "250x50-40+40"
-            geometry = mkDefault "300x50-15+49";
+            geometry = lib.mkDefault "300x50-15+49";
 
             # Shrink window if it's smaller than the width.  Will be ignored if
             # width is 0.
@@ -234,6 +226,5 @@ in {
           };
         };
       };
-    })
-  ]);
+    };
 }

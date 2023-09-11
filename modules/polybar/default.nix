@@ -6,7 +6,6 @@
   ...
 }:
 with lib; let
-  cfg = config.soxin.services.xserver.windowManager.bar;
 
   timezoneModule = types.submodule {
     options = {
@@ -43,7 +42,7 @@ with lib; let
   };
 in {
   options = {
-    soxin.services.xserver.windowManager.bar = {
+    services.xserver.windowManager.bar = {
       enable = mkEnableOption "Enable polybar";
 
       location = mkOption {
@@ -212,8 +211,7 @@ in {
     };
   };
 
-  config = mkIf cfg.enable (mkMerge [
-    (optionalAttrs (mode == "home-manager") {
+  config = {
       services.polybar =
         recursiveUpdate
         (import ./polybar.lib.nix {inherit config pkgs lib;})
@@ -222,6 +220,5 @@ in {
       programs.autorandr.hooks.postswitch.restart-polybar = ''
         systemctl --no-block --user restart polybar.service
       '';
-    })
-  ]);
+    };
 }

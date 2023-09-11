@@ -15,7 +15,6 @@
     ../../modules/system/xrdb.nix
     ../../modules/system/zsh.nix
     ../../modules/system/gui-support.nix
-    ../../modules/system/nix-path.nix
   ];
 
   environment.systemPackages = [];
