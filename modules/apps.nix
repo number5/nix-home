@@ -39,7 +39,7 @@
     ripgrep
     file
     bat
-    exa
+    eza
     fzf
     fd
     starship
