@@ -4,6 +4,5 @@
   ./git
   ./gpg
   ./neovim
-  ./rofi
   ./rust
 ]

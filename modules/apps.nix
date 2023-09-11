@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     dconf
-    dunst
     feh
     firefox
     haskellPackages.greenclip
