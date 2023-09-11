@@ -50,25 +50,13 @@ with lib; let
         }
         {
           command = "floating enable";
-          criteria = {class = "^SimpleScreenRecorder$";};
-        }
-        {
-          command = "floating enable";
           criteria = {class = "^Tor Browser";};
         }
         {
           command = "floating enable";
           criteria = {class = "^net-filebot-Main$";};
         }
-        {
-          command = "floating enable";
-          criteria = {title = "^jrnl_entry$";};
-        }
 
-        {
-          command = "sticky enable, floating enable, move scratchpad";
-          criteria = {class = "MellowPlayer";};
-        }
       ];
     };
 
@@ -140,9 +128,6 @@ with lib; let
 
       # toggle tiling / floating
       "${alt}+${shift}+f" = "floating toggle";
-
-      # jrnl entry
-      "${alt}+j" = "exec ${jrnlEntry}";
 
       # enter fullscreen mode for the focused container
       "${meta}+f" = "fullscreen toggle";
