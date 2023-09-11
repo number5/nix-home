@@ -17,8 +17,6 @@
     ../../modules/system/gui-support.nix
   ];
 
-  environment.systemPackages = [];
-
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
 
   nix.gc.automatic = true;

@@ -87,6 +87,8 @@
     # $ nix search wget
     systemPackages = with pkgs; [git curl wget ripgrep openssh];
 
+    defaultPackages = lib.mkForce [];
+
     sessionVariables = rec {
       XDG_CACHE_HOME = "\${HOME}/.cache";
       XDG_CONFIG_HOME = "\${HOME}/.config";
