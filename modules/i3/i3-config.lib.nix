@@ -18,36 +18,7 @@ with lib; let
   nosid = "--no-startup-id";
   locker = "xset s activate";
 
-  jrnlEntry = pkgs.writeScript "jrnl-entry.sh" ''
-    #!/usr/bin/env bash
-
-    set -euo pipefail
-
-    readonly current_workspace="$( ${getBin pkgs.i3}/bin/i3-msg -t get_workspaces | ${getBin pkgs.jq}/bin/jq -r '.[] | if .focused == true then .name else empty end'  )"
-    readonly current_profile="$( echo "$current_workspace" | cut -d\@ -f1  )"
-    readonly current_story="$( echo "$current_workspace" | cut -d\@ -f2  )"
-
-    # create a temporary file for the jrnl entry
-    jrnl_entry="$(mktemp)"
-    trap "rm $jrnl_entry" EXIT
-
-    cat <<EOF > "$jrnl_entry"
-    # All lines starting with a hash sign are treated as comments and not added to the journal entry.
-    # You are adding a journal entry for profile=$current_profile and story=$current_story
-    # computed from the workspace $current_workspace
-
-    @$current_story
-
-    EOF
-
-    # open a new terminal window with vim session inside of it to edit the jrnl entry
-    readonly line_count="$(wc -l "$jrnl_entry" | awk '{print $1}')"
-    ${getBin pkgs.termite}/bin/termite --title jrnl_entry --exec="nvim +$line_count +star -c 'set wrap' -c 'set textwidth=80' -c 'set fo+=t' $jrnl_entry"
-    readonly content="$( grep -v '^#' "$jrnl_entry" )"
-
-    ${getBin pkgs.jrnl}/bin/jrnl "$current_profile" "$content"
-  '';
-in {
+  in {
   enable = true;
 
   config = {
@@ -210,9 +181,6 @@ in {
       # start a region screenshot
       "${meta}+${shift}+4" = "exec ${getBin pkgs.flameshot}/bin/flameshot gui --delay 500 --path ${config.home.homeDirectory}/Desktop";
 
-      # start a screen recorder
-      "${meta}+${shift}+5" = "exec ${getBin pkgs.simplescreenrecorder}/bin/simplescreenrecorder";
-
       # focus the urgent window
       "${meta}+x" = "[urgent=latest] focus";
 
@@ -244,7 +212,6 @@ in {
 
       # Terminals
       "${meta}+Return" = "exec ${nosid} ${getBin pkgs.wezterm}/bin/wezterm";
-      "${meta}+${shift}+Return" = "exec ${getBin pkgs.termite}/bin/termite";
 
       # Modes
       "${meta}+${alt}+r" = "mode resize";
@@ -321,11 +288,6 @@ in {
         always = false;
         notification = true;
       }
-      {
-        command = "${getBin pkgs.synology-drive-client}/bin/synology-drive";
-        always = false;
-        notification = true;
-      }
     ];
   };
 
@@ -361,9 +323,6 @@ in {
       set $app_mode Applications: (a)stroid, (b)itwarden (o)bs, (m)elloPlayer, (s)ocial
       mode "$app_mode" {
         bindsym a exec astroid, mode default
-        bindsym b exec ${getBin pkgs.bitwarden}/bin/bitwarden, mode default
-        bindsym o exec ${getBin pkgs.obs-studio}/bin/obs, mode default
-        bindsym m exec ${getBin pkgs.mellowplayer}/bin/MellowPlayer, mode default
         bindsym s mode "$social_mode"
 
         bindsym Escape mode "$launcher"
@@ -373,9 +332,6 @@ in {
         mode "$social_mode" {
           bindsym d exec ${getBin pkgs.discord}/bin/Discord, mode default
           bindsym e exec ${getBin pkgs.element-desktop}/bin/element-desktop, mode default
-          bindsym l exec ${getBin pkgs.slack}/bin/slack, mode default
-          bindsym s exec ${getBin pkgs.signal-desktop}/bin/signal-desktop, mode default
-          bindsym w exec ${getBin pkgs.whatsapp-for-linux}/bin/whatsapp-for-linux, mode default
 
           bindsym Escape mode "$launcher"
         }
