@@ -9,7 +9,6 @@
     kitty
     lxappearance
     neofetch
-    nvtop
     p7zip
     playerctl
     rofi
