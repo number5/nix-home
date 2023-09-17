@@ -28,12 +28,16 @@
     # Programming
     gnumake
     cmake
-
+    gh
     asdf-vm
     nix-prefetch-git
     yarn
     postman
 
+    # Nix 
+    nix-prefetch-git
+    nixd
+    
     # CLI
     ripgrep
     file
