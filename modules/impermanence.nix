@@ -6,11 +6,7 @@
 }: {
   options.impermanence.enable = lib.mkEnableOption "impermanence";
 
-  config = lib.mkMerge [
-    {
-      inputs.impermanence.url = "github:nix-community/impermanence";
-    }
-    (lib.mkIf config.impermanence.enable {
+  config = lib.mkIf config.impermanence.enable {
       hmModules = [inputs.impermanence.nixosModules.home-manager.impermanence];
       osModules = [inputs.impermanence.nixosModule];
 
@@ -31,22 +27,19 @@
       };
 
       hm = {
-        home.homeDirectory = "/home/neoney";
-        home.username = "neoney";
+        home.homeDirectory = "/home/bruce";
+        home.username = "bruce";
 
-        home.persistence."/persist/home/neoney" = {
+        home.persistence."/persist/home/bruce" = {
           directories =
             [
               "nixus"
               "Downloads"
               "code"
               "Documents"
-              "Kooha"
-              "Music"
               ".ssh"
               ".local/share/direnv"
               ".mozilla"
-              ".thunderbird"
               {
                 directory = ".local/share/Steam";
                 method = "symlink";
@@ -55,9 +48,7 @@
                 directory = ".steam";
                 method = "symlink";
               }
-              ".local/share/TelegramDesktop"
               ".gnupg"
-              ".config/Caprine"
               ".config/WebCord"
               ".cache/starship"
               ".local/share/nheko"
@@ -65,15 +56,9 @@
               ".config/SchildiChat"
               ".local/share/keyrings"
               ".cache/nix-index"
-              ".config/obs-studio"
               ".local/share/pnpm/store"
               ".bun"
-              {
-                directory = ".local/share/zoxide";
-                method = "symlink";
-              }
-            ]
-            ++ (lib.optionals config.programs.jellyfinPlayer.enable [".config/jellyfin.org" ".local/share/jellyfinmediaplayer" ".local/share/Jellyfin Media Player" ".cache/Jellyfin Media Player"]);
+            ];
           files = [
             ".cache/anyrun-ha-assist.sqlite3"
             ".local/share/fish/fish_history"
@@ -81,6 +66,5 @@
           allowOther = true;
         };
       };
-    })
-  ];
+    };
 }

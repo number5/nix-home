@@ -17,6 +17,8 @@
     nixd.url = "github:nix-community/nixd";
     nuenv.url = "github:DeterminateSystems/nuenv";
 
+    impermanence.url = "github:nix-community/impermanence";
+
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
   };
