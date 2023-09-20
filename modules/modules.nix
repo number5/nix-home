@@ -8,6 +8,5 @@
     ./dunst
     ./libvirt.nix
     ./mutablerepos.nix
-    ./impermanence.nix
   ];
 }

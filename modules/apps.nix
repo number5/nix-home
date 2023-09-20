@@ -34,10 +34,10 @@
     yarn
     postman
 
-    # Nix 
+    # Nix
     nix-prefetch-git
     nixd
-    
+
     # CLI
     ripgrep
     file
@@ -49,11 +49,6 @@
     tmux
     sudo
 
-    # Security
-    _1password
-    _1password-gui
-
-    # logseq
   ];
 
   xdg.mimeApps = {

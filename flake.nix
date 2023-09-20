@@ -17,7 +17,7 @@
     nixd.url = "github:nix-community/nixd";
     nuenv.url = "github:DeterminateSystems/nuenv";
 
-    impermanence.url = "github:nix-community/impermanence";
+    # impermanence.url = "github:nix-community/impermanence";
 
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
@@ -42,7 +42,7 @@
               self.nixosModules.common # See below for "nixosModules"!
               # Your machine's configuration.nix goes here
               ./systems/chestnut/default.nix
-
+              # inputs.impermanence.nixosModule
               # Your home-manager configuration
               self.nixosModules.home-manager
               {
@@ -50,6 +50,7 @@
                   imports = [
                     self.homeModules.common # See below for "homeModules"!
                     self.homeModules.linux
+                    # inputs.impermanence.nixosModules.home-manager.impermanence
                     ./home/common.nix
                     ./home/home-manager-options.nix
                     ./modules/modules.nix
