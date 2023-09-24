@@ -17,6 +17,10 @@
     nixd.url = "github:nix-community/nixd";
     nuenv.url = "github:DeterminateSystems/nuenv";
 
+
+    # Minecraft
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+
     # impermanence.url = "github:nix-community/impermanence";
 
     dotzsh.url = "github:number5/dotzsh";
@@ -38,10 +42,12 @@
         nixosConfigurations = {
           chestnut = self.nixos-flake.lib.mkLinuxSystem {
             nixpkgs.hostPlatform = "x86_64-linux";
+            nixpkgs.overlay = [ inputs.nix-minecraft.overlay ];
             imports = [
               self.nixosModules.common # See below for "nixosModules"!
               # Your machine's configuration.nix goes here
               ./systems/chestnut/default.nix
+              inputs.nix-minecraft.nixosModules.minecraft-servers
               # inputs.impermanence.nixosModule
               # Your home-manager configuration
               self.nixosModules.home-manager
