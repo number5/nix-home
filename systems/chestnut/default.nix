@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -31,4 +32,26 @@
   system.stateVersion = "23.11"; # Did you read the comment?
 
   time.timeZone = lib.mkDefault "Australia/Melbourne";
+
+  systemd.services = {
+    ath11k-fix = {
+      enable = true;
+
+      description = "Suspend fix for ath11k_pci";
+      before = ["sleep.target"];
+
+      unitConfig = {
+        StopWhenUnneeded = "yes";
+      };
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = "yes";
+        ExecStart = "/run/current-system/sw/bin/modprobe -r ath11k_pci";
+        ExecStop = "/run/current-system/sw/bin/modprobe ath11k_pci";
+      };
+
+      wantedBy = ["sleep.target"];
+    };
+  };
 }

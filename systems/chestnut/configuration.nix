@@ -16,9 +16,38 @@
 
     # use latest kernel
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelParams = ["amd_pstate=active"];
+
+    kernelParams = [
+      "amdgpu.dcdebugmask=0x10"
+      "resume_offset=104239104"
+
+      # https://gitlab.freedesktop.org/drm/amd/-/issues/2539
+      "acpi_mask_gpe=0x0e"
+      "gpiolib_acpi.ignore_interrupt=AMDI0030:00@18"
+    ];
   };
 
+  systemd.services = {
+    ath11k-fix = {
+      enable = true;
+
+      description = "Suspend fix for ath11k_pci";
+      before = ["sleep.target"];
+
+      unitConfig = {
+        StopWhenUnneeded = "yes";
+      };
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = "yes";
+        ExecStart = "/run/current-system/sw/bin/modprobe -r ath11k_pci";
+        ExecStop = "/run/current-system/sw/bin/modprobe ath11k_pci";
+      };
+
+      wantedBy = ["sleep.target"];
+    };
+  };
   networking = {
     hostName = "chestnut";
     networkmanager.enable = true;

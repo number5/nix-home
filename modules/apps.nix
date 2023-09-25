@@ -48,7 +48,6 @@
     starship
     tmux
     sudo
-
   ];
 
   xdg.mimeApps = {
