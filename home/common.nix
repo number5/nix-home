@@ -5,11 +5,15 @@
   ...
 }: {
   imports =
-    #[
-    #./modules/neovim.nix
-    #]
-    #++
-    (import ./programs)
+    [
+      ./i3
+      ./mutablerepos.nix
+      ./libvirt.nix
+      ./apps.nix
+      ./polybar
+      ./dunst
+    ]
+    ++ (import ./programs)
     ++ (import ./services);
 
   config = {

@@ -52,6 +52,7 @@
               ./systems/chestnut/default.nix
               inputs.nix-gaming.nixosModules.steamCompat
               inputs.nix-minecraft.nixosModules.minecraft-servers
+              ./modules/modules.nix
               # inputs.impermanence.nixosModule
               # Your home-manager configuration
               self.nixosModules.home-manager
@@ -63,7 +64,6 @@
                     # inputs.impermanence.nixosModules.home-manager.impermanence
                     ./home/common.nix
                     ./home/home-manager-options.nix
-                    ./modules/modules.nix
                   ];
                   home.stateVersion = "23.05";
                 };

@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   fonts.fontconfig.enable = true;
 
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     (nerdfonts.override {fonts = ["JetBrainsMono" "Noto"];})
     source-han-mono
     source-han-serif

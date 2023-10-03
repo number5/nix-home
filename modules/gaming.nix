@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs',
+  flake,
   ...
 }: {
   programs.steam = {
@@ -11,12 +11,12 @@
     extraCompatPackages = [
       # add the packages that you would like to have in Steam's extra compatibility packages list
       # pkgs.luxtorpeda
-      inputs'.nix-gaming.packages.proton-ge
+      flake.inputs.nix-gaming.packages.${pkgs.system}.proton-ge
       # etc.
     ];
   };
 
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     dosbox
     protontricks
     shattered-pixel-dungeon
