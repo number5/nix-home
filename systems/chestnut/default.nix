@@ -11,7 +11,6 @@
     ../../modules/system/users.nix
     ../../modules/system/libvirtd.nix
     ../../modules/system/misc.nix
-    ../../modules/system/nix-daemon.nix
     ../../modules/system/pipewire.nix
     ../../modules/system/xrdb.nix
     ../../modules/system/zsh.nix
