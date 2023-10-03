@@ -150,7 +150,7 @@ in {
       os = {
         programs.hyprland = {
           enable = true;
-          package = cfg.package;
+          inherit (cfg) package;
         };
         xdg.portal.wlr.enable = lib.mkForce false;
       };
@@ -205,9 +205,7 @@ in {
 
         home.pointerCursor = {
           gtk.enable = true;
-          name = cursor.name;
-          package = cursor.package;
-          size = cursor.size;
+          inherit (cursor) size name package;
           x11 = {
             defaultCursor = cursor.name;
             enable = true;
@@ -233,7 +231,7 @@ in {
         wayland.windowManager.hyprland = {
           enable = true;
 
-          package = cfg.package;
+          inherit (cfg) package;
 
           settings = let
             lockSequence = "physlock -ldms && gtklock && physlock -Ld";
@@ -247,10 +245,10 @@ in {
                       "${lib.getExe pkgs.hyprpaper} & ${pkgs.playerctl}/bin/playerctld & mako"
 
                       "firefox &"
-                      "schildichat-desktop & webcord &"
-                      "${lib.getExe pkgs.caprine-bin} &"
+                      # "schildichat-desktop & webcord &"
+                      # "${lib.getExe pkgs.caprine-bin} &"
 
-                      "${lib.getExe inputs.arrpc.packages.${pkgs.system}.arrpc} &"
+                      # "${lib.getExe inputs.arrpc.packages.${pkgs.system}.arrpc} &"
 
                       "wlsunset -l 52.2 -L 21 &"
 

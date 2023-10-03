@@ -57,7 +57,7 @@
             "eww/${name}" = {
               source = pkgs.substituteAll ({
                   src = ./config/${name};
-                  backgroundAlpha = config.colors.backgroundAlpha;
+                  inherit (config.colors) backgroundAlpha;
                   pamixer = lib.getExe pkgs.pamixer;
                   pactl = "${pkgs.pulseaudio}/bin/pactl";
                   jaq = lib.getExe pkgs.jaq;
