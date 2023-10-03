@@ -32,7 +32,6 @@
     asdf-vm
     nix-prefetch-git
     yarn
-    postman
 
     # Nix
     nix-prefetch-git
