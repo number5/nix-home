@@ -17,6 +17,8 @@
     nixd.url = "github:nix-community/nixd";
     nuenv.url = "github:DeterminateSystems/nuenv";
 
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
     # Minecraft
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +50,7 @@
               inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
               inputs.nixos-hardware.nixosModules.common-gpu-amd
               ./systems/chestnut/default.nix
+              inputs.nix-gaming.nixosModules.steamCompat
               inputs.nix-minecraft.nixosModules.minecraft-servers
               # inputs.impermanence.nixosModule
               # Your home-manager configuration
