@@ -1,6 +1,4 @@
-{
-  imports = [
-    ./fonts.nix
-    ./gaming.nix
-  ];
+inputs: {
+    fonts = import ./fonts.nix inputs;
+    gaming = import ./gaming.nix inputs;
 }
