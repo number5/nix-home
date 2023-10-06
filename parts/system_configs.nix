@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  cfg = config.nobbz.nixosConfigurations;
+  cfg = config.bw.nixosConfigurations;
 
   configs = builtins.mapAttrs (_: config: config.finalSystem) cfg;
 
@@ -14,7 +14,7 @@ in {
   _file = ./system_configs.nix;
 
   options = {
-    nobbz.nixosConfigurations = lib.mkOption {
+    bw.nixosConfigurations = lib.mkOption {
       type = lib.types.attrsOf (lib.types.submodule ({
         name,
         config,

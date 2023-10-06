@@ -6,7 +6,7 @@
   npins,
   ...
 }: let
-  cfg = config.nobbz.homeConfigurations;
+  cfg = config.bw.homeConfigurations;
 
   configs = builtins.mapAttrs (_: config: config.finalHome) cfg;
 
@@ -15,7 +15,7 @@ in {
   _file = ./home_configs.nix;
 
   options = {
-    nobbz.homeConfigurations = lib.mkOption {
+    bw.homeConfigurations = lib.mkOption {
       type = lib.types.attrsOf (lib.types.submodule ({
         name,
         config,
