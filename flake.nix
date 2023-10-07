@@ -49,7 +49,7 @@
         ./nixos/configurations
         ./home/configurations
 
-        # ./packages
+        ./packages
       ];
 
       flake = {
