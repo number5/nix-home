@@ -8,15 +8,14 @@ _: {
 
   imports = [
     # Include the results of the hardware scan.
-    ./chestnut/hardware-configuration.nix
     ./chestnut/configuration.nix
-    ../../modules/system/users.nix
-    ../../modules/system/libvirtd.nix
-    ../../modules/system/misc.nix
-    ../../modules/system/pipewire.nix
-    ../../modules/system/xrdb.nix
-    ../../modules/system/zsh.nix
-    ../../modules/system/gui-support.nix
+    ../modules/system/users.nix
+    ../modules/system/libvirtd.nix
+    ../modules/system/misc.nix
+    ../modules/system/pipewire.nix
+    ../modules/system/xrdb.nix
+    ../modules/system/zsh.nix
+    ../modules/system/gui-support.nix
   ];
 
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
