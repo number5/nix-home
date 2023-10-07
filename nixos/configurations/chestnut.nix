@@ -1,13 +1,15 @@
-{
-  lib,
+_: {
+  config,
   pkgs,
-  inputs,
+  lib,
   ...
 }: {
+  _file = ./chestnut.nix;
+
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ./configuration.nix
+    ./chestnut/hardware-configuration.nix
+    ./chestnut/configuration.nix
     ../../modules/system/users.nix
     ../../modules/system/libvirtd.nix
     ../../modules/system/misc.nix

@@ -9,11 +9,9 @@
     ...
   }: let
     upkgs = inputs'.nixpkgs-unstable.legacyPackages;
-
   in {
     packages = lib.mkMerge [
       {
-
         alejandra = inputs'.alejandra.packages.default;
       }
     ];
