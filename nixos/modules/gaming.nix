@@ -1,6 +1,6 @@
-{
+{self, ...}: {
   pkgs,
-  flake,
+  config,
   ...
 }: {
   environment.systemPackages = with pkgs; [
