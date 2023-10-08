@@ -98,7 +98,6 @@ in {
               config.entryPoint
               {home = {inherit (config) username homeDirectory;};}
               {systemd.user.startServices = "legacy";}
-              inputs.nixos-vscode-server.nixosModules.home
               inputs.sops-nix.homeManagerModules.sops
             ]
             ++ config.modules
@@ -112,7 +111,7 @@ in {
 
           finalHome = inputs.home-manager.lib.homeManagerConfiguration {
             pkgs = config.nixpkgs.legacyPackages.${config.system};
-            extraSpecialArgs.npins = npins;
+            # extraSpecialArgs.npins = npins;
             modules = config.finalModules;
           };
         };
