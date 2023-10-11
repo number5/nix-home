@@ -29,7 +29,6 @@
 
   types = lib.types;
   inherit (lib) mkIf mkOption mkEnableOption;
-
 in {
   options.mutable.enable = mkEnableOption "Stateful Data";
 

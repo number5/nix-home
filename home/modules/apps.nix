@@ -1,4 +1,13 @@
-{pkgs, ...}: {
+{
+  unstable,
+  self,
+  ...
+}: {
+  config,
+  pkgs,
+  lib,
+  ...
+} : {
   home.packages = with pkgs; [
     dconf
     feh

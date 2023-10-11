@@ -1,17 +1,19 @@
 {
-  mode,
+  unstable,
+  self,
+  ...
+}: {
   config,
   pkgs,
   lib,
-  master,
   ...
-}: {
+} : {
   config = {
     xsession = {
       enable = true;
 
       windowManager = {
-        i3 = import ./i3-config.lib.nix {inherit config pkgs lib master;};
+        i3 = import ./i3-config.lib.nix {inherit config pkgs lib;};
       };
 
       initExtra = ''
