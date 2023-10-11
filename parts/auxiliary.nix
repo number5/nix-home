@@ -30,7 +30,7 @@
 
     devShells.default = pkgs.mkShell {
       packages = builtins.attrValues {
-        inherit (self'.packages) nil alejandra;
+        inherit (self'.packages) alejandra;
         inherit (inputs'.unstable.legacyPackages) npins sops age ssh-to-age;
       };
     };

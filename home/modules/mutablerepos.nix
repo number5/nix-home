@@ -1,10 +1,13 @@
 {
-  config,
-  lib,
-  pkgs,
+  unstable,
+  self,
   ...
-}:
-with lib; let
+}: {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (config.lib) dag;
   cfg = config.mutable;
 
@@ -23,18 +26,21 @@ with lib; let
     lib.attrsets.mapAttrsToList
     (_name: attrs: cloneIfNotExists attrs.target attrs.repo attrs.branch)
     cfg.repos;
+
+  types = lib.types;
+  inherit (lib) mkIf mkOption mkEnableOption;
+
 in {
   options.mutable.enable = mkEnableOption "Stateful Data";
 
   options.mutable.repos = mkOption {
-    type = with types;
-      attrsOf (submodule {
-        options = {
-          branch = mkOption {type = str;};
-          repo = mkOption {type = str;};
-          target = mkOption {type = path;};
-        };
-      });
+    type = types.attrsOf (types.submodule {
+      options = {
+        branch = mkOption {type = types.str;};
+        repo = mkOption {type = types.str;};
+        target = mkOption {type = types.path;};
+      };
+    });
   };
 
   config = mkIf cfg.enable {
