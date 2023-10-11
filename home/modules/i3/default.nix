@@ -7,7 +7,7 @@
   pkgs,
   lib,
   ...
-} : {
+}: {
   config = {
     xsession = {
       enable = true;

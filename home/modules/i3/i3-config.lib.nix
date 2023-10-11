@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  master,
+  ...
 }:
 with lib; let
   # basic key combinations.
@@ -69,7 +69,6 @@ in {
 
     assigns = {
       "charles" = [{class = "^com-xk72-charles-gui-.*$";}];
-      "discord" = [{class = "^discord$";}];
       "element" = [{class = "^Element$";}];
       "keybase" = [{class = "^Keybase$";}];
       "slack" = [{class = "^Slack$";}];
@@ -298,7 +297,6 @@ in {
 
         set $social_mode Social: (d)iscord, (e)lement, S(l)ack, (s)ignal, (w)hats app
         mode "$social_mode" {
-          bindsym d exec ${getBin pkgs.discord}/bin/Discord, mode default
           bindsym e exec ${getBin pkgs.element-desktop}/bin/element-desktop, mode default
 
           bindsym Escape mode "$launcher"

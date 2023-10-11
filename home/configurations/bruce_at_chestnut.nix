@@ -10,8 +10,6 @@
   _file = ./bruce_at_chestnut.nix;
 
   config = {
-    nixpkgs.allowedUnfree = ["steam" "logseq"];
-
     home.packages = builtins.attrValues {
       inherit (pkgs) neovim;
     };
