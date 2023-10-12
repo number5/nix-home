@@ -1,13 +1,20 @@
 {
   inputs = {
     # Principle inputs (updated by `nix run .#update`)
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    nixos-flake.url = "github:srid/nixos-flake";
+    parts.url = "github:hercules-ci/flake-parts";
+    # nixos-flake.url = "github:srid/nixos-flake";
+
+    # The following is required to make flake-parts work.
+    nixpkgs.follows = "nixpkgs-unstable";
+    unstable.follows = "nixpkgs-unstable";
+
+    programsdb.url = "github:wamserma/flake-programs-sqlite";
+    programsdb.inputs.nixpkgs.follows = "unstable";
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -16,6 +23,7 @@
 
     nixd.url = "github:nix-community/nixd";
     nuenv.url = "github:DeterminateSystems/nuenv";
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
     # Minecraft
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
@@ -27,61 +35,31 @@
     dotzsh.flake = false;
   };
 
-  outputs = inputs @ {self, ...}:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux"];
+  outputs = {parts, ...} @ inputs:
+    parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux" "aarch64-darwin"];
+
+      # _module.args.npins = import ./npins;
+
       imports = [
-        inputs.nixos-flake.flakeModule
-        ./nixos
+        ./parts/auxiliary.nix
+        ./parts/home_configs.nix
+        ./parts/system_configs.nix
+
+        ./nixos/configurations
+        ./home/configurations
+
+        ./packages
       ];
 
-      flake = let
-        myUserName = "bruce";
-      in {
-        # Configurations for Linux (NixOS) machines
-        nixosConfigurations = {
-          chestnut = self.nixos-flake.lib.mkLinuxSystem {
-            nixpkgs.hostPlatform = "x86_64-linux";
-            imports = [
-              self.nixosModules.common # See below for "nixosModules"!
-              # Your machine's configuration.nix goes here
-              inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-              inputs.nixos-hardware.nixosModules.common-gpu-amd
-              ./systems/chestnut/default.nix
-              inputs.nix-minecraft.nixosModules.minecraft-servers
-              ./modules/modules.nix
-              # inputs.impermanence.nixosModule
-              # Your home-manager configuration
-              self.nixosModules.home-manager
-              {
-                home-manager.users.${myUserName} = {
-                  imports = [
-                    self.homeModules.common # See below for "homeModules"!
-                    self.homeModules.linux
-                    # inputs.impermanence.nixosModules.home-manager.impermanence
-                    ./home/common.nix
-                    ./home/home-manager-options.nix
-                  ];
-                  home.stateVersion = "23.05";
-                };
-              }
-            ];
-          };
-        };
+      flake = {
+        nixosModules = import ./nixos/modules inputs;
 
-        # All home-manager configurations are kept here.
-        homeModules = {
-          # Common home-manager configuration shared between Linux and macOS.
-          common = {pkgs, ...}: {
-            programs.git.enable = true;
-            programs.starship.enable = true;
-            programs.zsh.enable = true;
-          };
-          # home-manager config specific to NixOS
-          linux = {
-            xsession.enable = true;
-          };
-        };
+        homeModules = import ./home/modules inputs;
+
+        mixedModules = import ./mixed inputs;
+
+        checks.x86_64-linux = import ./checks inputs;
       };
     };
 }

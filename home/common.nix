@@ -16,6 +16,13 @@
     ++ (import ./programs)
     ++ (import ./services);
 
+  home = {
+    enableNixpkgsReleaseCheck = false;
+
+    username = "bruce";
+    homeDirectory = "/home/bruce";
+  };
+
   config = {
     #  unstablePackages = with pkgs.unstable; [
     #    # Applications
@@ -23,15 +30,6 @@
     #    #Libraries
     #    ffmpeg-full
     #  ];
-
-    home = {
-      enableNixpkgsReleaseCheck = false;
-
-      stateVersion = "23.05";
-      username = "bruce";
-      homeDirectory = "/home/bruce";
-    };
-
     programs.home-manager.enable = true;
 
     mutable = {
