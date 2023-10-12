@@ -27,8 +27,7 @@
     (_name: attrs: cloneIfNotExists attrs.target attrs.repo attrs.branch)
     cfg.repos;
 
-  types = lib.types;
-  inherit (lib) mkIf mkOption mkEnableOption;
+  inherit (lib) mkIf mkOption mkEnableOption types;
 in {
   options.mutable.enable = mkEnableOption "Stateful Data";
 
