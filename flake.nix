@@ -29,6 +29,35 @@
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
 
+    # hyprland
+
+    hyprland.url = "github:hyprwm/hyprland";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
+
+    hyprpaper.url = "github:hyprwm/hyprpaper";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+
+    hyprcontrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    shadower.url = "github:n3oney/shadower";
+
+    # eww
+        rust-overlay.url = "github:oxalica/rust-overlay";
+        eww = {
+          url = "github:ralismark/eww/tray-3";
+          # url = "github:elkowar/eww";
+          inputs.nixpkgs.follows = "nixpkgs";
+          inputs.rust-overlay.follows = "rust-overlay";
+        };
+
+    # anyrun
+    anyrun.url = "github:kirottu/anyrun";
+    anyrun-ha-assist.url = "github:n3oney/anyrun-ha-assist";
+    anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
+
     # impermanence.url = "github:nix-community/impermanence";
 
     dotzsh.url = "github:number5/dotzsh";

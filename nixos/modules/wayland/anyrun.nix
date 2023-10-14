@@ -9,15 +9,7 @@
 }: {
   options.programs.anyrun.enable = lib.mkEnableOption "anyrun";
 
-  config = lib.mkMerge [
-    {
-      inputs = {
-        anyrun.url = "github:kirottu/anyrun";
-        anyrun-ha-assist.url = "github:n3oney/anyrun-ha-assist";
-        anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
-      };
-    }
-    (lib.mkIf config.programs.anyrun.enable {
+  config = lib.mkIf config.programs.anyrun.enable {
       os.nix.settings = {
         substituters = ["https://anyrun.cachix.org"];
 
@@ -132,6 +124,5 @@
           }
         '';
       };
-    })
-  ];
+    };
 }
