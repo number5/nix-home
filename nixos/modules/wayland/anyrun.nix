@@ -10,119 +10,119 @@
   options.programs.anyrun.enable = lib.mkEnableOption "anyrun";
 
   config = lib.mkIf config.programs.anyrun.enable {
-      os.nix.settings = {
-        substituters = ["https://anyrun.cachix.org"];
+    os.nix.settings = {
+      substituters = ["https://anyrun.cachix.org"];
 
-        trusted-public-keys = [
-          "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+      trusted-public-keys = [
+        "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+      ];
+    };
+
+    hmModules = [inputs.anyrun.homeManagerModules.default];
+
+    hm.programs.anyrun = {
+      enable = true;
+
+      config = {
+        y.fraction = 0.2;
+        closeOnClick = true;
+        hidePluginInfo = true;
+        showResultsImmediately = true;
+        maxEntries = 10;
+        plugins = with inputs.anyrun.packages.${pkgs.system}; [
+          applications
+          rink
+          inputs.anyrun-ha-assist.packages.${pkgs.system}.default
+          inputs.anyrun-nixos-options.packages.${pkgs.system}.default
+          translate
         ];
       };
 
-      hmModules = [inputs.anyrun.homeManagerModules.default];
+      extraConfigFiles."ha-assist.ron".source = hmConfig.lib.file.mkOutOfStoreSymlink "/run/user/1000/agenix.d/1/ha_assist_config";
 
-      hm.programs.anyrun = {
-        enable = true;
+      extraConfigFiles."nixos-options.ron".text = ''
+        Config(
+          options_path: "${osConfig.system.build.manual.optionsJSON}/share/doc/nixos/options.json"
+        )
+      '';
 
-        config = {
-          y.fraction = 0.2;
-          closeOnClick = true;
-          hidePluginInfo = true;
-          showResultsImmediately = true;
-          maxEntries = 10;
-          plugins = with inputs.anyrun.packages.${pkgs.system}; [
-            applications
-            rink
-            inputs.anyrun-ha-assist.packages.${pkgs.system}.default
-            inputs.anyrun-nixos-options.packages.${pkgs.system}.default
-            translate
-          ];
-        };
+      extraCss = ''
+        window {
+          background: transparent; /* rgba(0, 0, 0, 0.8);*/
+        }
 
-        extraConfigFiles."ha-assist.ron".source = hmConfig.lib.file.mkOutOfStoreSymlink "/run/user/1000/agenix.d/1/ha_assist_config";
+        #match,
+        #entry,
+        #plugin,
+        #main {
+          background: transparent;
+        }
 
-        extraConfigFiles."nixos-options.ron".text = ''
-          Config(
-            options_path: "${osConfig.system.build.manual.optionsJSON}/share/doc/nixos/options.json"
-          )
-        '';
+        #match.activatable {
+          padding: 12px 14px;
+          border-radius: 12px;
 
-        extraCss = ''
-          window {
-            background: transparent; /* rgba(0, 0, 0, 0.8);*/
-          }
+          color: white;
+          margin-top: 4px;
+          border: 2px solid transparent;
+          transition: all 0.3s ease;
+        }
 
-          #match,
-          #entry,
-          #plugin,
-          #main {
-            background: transparent;
-          }
+        #match.activatable:not(:first-child) {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
 
-          #match.activatable {
-            padding: 12px 14px;
-            border-radius: 12px;
+        #match.activatable #match-title {
+          font-size: 1.3rem;
+        }
 
-            color: white;
-            margin-top: 4px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-          }
+        #match.activatable:hover {
+          border: 2px solid rgba(255, 255, 255, 0.4);
+        }
 
-          #match.activatable:not(:first-child) {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            border-top: 2px solid rgba(255, 255, 255, 0.1);
-          }
+        #match-title, #match-desc {
+          color: inherit;
+        }
 
-          #match.activatable #match-title {
-            font-size: 1.3rem;
-          }
+        #match.activatable:hover, #match.activatable:selected {
+          border-top-left-radius: 12px;
+          border-top-right-radius: 12px;
+        }
 
-          #match.activatable:hover {
-            border: 2px solid rgba(255, 255, 255, 0.4);
-          }
+        #match.activatable:selected + #match.activatable, #match.activatable:hover + #match.activatable {
+          border-top: 2px solid transparent;
+        }
 
-          #match-title, #match-desc {
-            color: inherit;
-          }
+        #match.activatable:selected, #match.activatable:hover:selected {
+          background: rgba(255,255,255,0.1);
+          border: 2px solid #${hmConfig.colorScheme.colors.accent};
+          border-top: 2px solid #${hmConfig.colorScheme.colors.accent};
+        }
 
-          #match.activatable:hover, #match.activatable:selected {
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
-          }
+        #match, #plugin {
+          box-shadow: none;
+        }
 
-          #match.activatable:selected + #match.activatable, #match.activatable:hover + #match.activatable {
-            border-top: 2px solid transparent;
-          }
+        #entry {
+          color: white;
+          box-shadow: none;
+          border-radius: 12px;
+          border: 2px solid #${hmConfig.colorScheme.colors.accent};
+        }
 
-          #match.activatable:selected, #match.activatable:hover:selected {
-            background: rgba(255,255,255,0.1);
-            border: 2px solid #${hmConfig.colorScheme.colors.accent};
-            border-top: 2px solid #${hmConfig.colorScheme.colors.accent};
-          }
+        box#main {
+          background: rgba(36, 39, 58, 0.7);
+          border-radius: 16px;
+          padding: 8px;
+          box-shadow: 0px 2px 33px -5px rgba(0, 0, 0, 0.5);
+        }
 
-          #match, #plugin {
-            box-shadow: none;
-          }
-
-          #entry {
-            color: white;
-            box-shadow: none;
-            border-radius: 12px;
-            border: 2px solid #${hmConfig.colorScheme.colors.accent};
-          }
-
-          box#main {
-            background: rgba(36, 39, 58, 0.7);
-            border-radius: 16px;
-            padding: 8px;
-            box-shadow: 0px 2px 33px -5px rgba(0, 0, 0, 0.5);
-          }
-
-          row:first-child {
-            margin-top: 6px;
-          }
-        '';
-      };
+        row:first-child {
+          margin-top: 6px;
+        }
+      '';
     };
+  };
 }

@@ -45,13 +45,13 @@
     shadower.url = "github:n3oney/shadower";
 
     # eww
-        rust-overlay.url = "github:oxalica/rust-overlay";
-        eww = {
-          url = "github:ralismark/eww/tray-3";
-          # url = "github:elkowar/eww";
-          inputs.nixpkgs.follows = "nixpkgs";
-          inputs.rust-overlay.follows = "rust-overlay";
-        };
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    eww = {
+      url = "github:ralismark/eww/tray-3";
+      # url = "github:elkowar/eww";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
 
     # anyrun
     anyrun.url = "github:kirottu/anyrun";
