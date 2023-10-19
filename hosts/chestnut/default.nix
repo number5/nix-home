@@ -1,14 +1,17 @@
-_: {
+{
+  lib,
   config,
   pkgs,
-  lib,
+  self,
+  inputs,
+  default,
   ...
 }: {
-  _file = ./chestnut.nix;
-
   imports = [
+    ./bootloader.nix
     # Include the results of the hardware scan.
-    ./chestnut/configuration.nix
+    ./configuration.nix
+    ./hardware.nix
     ../modules/system/users.nix
     ../modules/system/libvirtd.nix
     ../modules/system/misc.nix

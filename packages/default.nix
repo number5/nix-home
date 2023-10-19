@@ -8,10 +8,11 @@
     inputs',
     ...
   }: {
-    packages = lib.mkMerge [
+    packages = 
       {
-        alejandra = inputs'.alejandra.packages.default;
-      }
-    ];
-  };
+
+      # instant repl with automatic flake loading
+      repl = pkgs.callPackage ./repl {};
+      };
+};
 }

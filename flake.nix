@@ -23,7 +23,6 @@
 
     nixd.url = "github:nix-community/nixd";
     nuenv.url = "github:DeterminateSystems/nuenv";
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
     # Minecraft
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
@@ -71,7 +70,7 @@
       imports = [
         # ./home/profiles
         ./hosts
-        ./lib
+        # ./lib
         ./modules
         ./packages
         # ./pre-commit-hooks.nix
