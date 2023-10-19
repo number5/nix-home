@@ -64,31 +64,37 @@
     dotzsh.flake = false;
   };
 
-  outputs = {parts, ...} @ inputs:
-    parts.lib.mkFlake {inherit inputs;} {
+  outputs = inputs:
+    inputs.parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-darwin"];
 
-      # _module.args.npins = import ./npins;
-
       imports = [
-        ./parts/auxiliary.nix
-        ./parts/home_configs.nix
-        ./parts/system_configs.nix
-
-        ./nixos/configurations
-        ./home/configurations
-
+        # ./home/profiles
+        ./hosts
+        ./lib
+        ./modules
         ./packages
+        # ./pre-commit-hooks.nix
       ];
 
-      flake = {
-        nixosModules = import ./nixos/modules inputs;
+      perSystem = {
+        config,
+        pkgs,
+        ...
+      }: {
+        devShells.default = pkgs.mkShell {
+          packages = [
+            pkgs.alejandra
+            pkgs.git
+            config.packages.repl
+          ];
+          name = "dots";
+          DIRENV_LOG_FORMAT = "";
+        };
 
-        homeModules = import ./home/modules inputs;
-
-        mixedModules = import ./mixed inputs;
-
-        checks.x86_64-linux = import ./checks inputs;
+        formatter = pkgs.alejandra;
       };
     };
+
+
 }
