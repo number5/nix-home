@@ -15,7 +15,8 @@
     };
 
     # use latest kernel
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    #kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     kernelParams = [
       "amdgpu.dcdebugmask=0x10"
