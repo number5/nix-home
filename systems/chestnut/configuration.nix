@@ -114,7 +114,15 @@
   environment = {
     # List packages installed in system profile. To search, run:
     # $ nix search wget
-    systemPackages = with pkgs; [git curl wget ripgrep openssh];
+    systemPackages = with pkgs; [
+      git
+      curl
+      wget
+      ripgrep
+      openssh
+      pciutils
+      btrfs-progs
+    ];
 
     defaultPackages = lib.mkForce [];
 
