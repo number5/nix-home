@@ -94,6 +94,4 @@
         formatter = pkgs.alejandra;
       };
     };
-
-
 }

@@ -8,11 +8,9 @@
     inputs',
     ...
   }: {
-    packages = 
-      {
-
+    packages = {
       # instant repl with automatic flake loading
       repl = pkgs.callPackage ./repl {};
-      };
-};
+    };
+  };
 }
