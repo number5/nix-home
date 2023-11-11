@@ -3,8 +3,8 @@
   flake,
   ...
 }: {
+  programs.steam.enable = true;
   environment.systemPackages = with pkgs; [
-    steam
     steam-tui
     dosbox
     protontricks
