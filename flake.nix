@@ -57,6 +57,12 @@
     anyrun-ha-assist.url = "github:n3oney/anyrun-ha-assist";
     anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
 
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.flake-utils.follows = "fu";
+    };
     # impermanence.url = "github:nix-community/impermanence";
 
     dotzsh.url = "github:number5/dotzsh";
@@ -73,7 +79,7 @@
         # ./lib
         ./modules
         ./packages
-        # ./pre-commit-hooks.nix
+        ./pre-commit-hooks.nix
       ];
 
       perSystem = {
