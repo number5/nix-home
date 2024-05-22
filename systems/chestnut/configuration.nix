@@ -102,7 +102,11 @@
     };
   };
 
-  console.useXkbConfig = true;
+console = {
+  font = "${pkgs.terminus_font}/share/consolefonts/ter-u32n.psf.gz";
+  packages = [ pkgs.terminus_font ];
+  useXkbConfig = true;
+};
 
   hardware = {
     bluetooth.enable = true;
