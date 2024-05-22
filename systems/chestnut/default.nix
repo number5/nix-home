@@ -18,11 +18,16 @@
   ];
 
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
-
-  nix.gc.automatic = true;
-  nix.gc.dates = "daily";
-  nix.gc.persistent = true;
-  nix.gc.randomizedDelaySec = "30min";
+  nix = {
+  # Automate garbage collection
+  gc =  {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  persistent = true;
+  randomizedDelaySec = "30min";
+};
+  };
 
   services.fwupd.enable = true;
   # This value determines the NixOS release with which your system is to be
