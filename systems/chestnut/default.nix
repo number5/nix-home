@@ -19,14 +19,14 @@
 
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
   nix = {
-  # Automate garbage collection
-  gc =  {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  persistent = true;
-  randomizedDelaySec = "30min";
-};
+    # Automate garbage collection
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+      persistent = true;
+      randomizedDelaySec = "30min";
+    };
   };
 
   services.fwupd.enable = true;
