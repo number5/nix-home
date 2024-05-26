@@ -27,7 +27,7 @@
     home = {
       enableNixpkgsReleaseCheck = false;
 
-      stateVersion = "23.05";
+      stateVersion = "23.11";
       username = "bruce";
       homeDirectory = "/home/bruce";
     };
@@ -39,7 +39,7 @@
 
       repos = {
         asdf = {
-          branch = "v0.12.0";
+          branch = "v0.14.0";
           repo = "https://github.com/asdf-vm/asdf.git";
           target = "${config.home.homeDirectory}/.asdf";
         };
