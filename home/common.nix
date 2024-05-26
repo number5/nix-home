@@ -27,7 +27,7 @@
     home = {
       enableNixpkgsReleaseCheck = false;
 
-      stateVersion = "23.11";
+      stateVersion = "24.05";
       username = "bruce";
       homeDirectory = "/home/bruce";
     };

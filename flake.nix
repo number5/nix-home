@@ -64,7 +64,7 @@
                     ./home/common.nix
                     ./home/home-manager-options.nix
                   ];
-                  home.stateVersion = "23.11";
+                  home.stateVersion = "24.05";
                 };
               }
             ];
