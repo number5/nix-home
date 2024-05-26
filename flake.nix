@@ -52,7 +52,7 @@
               ./systems/chestnut/default.nix
               inputs.nix-minecraft.nixosModules.minecraft-servers
               ./modules/modules.nix
-              # inputs.impermanence.nixosModule
+              inputs.disko.nixosModules.disko
               # Your home-manager configuration
               self.nixosModules.home-manager
               {

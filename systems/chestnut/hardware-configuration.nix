@@ -9,12 +9,12 @@
   ...
 }: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
+    (modulesPath + "/installer/scan/not-detected.nix") ./disko.nix
   ];
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "uas" "usb_storage"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
+  boot.kernelModules = ["amdgpu" "kvm-amd"];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
