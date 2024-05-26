@@ -6,7 +6,7 @@
     disk = {
       nvme1n1 = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5P2NG0R751229R";
+        device = "/dev/disk/by-id/nvme-SHPP41-2000GM_ADC7N40201110734J";
         content = {
           type = "gpt";
           partitions = {
