@@ -8,6 +8,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./configuration.nix
+    ./disko.nix
     ../../modules/system/users.nix
     ../../modules/system/libvirtd.nix
     ../../modules/system/misc.nix
