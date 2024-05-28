@@ -65,7 +65,6 @@
                   imports = [
                     self.homeModules.common # See below for "homeModules"!
                     self.homeModules.linux
-                    # inputs.impermanence.nixosModules.home-manager.impermanence
                     ./home/common.nix
                     ./home/home-manager-options.nix
                   ];

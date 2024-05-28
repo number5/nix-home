@@ -16,7 +16,7 @@
     ../../modules/system/xrdb.nix
     ../../modules/system/zsh.nix
     ../../modules/system/gui-support.nix
-  ];
+  ] ++ [import ../../modules/system/neovim.nix {pkgs=pkgs; inputs=inputs;}];
 
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
   nix = {
