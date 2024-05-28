@@ -16,6 +16,11 @@
     nixd.url = "github:nix-community/nixd";
     nuenv.url = "github:DeterminateSystems/nuenv";
 
+
+    # Neovim
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
     # Minecraft
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
