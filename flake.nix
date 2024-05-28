@@ -93,7 +93,7 @@
                 };
               }
             ];
-          }
+          };
         };
 
         # All home-manager configurations are kept here.
