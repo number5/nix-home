@@ -50,7 +50,7 @@
     };
   };
   networking = {
-    hostName = "chestnut";
+    hostName = "luggage";
     networkmanager.enable = true;
   };
 

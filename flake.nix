@@ -69,6 +69,31 @@
               }
             ];
           };
+          luggage = self.nixos-flake.lib.mkLinuxSystem {
+            nixpkgs.hostPlatform = "x86_64-linux";
+            imports = [
+              self.nixosModules.common # See below for "nixosModules"!
+              # Your machine's configuration.nix goes here
+              inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+              inputs.nixos-hardware.nixosModules.common-gpu-amd
+              ./systems/luggage/default.nix
+              ./modules/modules.nix
+              # Your home-manager configuration
+              self.nixosModules.home-manager
+              {
+                home-manager.users.${myUserName} = {
+                  imports = [
+                    self.homeModules.common # See below for "homeModules"!
+                    self.homeModules.linux
+                    # inputs.impermanence.nixosModules.home-manager.impermanence
+                    ./home/common.nix
+                    ./home/home-manager-options.nix
+                  ];
+                  home.stateVersion = "24.05";
+                };
+              }
+            ];
+          }
         };
 
         # All home-manager configurations are kept here.
