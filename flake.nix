@@ -25,6 +25,10 @@
     nuenv.url = "github:DeterminateSystems/nuenv";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
+    # Neovim
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
     # Minecraft
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
@@ -57,7 +61,11 @@
     anyrun-ha-assist.url = "github:n3oney/anyrun-ha-assist";
     anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
 
-    # impermanence.url = "github:nix-community/impermanence";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
