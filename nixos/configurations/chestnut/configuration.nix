@@ -6,16 +6,9 @@
   pkgs,
   ...
 }: {
-  # Bootloader.
   boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/";
-    };
-
     # use latest kernel
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     kernelParams = [
       "amdgpu.dcdebugmask=0x10"
@@ -71,28 +64,23 @@
 
     journald.extraConfig = "SystemMaxUse=1G";
 
+    displayManager = {
+      defaultSession = "none+i3";
+      sddm.autoNumlock = true;
+
+      autoLogin = {
+        enable = true;
+        user = "bruce";
+      };
+    };
+
     xserver = {
       enable = true;
-      layout = "us";
-      xkbOptions = "caps:escape"; # Caps-lock is the new Escape.
+      xkb = {
+        layout = "us";
+        options = "caps:escape"; # Caps-lock is the new Escape.
+      };
       videoDrivers = ["amdgpu"];
-      libinput = {
-        enable = true;
-        mouse = {
-          accelProfile = "flat"; # Disable acceleration.
-          middleEmulation = false; # Disable emulating middle click using left + right clicks;
-        };
-      };
-
-      displayManager = {
-        defaultSession = "none+i3";
-        sddm.autoNumlock = true;
-
-        autoLogin = {
-          enable = true;
-          user = "bruce";
-        };
-      };
 
       windowManager.i3 = {
         enable = true;
@@ -100,8 +88,11 @@
       };
     };
   };
-
-  console.useXkbConfig = true;
+  console = {
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-u32n.psf.gz";
+    packages = [pkgs.terminus_font];
+    useXkbConfig = true;
+  };
 
   hardware = {
     bluetooth.enable = true;
@@ -114,7 +105,7 @@
   environment = {
     # List packages installed in system profile. To search, run:
     # $ nix search wget
-    systemPackages = with pkgs; [git curl wget ripgrep openssh];
+    systemPackages = with pkgs; [git curl wget ripgrep openssh pciutils btrfs-progs];
 
     defaultPackages = lib.mkForce [];
 
