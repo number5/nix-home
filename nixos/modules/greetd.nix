@@ -53,12 +53,12 @@
       enable = true;
       settings = rec {
         regreet_session = {
-          command = "${lib.exe pkgs.cage} -s -- ${lib.exe pkgs.greetd.regreet}";
+          command = "${lib.getExe pkgs.cage} -s -- ${lib.getExe pkgs.greetd.regreet}";
           user = "greeter";
         };
         tuigreet_session = let
           session = "${pkgs.hyprland}/bin/Hyprland";
-          tuigreet = "${lib.exe pkgs.greetd.tuigreet}";
+          tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
         in {
           command = "${tuigreet} --time --remember --cmd ${session}";
           user = "greeter";

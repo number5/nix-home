@@ -286,7 +286,7 @@ in {
                   gaps_in = 8;
                   gaps_out = 14;
                   border_size = 2;
-                  "col.active_border" = "rgb(${config.colors.colorScheme.colors.accent})";
+                  "col.active_border" = "rgb(${config.catppuccin.accent})";
                   "col.inactive_border" = "rgb(2B2937)";
 
                   layout = "dwindle";

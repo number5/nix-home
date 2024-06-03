@@ -4,7 +4,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    heroric
+    heroic
     steam
     dosbox
     protontricks

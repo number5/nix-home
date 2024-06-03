@@ -78,6 +78,21 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "locked": {
+        "lastModified": 1717070887,
+        "narHash": "sha256-ZTEMINFqQL+m55kmoDYIKf3i2NGitSkjBnnLu99ezh0=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "2c7661c9fa26a920b8088300ef87d14179c71a27",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -1156,6 +1171,7 @@
         "anyrun": "anyrun",
         "anyrun-ha-assist": "anyrun-ha-assist",
         "anyrun-nixos-options": "anyrun-nixos-options",
+        "catppuccin": "catppuccin",
         "disko": "disko",
         "dotzsh": "dotzsh",
         "eww": "eww",

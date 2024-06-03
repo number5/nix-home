@@ -66,6 +66,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catppuccin.url = "github:catppuccin/nix";
+
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
   };
@@ -73,8 +75,6 @@
   outputs = {parts, ...} @ inputs:
     parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-darwin"];
-
-      # _module.args.npins = import ./npins;
 
       imports = [
         ./parts/auxiliary.nix
