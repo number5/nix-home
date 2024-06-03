@@ -1,10 +1,12 @@
-{
+{self, ... } @ inputs: {
+  config,
   pkgs,
   lib,
-  inputs,
-  config,
   ...
 }: let
+
+  inherit inputs;
+
   cfg = config.display;
   inherit (lib) mkEnableOption mkOption types mkIf;
 
@@ -231,7 +233,7 @@ in {
 
                     "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-hyprland"
                   ]
-                  ++ (lib.optionals config.programs.eww.enable ["eww daemon && eww open bar && eww open yubikey-state"]);
+                  ++  ["eww daemon && eww open bar && eww open yubikey-state"];
 
                 monitor =
                   [
@@ -248,7 +250,7 @@ in {
                     "2,monitor:${cfg.monitors.main.name}, default:true"
                   ];
                 input = {
-                  kb_options = "caps:backspace";
+                  kb_options = "caps:escape";
 
                   # Mouse speed
                   accel_profile = "flat";

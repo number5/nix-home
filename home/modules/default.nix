@@ -10,4 +10,5 @@ inputs: {
   "dunst" = import ./dunst inputs;
   "anyrun" = import ./anyrun inputs;
   "eww" = import ./eww inputs;
+  "swappy" = import ./swappy.nix inputs;
 }

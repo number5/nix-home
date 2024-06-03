@@ -5,5 +5,4 @@ inputs: {
   nix = import ./nix.nix inputs;
   hyprland = import ./wayland/hyprland.nix inputs;
   greetd = import ./wayland/greetd.nix inputs;
-  swappy = import ./wayland/swappy.nix inputs;
 }
