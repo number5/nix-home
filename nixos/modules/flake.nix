@@ -20,7 +20,7 @@ in {
 
     nix = {
       # package = lib.mkDefault nix.packages.${pkgs.system}.nix;
-      settings.experimental-features = ["nix-command" "flakes" "repl-flake"];
+      settings.experimental-features = ["nix-command" "flakes"];
 
       registry.nixpkgs.flake = unstable;
 
