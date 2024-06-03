@@ -1,9 +1,8 @@
-{
+{self, ...} @inputs: {
   inputs,
   pkgs,
   config,
   lib,
-  hmConfig,
   ...
 }: {
   options.programs.eww = {
@@ -18,7 +17,6 @@
   };
 
   config = lib.mkIf config.programs.eww.enable {
-    hm = {
       home.packages = with pkgs; [
         (inputs.eww.packages.${pkgs.system}.eww-wayland.overrideAttrs (old: {
           nativeBuildInputs = old.nativeBuildInputs ++ [pkgs.wrapGAppsHook];
@@ -72,6 +70,5 @@
           };
         })
         files;
-    };
   };
 }

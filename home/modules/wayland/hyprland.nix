@@ -135,14 +135,14 @@ in {
       xdg.portal.wlr.enable = lib.mkForce false;
     };
 
-    hm = let
+    home = let
       cursor = {
         package = pkgs.catppuccin-cursors.macchiatoPink;
         name = "Catppuccin-Macchiato-Pink-Cursors";
         size = 24;
       };
     in {
-      home.packages = with pkgs;
+      packages = with pkgs;
       with inputs.hyprcontrib.packages.${pkgs.system};
       with inputs.shadower.packages.${pkgs.system}; [
         pulseaudio

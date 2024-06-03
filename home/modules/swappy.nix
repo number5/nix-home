@@ -9,7 +9,7 @@
 }: {
   options.programs.swappy.enable = lib.mkEnableOption "swappy";
 
-  config.hm.home.packages = lib.mkIf config.programs.swappy.enable [
+  config.home.packages = lib.mkIf config.programs.swappy.enable [
     (pkgs.swappy.overrideAttrs (old: {
       patches = [
         (pkgs.fetchpatch

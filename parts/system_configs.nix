@@ -94,7 +94,6 @@ in {
               {documentation.man.generateCaches = true;}
               inputs.disko.nixosModules.disko
               inputs.sops-nix.nixosModules.sops
-              inputs.catppuccin.nixosModules.catppuccin
             ]
             ++ config.modules
             ++ builtins.attrValues {

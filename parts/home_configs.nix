@@ -99,6 +99,7 @@ in {
               {home = {inherit (config) username homeDirectory;};}
               {systemd.user.startServices = "legacy";}
               inputs.sops-nix.homeManagerModules.sops
+              inputs.catppuccin.homeManagerModules.catppuccin
             ]
             ++ config.modules
             ++ builtins.attrValues self.homeModules
