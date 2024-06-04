@@ -100,6 +100,7 @@ in {
               {systemd.user.startServices = "legacy";}
               inputs.sops-nix.homeManagerModules.sops
               inputs.catppuccin.homeManagerModules.catppuccin
+              inputs.hyprland.homeManagerModules.default
             ]
             ++ config.modules
             ++ builtins.attrValues self.homeModules

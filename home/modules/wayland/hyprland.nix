@@ -125,20 +125,18 @@ in {
     };
   };
 
-  cursor = {
-    package = pkgs.catppuccin-cursors.macchiatoPink;
-    name = "Catppuccin-Macchiato-Pink-Cursors";
-    size = 24;
-  };
-
-  config = mkIf cfg.enable {
-    os = {
-      programs.hyprland = {
-        enable = true;
-        inherit (cfg) package;
-      };
-      xdg.portal.wlr.enable = lib.mkForce false;
+  config = let
+    cursor = {
+      package = pkgs.catppuccin-cursors.macchiatoPink;
+      name = "Catppuccin-Macchiato-Pink-Cursors";
+      size = 24;
     };
+  in {
+    programs.hyprland = {
+      enable = true;
+      inherit (cfg) package;
+    };
+    xdg.portal.wlr.enable = lib.mkForce false;
 
     home.packages = with pkgs;
     with inputs.hyprcontrib.packages.${pkgs.system};
@@ -187,7 +185,7 @@ in {
       };
     };
 
-    home.xdg.configFile."hypr/hyprpaper.conf".text = ''
+    xdg.configFile."hypr/hyprpaper.conf".text = ''
       preload=${cfg.monitors.main.wallpaper}
       ${
         if cfg.monitors.secondary.wallpaper != null

@@ -34,8 +34,7 @@
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
 
     # hyprland
-
-    hyprland.url = "github:hyprwm/hyprland";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprpaper.url = "github:hyprwm/hyprpaper";
