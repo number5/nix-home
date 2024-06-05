@@ -65,7 +65,7 @@
     journald.extraConfig = "SystemMaxUse=1G";
 
     displayManager = {
-      defaultSession = "none+i3";
+      # defaultSession = "none+i3";
       sddm.autoNumlock = true;
 
       autoLogin = {
@@ -74,19 +74,19 @@
       };
     };
 
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        options = "caps:escape"; # Caps-lock is the new Escape.
-      };
-      videoDrivers = ["amdgpu"];
-
-      windowManager.i3 = {
-        enable = true;
-        package = pkgs.i3;
-      };
-    };
+    # xserver = {
+    #   enable = true;
+    #   xkb = {
+    #     layout = "us";
+    #     options = "caps:escape"; # Caps-lock is the new Escape.
+    #   };
+    #   videoDrivers = ["amdgpu"];
+    #
+    #   windowManager.i3 = {
+    #     enable = true;
+    #     package = pkgs.i3;
+    #   };
+    # };
   };
   console = {
     font = "${pkgs.terminus_font}/share/consolefonts/ter-u32n.psf.gz";
