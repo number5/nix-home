@@ -132,11 +132,6 @@ in {
       size = 24;
     };
   in {
-    programs.hyprland = {
-      enable = true;
-      inherit (cfg) package;
-    };
-    xdg.portal.wlr.enable = lib.mkForce false;
 
     home.packages = with pkgs;
     with inputs.hyprcontrib.packages.${pkgs.system};
@@ -250,7 +245,7 @@ in {
 
                 # Mouse speed
                 accel_profile = "flat";
-                sensitivity = toString cfg.mouseSensitivity;
+                # sensitivity = toString cfg.mouseSensitivity;
                 follow_mouse = true;
 
                 touchpad = {

@@ -1,9 +1,8 @@
 {self, ...} @ inputs: {pkgs, ...}: {
-  imports = [
-    inputs.anyrun.homeManagerModules.default
-  ];
 
-  programs.anyrun = {
+  programs.anyrun = let 
+    debug = builtins.trace "anyrun package inputs: " inputs;
+  in {
     enable = true;
 
     config = {

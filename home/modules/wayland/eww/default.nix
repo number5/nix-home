@@ -5,16 +5,6 @@
   lib,
   ...
 }: {
-  options.programs.eww = {
-    enable = lib.mkEnableOption "eww";
-    speakerSink = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-    };
-    micName = lib.mkOption {
-      type = lib.types.str;
-    };
-  };
 
   config = lib.mkIf config.programs.eww.enable {
     home.packages = with pkgs; [
