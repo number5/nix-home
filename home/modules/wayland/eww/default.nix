@@ -5,7 +5,6 @@
   lib,
   ...
 }: {
-
   config = lib.mkIf config.programs.eww.enable {
     home.packages = with pkgs; [
       (inputs.eww.packages.${pkgs.system}.eww-wayland.overrideAttrs (old: {

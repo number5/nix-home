@@ -3,7 +3,6 @@
   inputs,
   config,
   lib,
-  npins,
   ...
 }: let
   cfg = config.bw.homeConfigurations;

@@ -132,7 +132,6 @@ in {
       size = 24;
     };
   in {
-
     home.packages = with pkgs;
     with inputs.hyprcontrib.packages.${pkgs.system};
     with inputs.shadower.packages.${pkgs.system}; [

@@ -9,6 +9,10 @@
 }: {
   _file = ./bruce_at_chestnut.nix;
 
+  imports = [
+    ./chestnut_config.nix
+  ];
+
   config = {
     home.packages = builtins.attrValues {
       inherit (pkgs) neovim;

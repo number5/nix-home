@@ -1,6 +1,5 @@
 {self, ...} @ inputs: {pkgs, ...}: {
-
-  programs.anyrun = let 
+  programs.anyrun = let
     debug = builtins.trace "anyrun package inputs: " inputs;
   in {
     enable = true;
