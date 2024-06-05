@@ -7,9 +7,8 @@
   fonts.fontconfig.enable = true;
 
   environment.systemPackages = with pkgs; [
-    (nerdfonts.override {fonts = ["JetBrainsMono" "Noto"];})
-    source-han-mono
-    source-han-serif
+    iosevka
+    sarasa-gothic
     roboto-mono
     noto-fonts
     noto-fonts-cjk

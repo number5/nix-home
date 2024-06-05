@@ -1,5 +1,6 @@
 inputs: {
   "home" = import ./home.nix inputs;
+  "wezterm" = import ./wezterm inputs;
   "programs/nixpkgs" = import ./programs/nixpkgs inputs;
   "mutablerepos" = import ./mutablerepos.nix inputs;
 

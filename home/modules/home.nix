@@ -12,26 +12,17 @@
 in {
   _file = ./default.nix;
 
-  fonts.fontconfig.enable = true;
-
-  systemd.user = {
-    # sessionVariables = { NIX_PATH = nixPath; };
-  };
-
-  # xsession.windowManager.awesome.enable = true;
+  imports = [
+    ./starship.nix
+  ];
 
   home = {
-    # sessionVariables = { NIX_PATH = nixPath; };
-
     packages = let
       p = pkgs;
       s = self';
     in [
       p.cachix
       p.exercism
-
-      p.fira-code
-
       p.lefthook
     ];
 

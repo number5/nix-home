@@ -28,7 +28,6 @@
       unrar
       unzip
       vlc
-      wezterm
       xbanish
       xclip
       xdotool
@@ -42,8 +41,6 @@
       cmake
       gh
       asdf-vm
-      nix-prefetch-git
-      yarn
 
       # Nix
       nix-prefetch-git
