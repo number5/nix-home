@@ -10,6 +10,18 @@
   configs = builtins.mapAttrs (_: config: config.finalSystem) cfg;
 
   packages = builtins.attrValues (builtins.mapAttrs (_: config: config.packageModule) cfg);
+
+  vars = {
+      stateVersion = "23.11";
+    };
+
+    specialArgs = {
+      inherit vars;
+      flake = {
+        inherit self inputs;
+      };
+    };
+
 in {
   _file = ./system_configs.nix;
 
@@ -94,6 +106,15 @@ in {
               {documentation.man.generateCaches = true;}
               inputs.disko.nixosModules.disko
               inputs.sops-nix.nixosModules.sops
+              inputs.home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = false;
+                  extraSpecialArgs = specialArgs;
+                  # sharedModules = self.lib.hm-modules;
+                };
+              }
             ]
             ++ config.modules
             ++ builtins.attrValues {
