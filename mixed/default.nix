@@ -1,3 +1,3 @@
-_: {
+inputs: {
   _file = ./default.nix;
 }

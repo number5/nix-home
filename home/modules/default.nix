@@ -1,4 +1,8 @@
-inputs: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   "home" = import ./home.nix inputs;
   "wezterm" = import ./wezterm inputs;
   "programs/nixpkgs" = import ./programs/nixpkgs inputs;
@@ -12,5 +16,8 @@ inputs: {
   "anyrun" = import ./anyrun inputs;
   "eww" = import ./wayland/eww inputs;
   "swappy" = import ./swappy.nix inputs;
-  "hyprland" = import ./wayland/hyprland.nix inputs;
+  "hyprland" = import ./wayland/hyprland {
+    inputs = inputs;
+    pkgs = pkgs;
+  };
 }

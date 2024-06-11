@@ -12,16 +12,15 @@
   packages = builtins.attrValues (builtins.mapAttrs (_: config: config.packageModule) cfg);
 
   vars = {
-      stateVersion = "23.11";
-    };
+    stateVersion = "24.05";
+  };
 
-    specialArgs = {
-      inherit vars;
-      flake = {
-        inherit self inputs;
-      };
+  specialArgs = {
+    inherit vars;
+    flake = {
+      inherit self inputs;
     };
-
+  };
 in {
   _file = ./system_configs.nix;
 

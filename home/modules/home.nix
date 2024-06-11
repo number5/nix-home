@@ -21,7 +21,6 @@ in {
       p = pkgs;
       s = self';
     in [
-      p.cachix
       p.exercism
       p.lefthook
     ];
