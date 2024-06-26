@@ -14,6 +14,8 @@
   ];
 
   config = {
+    # display.enable = true;
+
     home.packages = builtins.attrValues {
       inherit (pkgs) neovim;
     };

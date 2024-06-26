@@ -1,12 +1,7 @@
 inputs: {
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
   "home" = import ./home.nix inputs;
   "wezterm" = import ./wezterm inputs;
-  # "programs/nixpkgs" = import ./programs/nixpkgs inputs;
+  "programs/nixpkgs" = import ./programs/nixpkgs inputs;
   "mutablerepos" = import ./mutablerepos.nix inputs;
 
   #  "i3" = import ./i3 inputs;
@@ -18,4 +13,5 @@ inputs: {
   "eww" = import ./wayland/eww inputs;
   "swappy" = import ./swappy.nix inputs;
   "hyprland" = import ./wayland/hyprland inputs;
+  # "base" = import ./profiles/base.nix inputs; # base profile
 }

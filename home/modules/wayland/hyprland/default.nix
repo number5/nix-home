@@ -4,7 +4,6 @@ _: {
   ...
 }: {
   imports = [
-    inputs.hyprland.homeManagerModules.default
     ./binds.nix
     ./rules.nix
     ./settings.nix
@@ -18,10 +17,10 @@ _: {
   wayland.windowManager.hyprland = {
     enable = true;
 
-    plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
-      # hyprbars
-      # hyprexpo
-    ];
+    # plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
+    #   # hyprbars
+    #   # hyprexpo
+    # ];
 
     systemd = {
       variables = ["--all"];
