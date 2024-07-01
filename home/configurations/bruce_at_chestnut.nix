@@ -25,7 +25,7 @@
 
       repos = {
         asdf = {
-          branch = "v0.13.1";
+          branch = "v0.14.0";
           repo = "https://github.com/asdf-vm/asdf.git";
           target = "${config.home.homeDirectory}/.asdf";
         };

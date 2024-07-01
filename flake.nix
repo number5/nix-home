@@ -67,6 +67,11 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
+    matugen = {
+      url = "github:InioX/matugen/module";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
   };
