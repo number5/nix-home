@@ -1,20 +1,19 @@
 {
-  unstable,
   self,
+  hyprland-contrib,
   ...
 }: {
   config,
   pkgs,
   lib,
   ...
-}: let
-  self' = self.packages.${pkgs.system};
-in {
+}: {
   _file = ./default.nix;
 
   imports = [
     ./starship.nix
   ];
+
 
   home = let
         cursor = {
@@ -23,12 +22,10 @@ in {
           size = 24;
         };
       in {
-    packages = let
-      p = pkgs;
-      s = self';
-    in [
-      p.exercism
-      p.lefthook
+    packages = [
+      pkgs.exercism
+      pkgs.lefthook
+      hyprland-contrib.packages.${pkgs.system}.grimblast
     ];
 
 

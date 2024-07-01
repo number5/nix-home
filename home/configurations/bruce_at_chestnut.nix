@@ -11,6 +11,7 @@
 
   imports = [
     ./chestnut_config.nix
+    ./catppuccin.nix
   ];
 
   config = {

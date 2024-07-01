@@ -67,9 +67,21 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
-    matugen = {
-      url = "github:InioX/matugen/module";
-      inputs.nixpkgs.follows = "nixpkgs";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+    };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.hyprlang.follows = "hyprland/hyprlang";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+      inputs.systems.follows = "hyprland/systems";
     };
 
     dotzsh.url = "github:number5/dotzsh";
@@ -79,6 +91,12 @@
   outputs = {parts, ...} @ inputs:
     parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-darwin"];
+
+      perSystem = { config, self', inputs', pkgs, system, ... }: {
+        # Per-system attributes can be defined here. The self' and inputs'
+        # module parameters provide easy access to attributes of the same
+        # system.
+      };
 
       imports = [
         ./parts/auxiliary.nix

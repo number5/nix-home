@@ -9,10 +9,6 @@ _: {
     ./settings.nix
   ];
 
-  home.packages = [
-    inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
-  ];
-
   # enable hyprland
   wayland.windowManager.hyprland = {
     enable = true;

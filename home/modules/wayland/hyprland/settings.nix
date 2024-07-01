@@ -1,6 +1,4 @@
 {config, ...}: let
-  variant = "dark";
-  c = config.programs.matugen.theme.colors.colors.${variant};
   pointer = config.home.pointerCursor;
 in {
   wayland.windowManager.hyprland.settings = {
@@ -63,19 +61,8 @@ in {
       ];
     };
 
-    group = {
-      groupbar = {
-        font_size = 10;
-        gradients = false;
-        text_color = "rgb(${c.primary})";
-      };
-
-      "col.border_active" = "rgba(${c.primary_container}88);";
-      "col.border_inactive" = "rgba(${c.on_primary_container}88)";
-    };
-
     input = {
-      kb_layout = "ro";
+      kb_layout = "us";
 
       # focus change on cursor move
       follow_mouse = 1;
@@ -84,7 +71,7 @@ in {
     };
 
     dwindle = {
-      # keep floating dimentions while tiling
+      # keep floating dimensions while tiling
       pseudotile = true;
       preserve_split = true;
     };
