@@ -34,13 +34,13 @@
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
 
     # hyprland
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    #hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    #hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprpaper.url = "github:hyprwm/hyprpaper";
     hyprpicker.url = "github:hyprwm/hyprpicker";
 
-    hyprcontrib = {
+    hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -67,22 +67,6 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
-    hyprland-contrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-    };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.hyprlang.follows = "hyprland/hyprlang";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-      inputs.systems.follows = "hyprland/systems";
-    };
 
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
