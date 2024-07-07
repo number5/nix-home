@@ -119,7 +119,8 @@ in {
         pseudotile = true;
         preserve_split = true;
       };
-      master = {new_is_master = true;};
+      master = {new_status = "master";};
+      debug.disable_logs = false;
 
       "$VIDEODIR" = "$HOME/Videos";
       "$NOTIFY" = "notify-send -h string:x-canonical-private-synchronouse:hypr-cfg -u low";
