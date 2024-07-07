@@ -4,11 +4,16 @@ _: {
   ...
 }: {
   imports = [
-    ./binds.nix
+    ./config.nix
     ./rules.nix
-    ./settings.nix
   ];
 
+  home = {
+    packages = with pkgs; [
+      seatd
+      jaq
+    ];
+  };
   # enable hyprland
   wayland.windowManager.hyprland = {
     enable = true;
