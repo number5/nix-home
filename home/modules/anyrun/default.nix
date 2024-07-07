@@ -1,11 +1,9 @@
-{self, ...} @ inputs: {pkgs, ...}: {
-  programs.anyrun = let
-    debug = builtins.trace "anyrun package inputs: " inputs;
-  in {
+{self, anyrun, ...} : {pkgs, ...}: {
+  programs.anyrun = {
     enable = true;
 
     config = {
-      plugins = with inputs.anyrun.packages.${pkgs.system}; [
+      plugins = with anyrun.packages.${pkgs.system}; [
         applications
         shell
         translate
