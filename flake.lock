@@ -30,13 +30,13 @@
       "locked": {
         "lastModified": 1721135360,
         "narHash": "sha256-ZhSA0e45UxiOAjEVqkym/aULh0Dt+KHJLNda7bjx9UI=",
-        "owner": "kirottu",
+        "owner": "anyrun-org",
         "repo": "anyrun",
         "rev": "c6101a31a80b51e32e96f6a77616b609770172e0",
         "type": "github"
       },
       "original": {
-        "owner": "kirottu",
+        "owner": "anyrun-org",
         "repo": "anyrun",
         "type": "github"
       }
@@ -607,27 +607,6 @@
         "type": "github"
       }
     },
-    "naersk": {
-      "inputs": {
-        "nixpkgs": [
-          "shadower",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1679567394,
-        "narHash": "sha256-ZvLuzPeARDLiQUt6zSZFGOs+HZmE+3g4QURc8mkBsfM=",
-        "owner": "nmattia",
-        "repo": "naersk",
-        "rev": "88cd22380154a2c36799fe8098888f0f59861a15",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nmattia",
-        "repo": "naersk",
-        "type": "github"
-      }
-    },
     "neovim-nightly-overlay": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -698,11 +677,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1721541664,
-        "narHash": "sha256-hk9g7kuGqDz8TYAbX9R6IvLUDnE5UpxwLR41MZ5uTDU=",
+        "lastModified": 1721581528,
+        "narHash": "sha256-3esP3cMdqotokFJYxcu680r2VaSA78T03A2VwCZuWEw=",
         "owner": "nix-community",
         "repo": "nixd",
-        "rev": "963dd36863e18f942e90c66b2c76e7c161b61ff9",
+        "rev": "87135e0dfb3d56262e39de123d5741d2d892dd5e",
         "type": "github"
       },
       "original": {
@@ -898,22 +877,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_8": {
-      "locked": {
-        "lastModified": 1682809678,
-        "narHash": "sha256-jqR8t82mWotOSgnWZvr6xXCO/tc3fCPTLMPvI7Jo5rA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "3dcff817eebb7e4afc4e9eae0ce6f722f4d9e399",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nuenv": {
       "inputs": {
         "nixpkgs": "nixpkgs_6",
@@ -996,7 +959,6 @@
         "parts": "parts",
         "programsdb": "programsdb",
         "rust-overlay": "rust-overlay_2",
-        "shadower": "shadower",
         "sops-nix": "sops-nix",
         "unstable": [
           "nixpkgs-unstable"
@@ -1057,25 +1019,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "shadower": {
-      "inputs": {
-        "naersk": "naersk",
-        "nixpkgs": "nixpkgs_8"
-      },
-      "locked": {
-        "lastModified": 1721405001,
-        "narHash": "sha256-vucKiHCXTwIjayLNH1ZXkZWM70zF5atDdMDRZMADeO0=",
-        "owner": "n3oney",
-        "repo": "shadower",
-        "rev": "48f8f6bc227fc287b6669fb3ecaf4411d27a3b7a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "n3oney",
-        "repo": "shadower",
         "type": "github"
       }
     },

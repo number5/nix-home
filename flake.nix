@@ -45,8 +45,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    shadower.url = "github:n3oney/shadower";
-
     # eww
     rust-overlay.url = "github:oxalica/rust-overlay";
     eww = {
@@ -56,7 +54,7 @@
     };
 
     # anyrun
-    anyrun.url = "github:kirottu/anyrun";
+    anyrun.url = "github:anyrun-org/anyrun";
 
     disko = {
       url = "github:nix-community/disko";
@@ -64,7 +62,6 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
-
 
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
@@ -74,7 +71,14 @@
     parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-darwin"];
 
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
+      perSystem = {
+        config,
+        self',
+        inputs',
+        pkgs,
+        system,
+        ...
+      }: {
         # Per-system attributes can be defined here. The self' and inputs'
         # module parameters provide easy access to attributes of the same
         # system.

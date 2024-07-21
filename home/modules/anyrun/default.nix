@@ -1,12 +1,22 @@
-{self, anyrun, ...} : {pkgs, ...}: {
+{
+  self,
+  anyrun,
+  ...
+}: {pkgs, ...}: let
+  package = anyrun.packages.${pkgs.system}.anyrun-with-all-plugins;
+in {
   programs.anyrun = {
     enable = true;
 
+    package = package;
     config = {
-      plugins = with anyrun.packages.${pkgs.system}; [
-        applications
-        shell
-        translate
+      plugins = [
+        "${package}/lib/libapplications.so"
+        "${package}/lib/librink.so"
+        "${package}/lib/libshell.so"
+        "${package}/lib/libdictionary.so"
+        "${package}/lib/libsymbols.so"
+        "${package}/lib/libtranslate.so"
       ];
 
       width.fraction = 0.3;
