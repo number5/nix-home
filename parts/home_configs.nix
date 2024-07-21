@@ -99,7 +99,6 @@ in {
               {systemd.user.startServices = "legacy";}
               inputs.sops-nix.homeManagerModules.sops
               inputs.catppuccin.homeManagerModules.catppuccin
-              # inputs.hyprland.homeManagerModules.default
               inputs.anyrun.homeManagerModules.default
             ]
             ++ config.modules
@@ -113,7 +112,6 @@ in {
 
           finalHome = inputs.home-manager.lib.homeManagerConfiguration {
             pkgs = config.nixpkgs.legacyPackages.${config.system};
-            # extraSpecialArgs.inputs = {inherit inputs;};
             modules = config.finalModules;
           };
         };

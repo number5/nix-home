@@ -1,10 +1,19 @@
 {
   config,
   lib,
+  pkgs,
   eww,
+  anyrun,
   ...
 }: let
   pointer = config.home.pointerCursor;
+  anyrun-with-all-plugins = anyrun.packages.${pkgs.system}.anyrun-with-all-plugins;
+  eww-bin = eww.packages.${pkgs.system}.eww;
+
+  toggle = program: service: let
+    prog = builtins.substring 0 14 program;
+    runserv = lib.optionalString service "run-as-service";
+  in "pkill ${prog} || ${runserv} ${program}";
 in {
   wayland.windowManager.hyprland = {
     settings = {
@@ -20,8 +29,8 @@ in {
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
 
-        "${lib.exe eww.packags.eww daemon}"
-        "${lib.exe eww open bar}"
+        "${eww-bin}/bin/eww daemon"
+        "${eww-bin}/bin/eww open bar"
       ];
       xwayland.force_zero_scaling = true;
       input = {
@@ -132,7 +141,6 @@ in {
       bind = [
         "$MOD, Escape, exec, wlogout -p layer-shell"
         # "$MOD, Tab, exec, ags -t overview"
-        # "$MOD, XF86Calculator, exec, ags -r 'recorder.start()'"
 
         # SSS
         "ALT, Print, exec, screenshot-full"
@@ -143,8 +151,8 @@ in {
 
         #"$MODSHIFT, X, exec, $COLORPICKER"
 
-        "$MOD, D, exec, pkill .anyrun-wrapped || run-as-service anyrun"
-        "$MOD, Return, exec, run-as-service wezterm"
+        "$MOD, R, exec, ${toggle "${anyrun-with-all-plugins}/bin/anyrun" true}"
+        "$MOD, Return, exec, run-as-service ${pkgs.wezterm}/bin/wezterm"
         "CTRL_ALT, L, exec, loginctl lock-session"
 
         "$MOD, Q, killactive"
@@ -214,7 +222,6 @@ in {
       bindm = ["$MOD, mouse:272, movewindow" "$MOD, mouse:273, resizewindow"];
       windowrulev2 = [
         # "opacity 0.90 0.90,class:^(org.wezfurlong.wezterm)$"
-        # "opacity 0.90 0.90,class:^(foot)$"
         # "opacity 0.90 0.90,class:^(Brave-browser)$"
         # "opacity 0.90 0.90,class:^(brave-browser)$"
         # "opacity 0.90 0.90,class:^(firefox)$"
@@ -254,7 +261,6 @@ in {
         "float,title:^(branchdialog)$"
         "float,title:^(Confirm to replace files)$"
         "float,title:^(File Operation Progress)$"
-        "float,class:^(com.github.Aylur.ags)$"
         "float,class:^(mpv)$"
         "float,class:^(org.telegram.desktop)"
         "size 380 690,class:^(org.telegram.desktop)"
