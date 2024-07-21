@@ -57,8 +57,6 @@
 
     # anyrun
     anyrun.url = "github:kirottu/anyrun";
-    anyrun-ha-assist.url = "github:n3oney/anyrun-ha-assist";
-    anyrun-nixos-options.url = "github:n3oney/anyrun-nixos-options";
 
     disko = {
       url = "github:nix-community/disko";
