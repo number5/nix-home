@@ -922,11 +922,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1721550386,
-        "narHash": "sha256-dY4VZ33H5rXdAvtrBLVwXMcaPUK0uIhfVwSeQkbkjqU=",
+        "lastModified": 1721590949,
+        "narHash": "sha256-NECyXDZCUvTWN5h8YHKI084UAqGmH63L6E/TKH5jPVE=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "fab6d0f58f6e880187f1e2cbc74d61406c3abbf0",
+        "rev": "b7ef9b0572ea7086f460ee96592c51f6a988ffff",
         "type": "github"
       },
       "original": {
