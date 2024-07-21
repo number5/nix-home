@@ -1,4 +1,4 @@
-{...} : {
+{...}: {
   catppuccin.flavor = "mocha";
   gtk.catppuccin.enable = true;
   programs.bat.catppuccin.enable = true;

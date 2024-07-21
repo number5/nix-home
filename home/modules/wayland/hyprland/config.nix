@@ -1,10 +1,10 @@
 {
   config,
   lib,
+  eww,
   ...
 }: let
   pointer = config.home.pointerCursor;
-  homeDir = config.home.homeDirectory;
 in {
   wayland.windowManager.hyprland = {
     settings = {
@@ -19,6 +19,9 @@ in {
         "hyprlock"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
+
+        "${lib.exe eww.packags.eww daemon}"
+        "${lib.exe eww open bar}"
       ];
       xwayland.force_zero_scaling = true;
       input = {
@@ -124,7 +127,6 @@ in {
 
       "$VIDEODIR" = "$HOME/Videos";
       "$NOTIFY" = "notify-send -h string:x-canonical-private-synchronouse:hypr-cfg -u low";
-      "$COLORPICKER" = "${homeDir}/.config/hypr/scripts/colorpicker";
       "$LAYERS" = "^(eww-.+|bar|system-menu|anyrun|gtk-layer-shell|osd[0-9]|dunst)$";
 
       bind = [
