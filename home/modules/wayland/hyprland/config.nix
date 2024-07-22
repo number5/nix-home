@@ -32,7 +32,7 @@ in {
     };
 
     settings = {
-      "$MOD" = "SUPER";
+      "$mod" = "SUPER";
       env = [
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         "HYPRCURSOR_SIZE,24"
@@ -154,62 +154,62 @@ in {
       "$LAYERS" = "^(eww-.+|bar|system-menu|anyrun|gtk-layer-shell|osd[0-9]|dunst)$";
 
       bind = [
-        "$MOD, Escape, exec, wlogout -p layer-shell"
-        # "$MOD, Tab, exec, ags -t overview"
+        "$mod, Escape, exec, wlogout -p layer-shell"
+        # "$mod, Tab, exec, ags -t overview"
 
         # SSS
         "ALT, Print, exec, screenshot-full"
         "ALTSHIFT, S, exec, screenshot-area"
         # Normal Screenshot
         #", Print, exec, ags -r 'recorder.screenshot(true)'"
-        #"$MODSHIFT, S, exec, ags -r 'recorder.screenshot()'"
+        #"$modshift, S, exec, ags -r 'recorder.screenshot()'"
 
-        #"$MODSHIFT, X, exec, $COLORPICKER"
+        #"$modshift, X, exec, $COLORPICKER"
 
-        "$MOD, R, exec, ${toggle "${anyrun-with-all-plugins}/bin/anyrun" true}"
-        "$MOD, Return, exec, run-as-service ${pkgs.wezterm}/bin/wezterm"
+        "$mod, R, exec, ${toggle "${anyrun-with-all-plugins}/bin/anyrun" true}"
+        "$mod, Return, exec, run-as-service ${pkgs.wezterm}/bin/wezterm"
         "CTRL_ALT, L, exec, loginctl lock-session"
 
-        "$MOD, Q, killactive"
-        "$MODSHIFT, Q, exit"
-        "$MOD, F, fullscreen"
-        "$MOD, Space, togglefloating"
-        "$MOD, P, pseudo"
-        "$MOD, S, togglesplit"
+        "$mod, Q, killactive"
+        "$modshift, Q, exit"
+        "$mod, F, fullscreen"
+        "$mod, Space, togglefloating"
+        "$mod, P, pseudo"
+        "$mod, S, togglesplit"
 
-        "$MODSHIFT, Space, workspaceopt, allfloat"
-        "$MODSHIFT, P, workspaceopt, allpseudotile"
+        "$modshift, Space, workspaceopt, allfloat"
+        "$modshift, P, workspaceopt, allpseudotile"
 
         "ALT, Tab, cyclenext"
         "ALT, Tab, bringactivetotop"
 
-        "$MOD, C, exec, hyprctl dispatch centerwindow"
+        "$mod, C, exec, hyprctl dispatch centerwindow"
 
-        "$MOD, K, movefocus, u"
-        "$MOD, J, movefocus, d"
-        "$MOD, L, movefocus, r"
-        "$MOD, H, movefocus, l"
+        "$mod, K, movefocus, u"
+        "$mod, J, movefocus, d"
+        "$mod, L, movefocus, r"
+        "$mod, H, movefocus, l"
 
-        "$MODSHIFT, K, movewindow, u"
-        "$MODSHIFT, J, movewindow, d"
-        "$MODSHIFT, L, movewindow, r"
-        "$MODSHIFT, H, movewindow, l"
+        "$modshift, K, movewindow, u"
+        "$modshift, J, movewindow, d"
+        "$modshift, L, movewindow, r"
+        "$modshift, H, movewindow, l"
 
-        "$MODCTRL, K, resizeactive,  0 -20"
-        "$MODCTRL, J, resizeactive,  0 20"
-        "$MODCTRL, L, resizeactive,  20 0"
-        "$MODCTRL, H, resizeactive, -20 0"
+        "$modctrl, K, resizeactive,  0 -20"
+        "$modctrl, J, resizeactive,  0 20"
+        "$modctrl, L, resizeactive,  20 0"
+        "$modctrl, H, resizeactive, -20 0"
 
         "${builtins.concatStringsSep "\n" (builtins.genList (x: let
             ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
           in ''
-            bind = $MOD, ${ws}, workspace, ${toString (x + 1)}
-            bind = $MODSHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
-            bind = $MOD+CTRL, ${ws}, focusworkspaceoncurrentmonitor, ${toString (x + 1)}
+            bind = $mod, ${ws}, workspace, ${toString (x + 1)}
+            bind = $modshift, ${ws}, movetoworkspace, ${toString (x + 1)}
+            bind = $mod+CTRL, ${ws}, focusworkspaceoncurrentmonitor, ${toString (x + 1)}
           '')
           10)}"
-        "$MOD, mouse_down, workspace, e-1"
-        "$MOD, mouse_up, workspace, e+1"
+        "$mod, mouse_down, workspace, e-1"
+        "$mod, mouse_up, workspace, e+1"
       ];
 
       bindl = let
@@ -234,7 +234,7 @@ in {
         ", XF86MonBrightnessDown, exec, brillo -q -u 300000 -U 5"
       ];
 
-      bindm = ["$MOD, mouse:272, movewindow" "$MOD, mouse:273, resizewindow"];
+      bindm = ["$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow"];
       windowrulev2 = [
         # "opacity 0.90 0.90,class:^(org.wezfurlong.wezterm)$"
         # "opacity 0.90 0.90,class:^(Brave-browser)$"
