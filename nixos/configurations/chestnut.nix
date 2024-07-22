@@ -16,6 +16,7 @@ _: {
     ../modules/system/xrdb.nix
     ../modules/system/zsh.nix
     ../modules/system/gui-support.nix
+    ../modules/keyd.nix
   ];
 
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
@@ -24,8 +25,6 @@ _: {
   nix.gc.dates = "daily";
   nix.gc.persistent = true;
   nix.gc.randomizedDelaySec = "30min";
-
-  programs.hyprland.enable = true;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
