@@ -12,7 +12,7 @@
   packages = builtins.attrValues (builtins.mapAttrs (_: config: config.packageModule) cfg);
 
   vars = {
-    stateVersion = "24.05";
+    stateVersion = "24.11";
   };
 
   specialArgs = {

@@ -10,17 +10,28 @@
   ...
 }: let
   hypr-config = import ./config.nix {
-    eww = eww;
-    anyrun = anyrun;
-    lib = lib;
-    config = config;
-    pkgs = pkgs;
+    inherit
+      eww
+      anyrun
+      lib
+      config
+      pkgs
+      ;
   };
   rules = import ./rules.nix;
 in {
+  options.bw.eww = {
+    enable = lib.mkOption {
+      default = false;
+      type = lib.types.bool;
+      description = "Enable eww";
+    };
+  };
+
   imports = [rules];
   config =
     {
+      bw.eww.enable = true;
       home = {
         packages = with pkgs; [
           seatd

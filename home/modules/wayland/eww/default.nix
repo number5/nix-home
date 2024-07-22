@@ -1,18 +1,22 @@
-{self, ...}: {
-  inputs,
+{
+  self,
+  eww,
+  ...
+}: {
   pkgs,
   config,
   lib,
   ...
 }: {
-  config = lib.mkIf config.programs.eww.enable {
-    home.packages = with pkgs; [
-      (inputs.eww.packages.${pkgs.system}.eww-wayland.overrideAttrs (old: {
-        nativeBuildInputs = old.nativeBuildInputs ++ [pkgs.wrapGAppsHook];
-        buildInputs = old.buildInputs ++ (with pkgs; [glib librsvg libdbusmenu-gtk3]);
-      }))
-    ];
+  config = lib.mkIf config.bw.eww.enable {
+    # home.packages = with pkgs; [
+    #   (eww.packages.${pkgs.system}.eww-wayland.overrideAttrs (old: {
+    #     nativeBuildInputs = old.nativeBuildInputs ++ [pkgs.wrapGAppsHook];
+    #     buildInputs = old.buildInputs ++ (with pkgs; [glib librsvg libdbusmenu-gtk3]);
+    #   }))
+    # ];
 
+    home.packages = [eww.packages.${pkgs.system}.eww];
     xdg.configFile = let
       colorScheme = config.colors.colorScheme.colors;
       files = builtins.readDir ./config;
