@@ -18,7 +18,7 @@
 
     home.packages = [eww.packages.${pkgs.system}.eww];
     xdg.configFile = let
-      colorScheme = config.colors.colorScheme.colors;
+      # colorScheme = config.colors.colorScheme.colors;
       files = builtins.readDir ./config;
       splitList = let
         splitList = n: list:
@@ -36,7 +36,7 @@
         "eww/${name}" = {
           source = pkgs.substituteAll ({
               src = ./config/${name};
-              inherit (config.colors) backgroundAlpha;
+            # inherit (config.colors) backgroundAlpha;
               pamixer = lib.getExe pkgs.pamixer;
               pactl = "${pkgs.pulseaudio}/bin/pactl";
               jaq = lib.getExe pkgs.jaq;
@@ -49,16 +49,16 @@
               xargs = "${pkgs.findutils}/bin/xargs";
               idleInhibit = "${pkgs.wlroots.examples}/bin/wlroots-idle-inhibit";
               # done twice so that it's a string
-              hyprbinds = builtins.toJSON (builtins.toJSON (splitList 5 (builtins.map (b: {
-                bind =
-                  if (lib.hasPrefix ", " b.bind)
-                  then (builtins.substring 2 ((builtins.stringLength b.bind) - 2) b.bind)
-                  else b.bind;
-                keybind = builtins.replaceStrings [", "] [" + "] b.bind;
-                label = b.comment;
-              }) (builtins.filter (b: b.comment != null) config.display.binds))));
-            }
-            // colorScheme);
+              # hyprbinds = builtins.toJSON (builtins.toJSON (splitList 5 (builtins.map (b: {
+              #   bind =
+              #     if (lib.hasPrefix ", " b.bind)
+              #     then (builtins.substring 2 ((builtins.stringLength b.bind) - 2) b.bind)
+              #     else b.bind;
+              #   keybind = builtins.replaceStrings [", "] [" + "] b.bind;
+              #   label = b.comment;
+              # }) (builtins.filter (b: b.comment != null) config.display.binds))));
+            });
+            # // colorScheme);
           executable = true;
         };
       })
