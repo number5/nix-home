@@ -1,8 +1,8 @@
 {
   runCommand,
-  alejandra,
+pkgs,
   self,
 }:
 runCommand "alejandra-run-${self.rev or "00000000"}" {} ''
-  ${alejandra}/bin/alejandra --check ${self} < /dev/null | tee $out
+  ${pkgs.alejandra}/bin/alejandra --check ${self} < /dev/null | tee $out
 ''

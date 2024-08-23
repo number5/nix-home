@@ -23,7 +23,6 @@
 
     nixd.url = "github:nix-community/nixd";
     nuenv.url = "github:DeterminateSystems/nuenv";
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
     # Neovim
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -92,7 +91,7 @@
         ./nixos/configurations
         ./home/configurations
 
-        ./packages
+        # ./packages
       ];
 
       flake = {

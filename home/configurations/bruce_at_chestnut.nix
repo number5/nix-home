@@ -17,6 +17,8 @@
   config = {
     # display.enable = true;
 
+    modules.eww.enable = true;
+
     home.packages = builtins.attrValues {
       inherit (pkgs) neovim;
     };
