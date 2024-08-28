@@ -1,6 +1,6 @@
 {
   runCommand,
-pkgs,
+  pkgs,
   self,
 }:
 runCommand "alejandra-run-${self.rev or "00000000"}" {} ''

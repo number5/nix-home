@@ -96,7 +96,7 @@ in {
             [
               config.entryPoint
               {home = {inherit (config) username homeDirectory;};}
-              {systemd.user.startServices = "legacy";}
+              {systemd.user.startServices = "true";}
               inputs.sops-nix.homeManagerModules.sops
               inputs.catppuccin.homeManagerModules.catppuccin
               inputs.anyrun.homeManagerModules.default
