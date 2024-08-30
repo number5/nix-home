@@ -67,11 +67,13 @@ in {
       cursor = {
         no_warps = true;
       };
+      render = {
+        direct_scanout = true;
+      };
       misc = {
         disable_autoreload = true;
         animate_mouse_windowdragging = false;
         vrr = 1;
-        no_direct_scanout = false;
         vfr = true;
         disable_splash_rendering = true;
         disable_hyprland_logo = true;

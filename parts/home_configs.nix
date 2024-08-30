@@ -96,7 +96,7 @@ in {
             [
               config.entryPoint
               {home = {inherit (config) username homeDirectory;};}
-              {systemd.user.startServices = "true";}
+              {systemd.user.startServices = "sd-switch";}
               inputs.sops-nix.homeManagerModules.sops
               inputs.catppuccin.homeManagerModules.catppuccin
               inputs.anyrun.homeManagerModules.default
