@@ -17,6 +17,8 @@
   config = {
     # display.enable = true;
 
+    programs.home-manager.enable = true;
+
     modules.eww.enable = true;
 
     home.packages = builtins.attrValues {
