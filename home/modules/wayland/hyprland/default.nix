@@ -2,6 +2,7 @@
   self,
   eww,
   anyrun,
+  nix-search,
   ...
 }: {
   config,
@@ -36,7 +37,7 @@ let
     grimblast # screenshot program from hyprland
     libnotify # notifications
     nemo # file manager
-    nix-search # faster nix search client
+    nix-search.packages.${system}.default
     wl-clipboard # clipboard support
     wofi # app launcher
     xwaylandvideobridge # screensharing bridge

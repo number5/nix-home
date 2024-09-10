@@ -1,8 +1,7 @@
-{ specialArgs, ... }:
+_:
 
 let
   dpmsSettings =
-    if specialArgs.hidpi then { } else
     {
       timeout = 1200;
       on-timeout = "hyprctl dispatch dpms off";
