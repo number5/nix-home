@@ -24,6 +24,11 @@
     nixd.url = "github:nix-community/nixd";
     nuenv.url = "github:DeterminateSystems/nuenv";
 
+    # Fast nix search client
+    nix-search = {
+      url = "github:diamondburned/nix-search";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Neovim
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";

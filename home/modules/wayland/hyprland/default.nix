@@ -42,14 +42,14 @@ let
     xwaylandvideobridge # screensharing bridge
   ] ++ fontPkgs ++ audioPkgs;
 
-  gblast = lib.exe pkgs.grimblast;
+  gblast = lib.getExe pkgs.grimblast;
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
 
   scripts = pkgs.callPackage ./scripts.nix { };
 
   workspaceConf = { monitor }: ''
     workspace=1,persistent:true,monitor:${monitor}
-    workspace=2,persistent:true,on-created-empty:${lib.exe scripts.wsNix},monitor:${monitor}
+    workspace=2,persistent:true,on-created-empty:${lib.getExe scripts.wsNix},monitor:${monitor}
     workspace=3,persistent:true,monitor:${monitor}
     workspace=4,persistent:true,monitor:${monitor}
     workspace=5,persistent:true,on-created-empty:firefox-beta -p 'sxm',monitor:${monitor}
@@ -59,7 +59,7 @@ in
 {
   imports = [
     # ../../shared
-    ../../foot
+    # ../../foot
     ../../hyprlock
     ../../hyprpaper
     # ../../programs/pyprland
@@ -69,11 +69,11 @@ in
 
   home = {
     inherit packages;
-    stateVersion = "23.11";
+    stateVersion = "24.11";
 
     sessionVariables = {
       NIXOS_OZONE_WL = 1;
-      SHELL = "${lib.exe pkgs.zsh}";
+      SHELL = "${lib.getExe pkgs.zsh}";
       MOZ_ENABLE_WAYLAND = 1;
       XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_SESSION_DESKTOP = "Hyprland";
@@ -111,10 +111,10 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = (builtins.readFile ./hyprland.conf) + ''
-      bind=SUPER,P,exec,${lib.exe pkgs.wofi} --show run --style=${./wofi.css} --term=footclient --prompt=Run
+      bind=SUPER,P,exec,${lib.getExe pkgs.wofi} --show run --style=${./wofi.css} --term=footclient --prompt=Run
       bind=SUPER,A,exec,${gblast} save area
       bind=SUPER,S,exec,${gblast} save screen
-      bind=SUPERCTRL,L,exec,${lib.exe pkgs.hyprlock}
+      bind=SUPERCTRL,L,exec,${lib.getExe pkgs.hyprlock}
       # audio volume bindings
       bindel=,XF86AudioRaiseVolume,exec,${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%+
       bindel=,XF86AudioLowerVolume,exec,${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-
@@ -122,13 +122,13 @@ in
 
       ${workspaceConf { monitor = "${scripts.extMonitor}"; }}
 
-      exec-once=${lib.exe scripts.monitorInit}
-      exec-once=${lib.exe pkgs.hyprland-monitor-attached} ${lib.exe scripts.monitorAdded} ${lib.exe scripts.monitorRemoved}
-      exec-once=${lib.exe pkgs.hyprpaper}
+      exec-once=${lib.getExe scripts.monitorInit}
+      exec-once=${lib.getExe pkgs.hyprland-monitor-attached} ${lib.getExe scripts.monitorAdded} ${lib.getExe scripts.monitorRemoved}
+      exec-once=${lib.getExe pkgs.hyprpaper}
       exec-once=${pkgs.pyprland}/bin/pypr
       exec-once=${pkgs.blueman}/bin/blueman-applet
       exec-once=${pkgs.networkmanagerapplet}/bin/nm-applet --sm-disable --indicator
-      exec-once=${lib.exe pkgs.pasystray}
+      exec-once=${lib.getExe pkgs.pasystray}
     '';
     plugins = [ ];
     systemd = {

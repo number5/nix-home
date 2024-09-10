@@ -14,7 +14,7 @@ let
       dispatch moveworkspacetomonitor 4 ${extMonitor};\
       dispatch moveworkspacetomonitor 5 ${extMonitor};\
       dispatch moveworkspacetomonitor 6 ${extMonitor}"
-    ${lib.exe monitorConnected}
+    ${lib.getExe monitorConnected}
   '';
 
   monitorConnected = writeShellScriptBin "monitor-connected" ''
@@ -39,9 +39,9 @@ in
   monitorInit = writeShellScriptBin "monitor-init" ''
     monitors=$(hyprctl monitors)
     if [[ $monitors == *"${extMonitor}"* ]]; then
-      ${lib.exe monitorConnected}
+      ${lib.getExe monitorConnected}
     else
-      ${lib.exe monitorRemoved}
+      ${lib.getExe monitorRemoved}
     fi
   '';
 }
