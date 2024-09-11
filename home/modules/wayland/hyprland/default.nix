@@ -33,8 +33,6 @@ let
   packages = with pkgs; [
     brightnessctl # control laptop display brightness
     loupe # image viewer
-    grim # screenshots
-    grimblast # screenshot program from hyprland
     libnotify # notifications
     nemo # file manager
     nix-search.packages.${system}.default
