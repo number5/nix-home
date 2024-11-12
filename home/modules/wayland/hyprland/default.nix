@@ -1,7 +1,6 @@
 {
   self,
   eww,
-  anyrun,
   nix-search,
   ...
 }: {
