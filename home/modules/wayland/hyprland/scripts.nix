@@ -1,8 +1,8 @@
 { lib, writeShellScriptBin }:
 
 let
-  intMonitor = "DP-1";
-  extMonitor = "DP-2";
+  intMonitor = "eDP-1";
+  extMonitor = "model:M27U";
 
   monitorsConf = "$XDG_CONFIG_HOME/hypr/monitors.conf";
 
