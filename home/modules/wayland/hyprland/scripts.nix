@@ -1,8 +1,8 @@
 { lib, writeShellScriptBin }:
 
 let
-  intMonitor = "eDP-1";
-  extMonitor = "DP-3";
+  intMonitor = "DP-1";
+  extMonitor = "DP-2";
 
   monitorsConf = "$XDG_CONFIG_HOME/hypr/monitors.conf";
 
@@ -19,13 +19,13 @@ let
 
   monitorConnected = writeShellScriptBin "monitor-connected" ''
     hyprctl dispatch dpms off ${intMonitor}
-    echo "monitor=${extMonitor},2560x1440@59.95,0x0,1" > ${monitorsConf}
-    echo "monitor=${intMonitor},disable" >> ${monitorsConf}
+    echo "monitor=${extMonitor},highres@50,0x0,1" > ${monitorsConf}
+    echo "monitor=${intMonitor},preferred,auto-right,1" >> ${monitorsConf}
   '';
 
   monitorRemoved = writeShellScriptBin "monitor-removed" ''
     hyprctl dispatch dpms on ${intMonitor}
-    echo "monitor=${intMonitor},2880x1800@90,0x0,2" > ${monitorsConf}
+    echo "monitor=${intMonitor},preferred,0x0,1" > ${monitorsConf}
   '';
 in
 {
