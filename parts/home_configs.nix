@@ -99,7 +99,6 @@ in {
               {systemd.user.startServices = "sd-switch";}
               inputs.sops-nix.homeManagerModules.sops
               inputs.catppuccin.homeManagerModules.catppuccin
-              inputs.anyrun.homeManagerModules.default
             ]
             ++ config.modules
             ++ builtins.attrValues self.homeModules

@@ -57,9 +57,6 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
 
-    # anyrun
-    anyrun.url = "github:anyrun-org/anyrun";
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

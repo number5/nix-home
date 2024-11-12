@@ -10,7 +10,6 @@ inputs: {
   "libvirt" = import ./libvirt.nix inputs;
   "apps" = import ./apps.nix inputs;
   "dunst" = import ./dunst inputs;
-  "anyrun" = import ./anyrun inputs;
   "eww" = import ./wayland/eww inputs;
   "foot" = import ./foot inputs;
 }
