@@ -43,16 +43,7 @@ let
   gblast = lib.getExe pkgs.grimblast;
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
 
-  scripts = pkgs.callPackage ./scripts.nix { };
 
-  workspaceConf = { monitor }: ''
-    workspace=1,persistent:true,monitor:${monitor}
-    workspace=2,persistent:true,on-created-empty:${lib.getExe scripts.wsNix},monitor:${monitor}
-    workspace=3,persistent:true,monitor:${monitor}
-    workspace=4,persistent:true,monitor:${monitor}
-    workspace=5,persistent:true,on-created-empty:firefox-beta -p 'sxm',monitor:${monitor}
-    workspace=6,persistent:true,on-created-empty:footclient -e btm,monitor:${monitor}
-  '';
 in
 {
   imports = [
@@ -118,10 +109,6 @@ in
       bindel=,XF86AudioLowerVolume,exec,${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-
       bindl=,XF86AudioMute,exec,${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle
 
-      ${workspaceConf { monitor = "${scripts.extMonitor}"; }}
-
-      exec-once=${lib.getExe scripts.monitorInit}
-      exec-once=${lib.getExe pkgs.hyprland-monitor-attached} ${lib.getExe scripts.monitorAdded} ${lib.getExe scripts.monitorRemoved}
       exec-once=${lib.getExe pkgs.hyprpaper}
       exec-once=${pkgs.pyprland}/bin/pypr
       exec-once=${pkgs.blueman}/bin/blueman-applet

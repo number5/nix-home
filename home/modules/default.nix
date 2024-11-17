@@ -12,4 +12,5 @@ inputs: {
   "dunst" = import ./dunst inputs;
   "eww" = import ./wayland/eww inputs;
   "foot" = import ./foot inputs;
+  "way-displays" = import ./way-displays inputs;
 }
