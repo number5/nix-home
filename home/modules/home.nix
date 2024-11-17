@@ -16,8 +16,10 @@
 
   home = let
     cursor = {
-      package = pkgs.catppuccin-cursors.macchiatoTeal;
-      name = "catppuccin-macchiato-teal-cursors";
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Amber";
+      # package = pkgs.catppuccin-cursors.macchiatoTeal;
+      # name = "catppuccin-macchiato-teal-cursors";
       size = 24;
     };
   in {

@@ -21,6 +21,8 @@
 
     modules.eww.enable = true;
 
+    home.enableNixpkgsReleaseCheck = false;
+
     home.packages = builtins.attrValues {
       inherit (pkgs) neovim;
     };

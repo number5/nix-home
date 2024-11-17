@@ -70,7 +70,7 @@
 
   outputs = {parts, ...} @ inputs:
     parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux" "aarch64-darwin"];
+      systems = ["x86_64-linux"];
 
       perSystem = {
         config,
