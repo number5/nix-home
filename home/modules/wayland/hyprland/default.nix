@@ -1,6 +1,5 @@
 {
   self,
-  eww,
   nix-search,
   ...
 }: {

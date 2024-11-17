@@ -1,6 +1,5 @@
 {
   self,
-  eww,
   ...
 }: {
   pkgs,
@@ -18,7 +17,7 @@ in {
 
     # eww package
     home.packages = [
-      eww.packages.${pkgs.system}.eww
+      pkgs.eww
       pkgs.pamixer
       pkgs.brightnessctl
       (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
