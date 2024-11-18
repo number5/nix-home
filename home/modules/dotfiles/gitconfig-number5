@@ -1,0 +1,9 @@
+#  Specific config for https://github.com/number5
+[user]
+  name = Bruce Wang
+  email = number5@users.noreply.github.com
+
+[core]
+  sshCommand = ssh -i ~/.ssh/id_ed25519 -F /dev/null
+
+# vim: ft=gitconfig et sw=2

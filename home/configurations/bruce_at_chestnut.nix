@@ -32,7 +32,7 @@
 
       repos = {
         asdf = {
-          branch = "v0.14.0";
+          branch = "v0.14.1";
           repo = "https://github.com/asdf-vm/asdf.git";
           target = "${config.home.homeDirectory}/.asdf";
         };

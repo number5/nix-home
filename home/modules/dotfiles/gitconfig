@@ -1,0 +1,132 @@
+[user]
+  name = Bruce Wang
+  email = number5@users.noreply.github.com
+
+[color]
+  ui = true
+  branch = auto
+  diff = auto
+  status = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  commit = yellow bold
+  whitespace = red reverse
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  lg = log -p
+  ll = log --graph --pretty=format:'%C(magenta)%h%Creset %Cgreen(%cr) -%C(bold green)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  mg = merge -Xignore-space-at-eol
+  conflicts = diff --name-only --diff-filter=U
+
+[branch]
+  autosetupmerge = true
+
+[gui]
+  fontui = -family droid -size 10 -weight bold -slant roman -underline 0 -overstrike 0
+  fontdiff = -family helvetica -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+
+[push]
+  default = tracking
+
+[core]
+  excludesfile = /Users/bruce.wang/.gitignore_global
+  autocrlf = false
+  pager = delta
+  sshCommand = ssh -i ~/.ssh/id_rsa -F /dev/null
+
+[apply]
+  whitespace = nowarn
+
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
+
+[rebase]
+  autosquash = true
+	instructionFormat = (%an) %s
+
+[rerere]
+  enabled = true
+
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+
+[diff-so-fancy]
+  first-run = false
+
+[hub]
+  protocol = https
+
+[filter "lfs"]
+  smudge = git-lfs smudge --skip -- %f
+  process = git-lfs filter-process --skip
+  required = true
+  clean = git-lfs clean -- %f
+
+[pull]
+  rebase = false
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side line-numbers decorations
+  syntax-theme = base16
+  plus-style = syntax "#003800"
+  minus-style = syntax "#3f0001"
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+  hunk-header-decoration-style = cyan box ul
+
+[delta "line-numbers"]
+  line-numbers-left-style = cyan
+  line-numbers-right-style = cyan
+  line-numbers-minus-style = 124
+  line-numbers-plus-style = 28
+
+[init]
+  defaultBranch = main
+
+[trim]
+  bases = develop,master,main
+
+[credential]
+  useHttpPath = true
+
+[diff]
+  external = difft
+
+
+[includeIf "gitdir:~/src/**"]
+  path=./gitconfig-number5
+
+[includeIf "hasconfig:remote.*.url:git@github.com:number5/**"]
+  path =./gitconfig-number5
+
+# vim: ft=gitconfig et sw=2
+

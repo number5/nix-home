@@ -41,6 +41,7 @@
       cmake
       gh
       asdf-vm
+      difftastic
 
       # Nix
       nix-prefetch-git
