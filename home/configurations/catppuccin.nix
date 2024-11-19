@@ -1,4 +1,4 @@
-{...}: {
+_: {
   catppuccin.flavor = "mocha";
   gtk.catppuccin.enable = true;
   catppuccin.pointerCursor.enable = false;

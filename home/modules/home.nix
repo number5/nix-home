@@ -31,9 +31,9 @@
 
     pointerCursor = {
       gtk.enable = true;
-      name = cursor.name;
-      package = cursor.package;
-      size = cursor.size;
+      inherit (cursor) name;
+      inherit (cursor) package;
+      inherit (cursor) size;
       x11 = {
         defaultCursor = cursor.name;
         enable = true;
