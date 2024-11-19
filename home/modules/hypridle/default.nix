@@ -1,14 +1,10 @@
-_:
-
-let
-  dpmsSettings =
-    {
-      timeout = 1200;
-      on-timeout = "hyprctl dispatch dpms off";
-      on-resume = "hyprctl dispatch dpms on";
-    };
-in
-{
+_: let
+  dpmsSettings = {
+    timeout = 1200;
+    on-timeout = "hyprctl dispatch dpms off";
+    on-resume = "hyprctl dispatch dpms on";
+  };
+in {
   services.hypridle = {
     enable = true;
     settings = {

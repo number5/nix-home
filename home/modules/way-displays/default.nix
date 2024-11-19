@@ -1,19 +1,8 @@
-_:{ pkgs, ... }:
-{
-  home.packages = [ pkgs.way-displays ];
+_: {pkgs, ...}: {
+  home.packages = [pkgs.way-displays];
 
-  systemd.user.services.way-displays = {
-    Unit = {
-      Description = "way-displays";
-      Documentation = [ "man:way-displays(1)" ];
-    };
-
-    Service = {
-      ExecStart = "${pkgs.way-displays}/bin/way-displays";
-    };
-
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
+  home.file.".config/hypr/start-way-displays.sh" = {
+    source = ./start-way-displays.sh;
+    executable = true;
   };
 }

@@ -4,7 +4,6 @@ _: {
   ...
 }: {
   config = {
-
     xdg = {
       enable = true;
       configFile."git/config".source = ./gitconfig;
