@@ -1,7 +1,7 @@
 inputs: {
   "home" = import ./home.nix inputs;
   "wezterm" = import ./wezterm inputs;
-  "programs/nixpkgs" = import ./programs/nixpkgs inputs;
+  "nixpkgs" = import ./nixpkgs inputs;
   "mutablerepos" = import ./mutablerepos.nix inputs;
 
   #  "i3" = import ./i3 inputs;
@@ -15,4 +15,9 @@ inputs: {
   "way-displays" = import ./way-displays inputs;
 
   "dotfiles" = import ./dotfiles inputs;
+  "neovim" = import ./neovim inputs;
+  "chromium" = import ./chromium inputs;
+  "direnv" = import ./direnv inputs;
+  "gpg" = import ./gpg inputs;
+  "rust" = import ./rust inputs;
 }
