@@ -23,10 +23,6 @@
 
     home.enableNixpkgsReleaseCheck = false;
 
-    home.packages = builtins.attrValues {
-      inherit (pkgs) neovim;
-    };
-
     mutable = {
       enable = true;
 
