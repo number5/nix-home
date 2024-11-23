@@ -42,6 +42,7 @@
       gh
       asdf-vm
       difftastic
+      delta
 
       # Nix
       nix-prefetch-git
@@ -49,6 +50,7 @@
 
       # CLI
       ripgrep
+      dust
       file
       bat
       eza
