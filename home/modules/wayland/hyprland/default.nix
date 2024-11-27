@@ -45,13 +45,12 @@
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
 in {
   imports = [
-    # ../../shared
-    # ../../foot
     ../../hyprlock
     ../../hyprpaper
-    # ../../programs/pyprland
-    # ../../programs/waybar
     ../../hypridle
+    ./binds.nix
+    ./rules.nix
+    ./settings.nix
   ];
 
   home = {
@@ -98,28 +97,33 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig =
-      (builtins.readFile ./hyprland.conf)
-      + ''
-        bind=SUPER,P,exec,${lib.getExe pkgs.wofi} --show run --style=${./wofi.css} --term=footclient --prompt=Run
-        bind=SUPER,A,exec,${gblast} save area
-        bind=SUPER,S,exec,${gblast} save screen
-        bind=SUPERCTRL,L,exec,${lib.getExe pkgs.hyprlock}
-        # audio volume bindings
-        bindel=,XF86AudioRaiseVolume,exec,${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%+
-        bindel=,XF86AudioLowerVolume,exec,${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-
-        bindl=,XF86AudioMute,exec,${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle
+      ''
+        # debug
+        
+        debug:disable_scale_checks=true
 
+        # bindings 
+        bind=SUPER,P,exec,${lib.getExe pkgs.wofi} --show run --style=${./wofi.css} --term=footclient --prompt=Run
+        bind=SUPERCTRL,L,exec,${lib.getExe pkgs.hyprlock}
+
+
+        exec-once=~/.config/hypr/start-way-displays.sh
         exec-once=${lib.getExe pkgs.hyprpaper}
         exec-once=${pkgs.pyprland}/bin/pypr
         exec-once=${pkgs.blueman}/bin/blueman-applet
         exec-once=${pkgs.networkmanagerapplet}/bin/nm-applet --sm-disable --indicator
         exec-once=${lib.getExe pkgs.pasystray}
       '';
-    plugins = [];
+
     systemd = {
-      enable = true;
+      enable = false;
       variables = ["--all"];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
     };
+    plugins = [];
     xwayland.enable = true;
   };
 }

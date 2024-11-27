@@ -21,8 +21,8 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    nixd.url = "github:nix-community/nixd";
-    nuenv.url = "github:DeterminateSystems/nuenv";
+    # nixd.url = "github:nix-community/nixd";
+    # nuenv.url = "github:DeterminateSystems/nuenv";
 
     # Fast nix search client
     nix-search = {

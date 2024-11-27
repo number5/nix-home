@@ -20,16 +20,13 @@
     TTYVTDisallocate = true;
   };
 
-  # nice but buggy: https://github.com/rharish101/ReGreet/issues/45
-  programs.regreet = {
-    enable = false;
-    settings =
-      (lib.importTOML ./regreet.toml)
-      // {
-        background = {
-          path = ../imgs/hyprland.png;
-        };
-      };
+  programs.uwsm = {
+    enable = true;
+    waylandCompositors.hyprland = {
+      binPath = "/run/current-system/sw/bin/Hyprland";
+      prettyName = "Hyprland";
+      comment = "Hyprland managed by UWSM";
+    };
   };
 
   services = {
@@ -45,22 +42,18 @@
     # User's credentials manager
     gnome.gnome-keyring.enable = true;
 
-    # Init session with hyprland
-    greetd = {
+    # greetd display manager
+    greetd = let
+      session = {
+        command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
+        user = "bruce";
+      };
+    in {
       enable = true;
-      settings = rec {
-        regreet_session = {
-          command = "${lib.getExe pkgs.cage} -s -- ${lib.getExe pkgs.greetd.regreet}";
-          user = "greeter";
-        };
-        tuigreet_session = let
-          session = "${pkgs.hyprland}/bin/Hyprland";
-          tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
-        in {
-          command = "${tuigreet} --time --remember --cmd ${session}";
-          user = "greeter";
-        };
-        default_session = tuigreet_session;
+      settings = {
+        terminal.vt = 1;
+        default_session = session;
+        initial_session = session;
       };
     };
 
