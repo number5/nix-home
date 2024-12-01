@@ -17,7 +17,7 @@ in {
       pkgs.eww
       pkgs.pamixer
       pkgs.brightnessctl
-      (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+    pkgs.nerd-fonts.jetbrains-mono
     ];
 
     # configuration

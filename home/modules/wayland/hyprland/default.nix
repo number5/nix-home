@@ -11,12 +11,8 @@
   fontPkgs = with pkgs; [
     font-awesome # awesome fonts
     material-design-icons # fonts with glyphs
-    (nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-        "Iosevka"
-      ];
-    })
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka
   ];
 
   audioPkgs = with pkgs; [
