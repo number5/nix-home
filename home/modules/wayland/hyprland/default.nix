@@ -92,24 +92,23 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig =
-      ''
-        # debug
-        
-        debug:disable_scale_checks=true
+    extraConfig = ''
+      # debug
 
-        # bindings 
-        bind=SUPER,P,exec,${lib.getExe pkgs.wofi} --show run --style=${./wofi.css} --term=footclient --prompt=Run
-        bind=SUPERCTRL,L,exec,${lib.getExe pkgs.hyprlock}
+      debug:disable_scale_checks=true
+
+      # bindings
+      bind=SUPER,P,exec,${lib.getExe pkgs.wofi} --show run --style=${./wofi.css} --term=footclient --prompt=Run
+      bind=SUPERCTRL,L,exec,${lib.getExe pkgs.hyprlock}
 
 
-        exec-once=~/.config/hypr/start-way-displays.sh
-        exec-once=${lib.getExe pkgs.hyprpaper}
-        exec-once=${pkgs.pyprland}/bin/pypr
-        exec-once=${pkgs.blueman}/bin/blueman-applet
-        exec-once=${pkgs.networkmanagerapplet}/bin/nm-applet --sm-disable --indicator
-        exec-once=${lib.getExe pkgs.pasystray}
-      '';
+      exec-once=~/.config/hypr/start-way-displays.sh
+      exec-once=${lib.getExe pkgs.hyprpaper}
+      exec-once=${pkgs.pyprland}/bin/pypr
+      exec-once=${pkgs.blueman}/bin/blueman-applet
+      exec-once=${pkgs.networkmanagerapplet}/bin/nm-applet --sm-disable --indicator
+      exec-once=${lib.getExe pkgs.pasystray}
+    '';
 
     systemd = {
       enable = false;
