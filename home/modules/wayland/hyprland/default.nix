@@ -32,7 +32,6 @@
       nix-search.packages.${system}.default
       wl-clipboard # clipboard support
       wofi # app launcher
-      xwaylandvideobridge # screensharing bridge
     ]
     ++ fontPkgs
     ++ audioPkgs;

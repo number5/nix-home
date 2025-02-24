@@ -1,9 +1,9 @@
 _: {
   catppuccin.flavor = "mocha";
-  gtk.catppuccin.enable = true;
+  catppuccin.gtk.enable = true;
   # catppuccin.pointerCursor.enable = false;
-  programs.bat.catppuccin.enable = true;
-  programs.starship.catppuccin.enable = false;
+  catppuccin.bat.enable = true;
+  catppuccin.starship.enable = false;
   # services.polybar.catppuccin.enable = true;
-  wayland.windowManager.hyprland.catppuccin.enable = true;
+  catppuccin.hyprland.enable = true;
 }

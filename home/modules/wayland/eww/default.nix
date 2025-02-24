@@ -15,7 +15,6 @@ in {
     # eww package
     home.packages = [
       pkgs.eww
-      pkgs.pamixer
       pkgs.brightnessctl
       pkgs.nerd-fonts.jetbrains-mono
     ];
