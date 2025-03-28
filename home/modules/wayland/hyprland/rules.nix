@@ -35,9 +35,8 @@
       # telegram media viewer
       "float, title:^(Media viewer)$"
 
-      # Bitwarden extension
-      "float, title:^(.*Bitwarden Password Manager.*)$"
-
+      # pinentry
+      "stayfocused, class:^(pinentry-)"
       # gnome calculator
       "float, class:^(org.gnome.Calculator)$"
       "size 360 490, class:^(org.gnome.Calculator)$"
@@ -53,9 +52,6 @@
       "workspace special silent, title:^(Firefox — Sharing Indicator)$"
       "workspace special silent, title:^(Zen — Sharing Indicator)$"
       "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
-
-      # start spotify in ws9
-      "workspace 9 silent, title:^(Spotify( Premium)?)$"
 
       # idle inhibit while watching videos
       "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"

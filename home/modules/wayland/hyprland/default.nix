@@ -13,6 +13,11 @@
     material-design-icons # fonts with glyphs
     nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka
+    sarasa-gothic
+    roboto-mono
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
   ];
 
   audioPkgs = with pkgs; [
@@ -32,6 +37,8 @@
       nix-search.packages.${system}.default
       wl-clipboard # clipboard support
       wofi # app launcher
+      # gpg / password entry
+      pinentry
     ]
     ++ fontPkgs
     ++ audioPkgs;

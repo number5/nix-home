@@ -122,6 +122,8 @@
         "\${XDG_BIN_HOME}"
       ];
       GIT_SSH = "${pkgs.openssh}/bin/ssh";
+      # for zsh config
+      ZDOTDIR = "\${HOME}/.zsh";
     };
 
     # Disable gui prompt when git asks for a password.
