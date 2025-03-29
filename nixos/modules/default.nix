@@ -5,4 +5,5 @@ inputs: {
   gaming = import ./gaming.nix inputs;
   nix = import ./nix.nix inputs;
   greetd = import ./greetd.nix inputs;
+  gnupg = import ./gnupg.nix inputs;
 }

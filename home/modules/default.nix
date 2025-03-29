@@ -19,6 +19,5 @@ inputs: {
   "pamixer" = import ./pamixer.nix inputs;
   "chromium" = import ./chromium inputs;
   "direnv" = import ./direnv inputs;
-  "gpg" = import ./gpg inputs;
   "rust" = import ./rust inputs;
 }
