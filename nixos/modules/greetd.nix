@@ -4,10 +4,7 @@
   lib,
   ...
 }: {
-  programs = {
-    dconf.enable = true;
-    hyprland.enable = true;
-  };
+  programs.dconf.enable = true;
 
   # tty service config
   systemd.services.greetd.serviceConfig = {
@@ -20,6 +17,10 @@
     TTYVTDisallocate = true;
   };
 
+  programs.hyprland = {
+    withUWSM = true;
+    enable = true;
+  };
   programs.uwsm = {
     enable = true;
     waylandCompositors.hyprland = {

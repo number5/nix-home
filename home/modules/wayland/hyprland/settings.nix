@@ -1,4 +1,9 @@
-{config, lib, pkgs, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   pointer = config.home.pointerCursor;
 
   cursorName = "Bibata-Modern-Classic-Hyprcursor";
@@ -23,7 +28,6 @@ in {
       "${pkgs.blueman}/bin/blueman-applet"
       "${pkgs.networkmanagerapplet}/bin/nm-applet --sm-disable --indicator"
       "${lib.getExe pkgs.pasystray}"
-
     ];
 
     general = {
@@ -126,7 +130,5 @@ in {
     xwayland.force_zero_scaling = true;
 
     debug.disable_logs = false;
-
-
   };
 }
