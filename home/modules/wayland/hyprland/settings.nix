@@ -1,4 +1,4 @@
-{config, ...}: let
+{config, lib, pkgs, ...}: let
   pointer = config.home.pointerCursor;
 
   cursorName = "Bibata-Modern-Classic-Hyprcursor";
@@ -17,6 +17,13 @@ in {
       # set cursor for HL itself
       "hyprctl setcursor ${cursorName} ${toString pointer.size}"
       "hyprlock"
+      "~/.config/hypr/start-way-displays.sh"
+      "${lib.getExe pkgs.hyprpaper}"
+      "${pkgs.pyprland}/bin/pypr"
+      "${pkgs.blueman}/bin/blueman-applet"
+      "${pkgs.networkmanagerapplet}/bin/nm-applet --sm-disable --indicator"
+      "${lib.getExe pkgs.pasystray}"
+
     ];
 
     general = {
@@ -120,29 +127,6 @@ in {
 
     debug.disable_logs = false;
 
-    plugin = {
-      hyprbars = {
-        bar_height = 20;
-        bar_precedence_over_border = true;
 
-        # order is right-to-left
-        hyprbars-button = [
-          # close
-          "rgb(ffb4ab), 15, , hyprctl dispatch killactive"
-          # maximize
-          "rgb(b6c4ff), 15, , hyprctl dispatch fullscreen 1"
-        ];
-      };
-
-      hyprexpo = {
-        columns = 3;
-        gap_size = 4;
-        bg_col = "rgb(000000)";
-
-        enable_gesture = true;
-        gesture_distance = 300;
-        gesture_positive = false;
-      };
-    };
   };
 }

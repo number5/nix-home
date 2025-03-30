@@ -1,18 +1,4 @@
 let
-  # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-  workspaces = builtins.concatLists (builtins.genList (
-      x: let
-        ws = let
-          c = (x + 1) / 10;
-        in
-          builtins.toString (x + 1 - (c * 10));
-      in [
-        "$mod, ${ws}, workspace, ${toString (x + 1)}"
-        "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-      ]
-    )
-    10);
-
   toggle = program: let
     prog = builtins.substring 0 14 program;
   in "pkill ${prog} || uwsm app -- ${program}";
@@ -20,6 +6,28 @@ let
   runOnce = program: "pgrep ${program} || uwsm app -- ${program}";
 in {
   wayland.windowManager.hyprland.settings = {
+  
+    monitor = [
+      "eDP-1, prefered, auto"
+      "DP-1, prefered, auto"
+      ];
+    workspace = [
+   "eDP-1, 1"
+   "DP-1, 11"
+
+  "1,monitor:eDP-1"
+  "2,monitor:eDP-1"
+  "3,monitor:eDP-1"
+  "4,monitor:eDP-1"
+  "5,monitor:eDP-1"
+
+  "11,monitor:DP-1"
+  "12,monitor:DP-1"
+  "13,monitor:DP-1"
+  "14,monitor:DP-1"
+  "15,monitor:DP-1"
+
+    ];
     # mouse movements
     bindm = [
       "$mod, mouse:272, movewindow"
@@ -39,8 +47,8 @@ in {
         "$mod SHIFT, P, changegroupactive, b"
         "$mod, R, togglesplit,"
         "$mod, T, togglefloating,"
-        "$mod, P, pseudo,"
         "$mod ALT, ,resizeactive,"
+
 
         # utility
         # terminal
@@ -54,8 +62,8 @@ in {
         # select area to perform OCR on
         "$mod, O, exec, ${runOnce "wl-ocr"}"
         ", XF86Favorites, exec, ${runOnce "wl-ocr"}"
-        # open settings
-        # "$mod, U, exec, XDG_CURRENT_DESKTOP=gnome ${runOnce "gnome-control-center"}"
+
+        "$mod, P, exec, wofi --show run --style=${./wofi.css} --term=footclient --prompt=Run"
 
         # move focus
         "$mod, left, movefocus, l"
@@ -91,12 +99,19 @@ in {
         # send focused workspace to left/right monitors
         "$mod SHIFT ALT, bracketleft, movecurrentworkspacetomonitor, l"
         "$mod SHIFT ALT, bracketright, movecurrentworkspacetomonitor, r"
-      ]
-      ++ workspaces;
 
-    bindr = [
-      # launcher
-      #"$mod, SUPER_L, exec, ${toggle "anyrun"}"
+        # workspaces
+        "$mod ,1,exec,hyprsome workspace 1"
+        "$mod ,2,exec,hyprsome workspace 2"
+        "$mod ,3,exec,hyprsome workspace 3"
+        "$mod ,4,exec,hyprsome workspace 4"
+        "$mod ,5,exec,hyprsome workspace 5"
+
+        "$mod SHIFT,1,exec,hyprsome move 1"
+        "$mod SHIFT,2,exec,hyprsome move 2"
+        "$mod SHIFT,3,exec,hyprsome move 3"
+        "$mod SHIFT,4,exec,hyprsome move 4"
+        "$mod SHIFT,5,exec,hyprsome move 5"
     ];
 
     bindl = [

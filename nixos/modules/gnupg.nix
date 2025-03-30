@@ -5,10 +5,10 @@
 }: {
   _file = ./gnupg.nix;
 
-  services = {
-    pcscd.enable = true;
-    udev.packages = [ pkgs.yubikey-personalization ];
-};
+  hardware.gpgSmartcards.enable = true;
+  hardware.ledger.enable = true; # probably unrelated
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.pcscd.enable = true;
   
      environment.systemPackages = with pkgs; [
     yubikey-manager

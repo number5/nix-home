@@ -30,6 +30,7 @@
 
   packages = with pkgs;
     [
+      hyprsome
       brightnessctl # control laptop display brightness
       loupe # image viewer
       libnotify # notifications
@@ -41,8 +42,6 @@
     ++ fontPkgs
     ++ audioPkgs;
 
-  gblast = lib.getExe pkgs.grimblast;
-  wpctl = "${pkgs.wireplumber}/bin/wpctl";
 in {
   imports = [
     ../../hyprlock
@@ -94,25 +93,9 @@ in {
     xdgOpenUsePortal = true;
   };
 
+ programs.hyprland.withUWSM  = true;
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig = ''
-      # debug
-
-      debug:disable_scale_checks=true
-
-      # bindings
-      bind=SUPER,P,exec,${lib.getExe pkgs.wofi} --show run --style=${./wofi.css} --term=footclient --prompt=Run
-      bind=SUPERCTRL,L,exec,${lib.getExe pkgs.hyprlock}
-
-
-      exec-once=~/.config/hypr/start-way-displays.sh
-      exec-once=${lib.getExe pkgs.hyprpaper}
-      exec-once=${pkgs.pyprland}/bin/pypr
-      exec-once=${pkgs.blueman}/bin/blueman-applet
-      exec-once=${pkgs.networkmanagerapplet}/bin/nm-applet --sm-disable --indicator
-      exec-once=${lib.getExe pkgs.pasystray}
-    '';
 
     systemd = {
       enable = false;
@@ -122,7 +105,31 @@ in {
         "systemctl --user start hyprland-session.target"
       ];
     };
-    plugins = [];
+
+    plugins = {
+      hyprbars = {
+        bar_height = 20;
+        bar_precedence_over_border = true;
+
+        # order is right-to-left
+        hyprbars-button = [
+          # close
+          "rgb(ffb4ab), 15, , hyprctl dispatch killactive"
+          # maximize
+          "rgb(b6c4ff), 15, , hyprctl dispatch fullscreen 1"
+        ];
+      };
+
+      hyprexpo = {
+        columns = 3;
+        gap_size = 4;
+        bg_col = "rgb(000000)";
+
+        enable_gesture = true;
+        gesture_distance = 300;
+        gesture_positive = false;
+      };
+    };
     xwayland.enable = true;
   };
 }
