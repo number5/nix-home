@@ -19,10 +19,10 @@ in {
     exec-once = [
       # finalize startup
       "uwsm finalize"
+      # "~/.config/hypr/start-way-displays.sh"
       # set cursor for HL itself
       "hyprctl setcursor ${cursorName} ${toString pointer.size}"
       "hyprlock"
-      "~/.config/hypr/start-way-displays.sh"
       "${lib.getExe pkgs.hyprpaper}"
       "${pkgs.pyprland}/bin/pypr"
       "${pkgs.blueman}/bin/blueman-applet"

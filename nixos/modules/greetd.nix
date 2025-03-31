@@ -18,7 +18,6 @@
   };
 
   programs.hyprland = {
-    withUWSM = true;
     enable = true;
   };
   programs.uwsm = {
