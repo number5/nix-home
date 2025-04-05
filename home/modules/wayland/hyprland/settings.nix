@@ -129,6 +129,9 @@ in {
 
     xwayland.force_zero_scaling = true;
 
-    debug.disable_logs = false;
+    debug = {
+      disable_logs = false;
+      disable_scale_checks=true;
+    };
   };
 }

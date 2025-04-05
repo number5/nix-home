@@ -8,7 +8,7 @@ in {
     settings = {
       main = {
         shell = "${pkgs.zsh}/bin/zsh";
-        font = "JetBrainsMono Nerdfont:size=${fontSize}";
+        font = "JetBrainsMono NF:size=${fontSize}";
         pad = "12x12";
         dpi-aware = "yes";
         selection-target = "both";

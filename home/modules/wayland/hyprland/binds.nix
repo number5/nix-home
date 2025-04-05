@@ -7,8 +7,8 @@ let
 in {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "eDP-1, preferred, auto, 1"
-      "DP-1, preferred, auto, 1"
+      "eDP-1, preferred, auto, 1.5"
+      "DP-1,3840x2160@144,auto,1.666667"
       ", preferred, auto, 1"
     ];
 
