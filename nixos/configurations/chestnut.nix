@@ -9,7 +9,7 @@ _: {
   imports = [
     # Include the results of the hardware scan.
     ./chestnut/configuration.nix
-    ../modules/system/users.nix
+    # ../modules/system/users.nix
     ../modules/system/libvirtd.nix
     ../modules/system/misc.nix
     ../modules/system/pipewire.nix
@@ -17,6 +17,7 @@ _: {
     ../modules/system/zsh.nix
     ../modules/system/gui-support.nix
     ../modules/keyd.nix
+    ../../profiles/user-bruce.nix
   ];
 
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";

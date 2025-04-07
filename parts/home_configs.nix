@@ -98,7 +98,7 @@ in {
               {home = {inherit (config) username homeDirectory;};}
               {systemd.user.startServices = "sd-switch";}
               inputs.sops-nix.homeManagerModules.sops
-              inputs.catppuccin.homeManagerModules.catppuccin
+              inputs.catppuccin.homeModules.catppuccin
             ]
             ++ config.modules
             ++ builtins.attrValues self.homeModules
