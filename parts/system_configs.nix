@@ -103,7 +103,7 @@ in {
               {system.configurationRevision = self.rev or "dirty";}
               {documentation.man.enable = true;}
               {documentation.man.generateCaches = true;}
-              inputs.determinate.nixosModules.default
+              # inputs.determinate.nixosModules.default
               inputs.disko.nixosModules.disko
               inputs.sops-nix.nixosModules.sops
               inputs.home-manager.nixosModules.home-manager

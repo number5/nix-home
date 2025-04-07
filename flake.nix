@@ -56,7 +56,7 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3.0.0";
+    # determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3.0.0";
 
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
