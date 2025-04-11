@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local act = wezterm.action
 
 -- This table will hold the configuration.
 local config = {}
@@ -15,7 +16,7 @@ config.enable_wayland = true
 config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "Dracula+"
 
-config.font_size = 19.0
+config.font_size = 18.0
 
 config.font = wezterm.font_with_fallback({
 	"JetBrains Mono",
