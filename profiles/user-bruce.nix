@@ -13,6 +13,7 @@ in
     users.extraUsers."${user}" = {
       isNormalUser = true;
       home = "/home/${user}";
+      shell = "/run/current-system/sw/bin/zsh";
       description = name;
       openssh.authorizedKeys.keys = [
         # gpg card

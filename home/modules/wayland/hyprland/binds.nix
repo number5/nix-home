@@ -7,8 +7,8 @@ let
 in {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "eDP-1, preferred, auto, 1.5"
-      "DP-1,3840x2160@144,auto,1.666667"
+      "eDP-1, preferred, 0x0, 1.5"
+      "DP-1,3840x2160@144,-2304x0,1.666667"
       ", preferred, auto, 1"
     ];
 
@@ -21,12 +21,14 @@ in {
       "3,monitor:eDP-1"
       "4,monitor:eDP-1"
       "5,monitor:eDP-1"
+      "6,monitor:eDP-1"
 
       "11,monitor:DP-1"
       "12,monitor:DP-1"
       "13,monitor:DP-1"
       "14,monitor:DP-1"
       "15,monitor:DP-1"
+      "16,monitor:DP-1"
     ];
     # mouse movements
     bindm = [
