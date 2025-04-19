@@ -14,7 +14,8 @@
     home.packages = with pkgs; [
       dconf
       feh
-      firefox
+      firefox-devedition
+      brave
       haskellPackages.greenclip
       htop-vim
       jq

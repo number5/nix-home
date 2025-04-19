@@ -17,7 +17,7 @@ inputs: {
   "dotfiles" = import ./dotfiles inputs;
   "neovim" = import ./neovim inputs;
   "pamixer" = import ./pamixer.nix inputs;
-  "chromium" = import ./chromium inputs;
+  # "chromium" = import ./chromium inputs;
   "direnv" = import ./direnv inputs;
   "rust" = import ./rust inputs;
 }
