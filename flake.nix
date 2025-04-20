@@ -79,6 +79,14 @@
         # Per-system attributes can be defined here. The self' and inputs'
         # module parameters provide easy access to attributes of the same
         # system.
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = [
+            inputs.fenix.overlays.default
+          ];
+        };
+      packages.rust-toolchain = inputs.fenix.packages.${system}.complete.toolchain;
+      packages.rust-analyzer = inputs.fenix.packages.${system}.rust-analyzer;
       };
 
       imports = [

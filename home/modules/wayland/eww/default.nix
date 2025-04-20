@@ -15,6 +15,7 @@ in {
     # eww package
     home.packages = [
       pkgs.eww
+      pkgs.lua
       pkgs.brightnessctl
       pkgs.nerd-fonts.jetbrains-mono
     ];

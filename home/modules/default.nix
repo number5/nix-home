@@ -12,12 +12,11 @@ inputs: {
   "dunst" = import ./dunst inputs;
   "eww" = import ./wayland/eww inputs;
   "foot" = import ./foot inputs;
-  "way-displays" = import ./way-displays inputs;
 
   "dotfiles" = import ./dotfiles inputs;
   "neovim" = import ./neovim inputs;
   "pamixer" = import ./pamixer.nix inputs;
   # "chromium" = import ./chromium inputs;
   "direnv" = import ./direnv inputs;
-  "rust" = import ./languages/rust inputs;
+  "rust" = import ./languages/rust.nix inputs;
 }

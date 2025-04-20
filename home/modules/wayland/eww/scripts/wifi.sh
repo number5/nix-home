@@ -1,12 +1,16 @@
 #!/bin/sh
+# Run nmcli dev status and filter for wifi type
+wifi_info=$(nmcli dev status | grep "wifi " | grep "connected")
 
-if iwctl station wlan0 show | grep -q "connected"; then
-    icon=""
-    ssid=Amadeus
-    status="Connected to ${ssid}"
+if [ -n "$wifi_info" ]; then
+  # Using awk to extract fields
+  connection=$(echo "$wifi_info" | awk '{print $4}')
+
+  icon=""
+  status="Connected to ${connection}"
 else
-    icon="睊"
-    status="offline"
+  icon="睊"
+  status="offline"
 fi
 
-echo "{\"icon\": \"${icon}\", \"status\": \"${status}\"}" 
+echo "{\"icon\": \"${icon}\", \"status\": \"${status}\"}"
