@@ -13,6 +13,11 @@
     nixpkgs.follows = "nixpkgs-unstable";
     unstable.follows = "nixpkgs-unstable";
 
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     programsdb.url = "github:wamserma/flake-programs-sqlite";
     programsdb.inputs.nixpkgs.follows = "unstable";
 
@@ -20,9 +25,6 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-
-    # nixd.url = "github:nix-community/nixd";
-    # nuenv.url = "github:DeterminateSystems/nuenv";
 
     # Fast nix search client
     nix-search = {
