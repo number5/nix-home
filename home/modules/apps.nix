@@ -37,6 +37,9 @@
       xsecurelock
       xss-lock
 
+      # apps
+      logseq
+
       # Programming
       gnumake
       cmake

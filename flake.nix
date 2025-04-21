@@ -85,8 +85,6 @@
             inputs.fenix.overlays.default
           ];
         };
-      packages.rust-toolchain = inputs.fenix.packages.${system}.complete.toolchain;
-      packages.rust-analyzer = inputs.fenix.packages.${system}.rust-analyzer;
       };
 
       imports = [

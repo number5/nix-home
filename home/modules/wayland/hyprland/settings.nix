@@ -27,6 +27,8 @@ in {
       "${pkgs.blueman}/bin/blueman-applet"
       "${pkgs.networkmanagerapplet}/bin/nm-applet --sm-disable --indicator"
       "${lib.getExe pkgs.pasystray}"
+      "uwsm app -- eww daemon"
+      "uwsm app -- eww open bar"
     ];
 
     general = {
