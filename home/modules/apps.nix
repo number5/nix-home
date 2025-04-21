@@ -12,10 +12,20 @@
     nixpkgs.allowedUnfree = ["steam" "logseq" "unrar"];
 
     home.packages = with pkgs; [
+      # wayland
+      qt5.qtwayland
+      qt6.qtwayland
+
+      oculante # image viewer (rust)
+
       dconf
       feh
+      # browsers
       firefox-devedition
       brave
+
+      yazi
+
       haskellPackages.greenclip
       htop-vim
       jq

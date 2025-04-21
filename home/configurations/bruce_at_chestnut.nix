@@ -10,7 +10,6 @@
   _file = ./bruce_at_chestnut.nix;
 
   imports = [
-    ./chestnut_config.nix
     ./catppuccin.nix
   ];
 

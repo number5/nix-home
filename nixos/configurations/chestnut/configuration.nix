@@ -20,27 +20,6 @@
     ];
   };
 
-  systemd.services = {
-    ath11k-fix = {
-      enable = true;
-
-      description = "Suspend fix for ath11k_pci";
-      before = ["sleep.target"];
-
-      unitConfig = {
-        StopWhenUnneeded = "yes";
-      };
-
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = "yes";
-        ExecStart = "/run/current-system/sw/bin/modprobe -r ath11k_pci";
-        ExecStop = "/run/current-system/sw/bin/modprobe ath11k_pci";
-      };
-
-      wantedBy = ["sleep.target"];
-    };
-  };
   networking = {
     hostName = "chestnut";
     networkmanager.enable = true;
@@ -74,19 +53,6 @@
       };
     };
 
-    # xserver = {
-    #   enable = true;
-    #   xkb = {
-    #     layout = "us";
-    #     options = "caps:escape"; # Caps-lock is the new Escape.
-    #   };
-    #   videoDrivers = ["amdgpu"];
-    #
-    #   windowManager.i3 = {
-    #     enable = true;
-    #     package = pkgs.i3;
-    #   };
-    # };
   };
   console = {
     font = "${pkgs.terminus_font}/share/consolefonts/ter-u32n.psf.gz";
