@@ -1,8 +1,10 @@
-_: {
+_:
+{
   pkgs,
   config,
   ...
-}: {
+}:
+{
   config = {
     home.packages = with pkgs; [
       fira-code

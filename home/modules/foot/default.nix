@@ -1,6 +1,9 @@
-_: {pkgs, ...}: let
+_:
+{ pkgs, ... }:
+let
   fontSize = "14";
-in {
+in
+{
   # lightweight wayland terminal emulator
   programs.foot = {
     enable = true;

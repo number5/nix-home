@@ -1,12 +1,17 @@
-{self, ...}: {
+{ self, ... }:
+{
   pkgs,
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.modules.eww;
-in {
-  options.modules.eww = {enable = lib.mkEnableOption "eww";};
+in
+{
+  options.modules.eww = {
+    enable = lib.mkEnableOption "eww";
+  };
 
   config = lib.mkIf cfg.enable {
     # theres no programs.eww.enable here because eww looks for files in .config

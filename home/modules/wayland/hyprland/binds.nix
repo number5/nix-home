@@ -1,10 +1,14 @@
 let
-  toggle = program: let
-    prog = builtins.substring 0 14 program;
-  in "pkill ${prog} || uwsm app -- ${program}";
+  toggle =
+    program:
+    let
+      prog = builtins.substring 0 14 program;
+    in
+    "pkill ${prog} || uwsm app -- ${program}";
 
   runOnce = program: "pgrep ${program} || uwsm app -- ${program}";
-in {
+in
+{
   wayland.windowManager.hyprland.settings = {
     monitor = [
       "eDP-1, preferred, 0x0, 1.5"

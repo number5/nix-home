@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   services.xserver.dpi = 144;
   services.xserver.displayManager.sessionCommands = ''
     ${pkgs.xorg.xrdb}/bin/xrdb -merge <<EOF

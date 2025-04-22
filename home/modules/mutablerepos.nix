@@ -2,12 +2,14 @@
   unstable,
   self,
   ...
-}: {
+}:
+{
   config,
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   inherit (config.lib) dag;
   cfg = config.mutable;
 
@@ -22,30 +24,37 @@
     fi
   '';
 
-  cloneScripts =
-    lib.attrsets.mapAttrsToList
-    (_name: attrs: cloneIfNotExists attrs.target attrs.repo attrs.branch)
-    cfg.repos;
+  cloneScripts = lib.attrsets.mapAttrsToList (
+    _name: attrs: cloneIfNotExists attrs.target attrs.repo attrs.branch
+  ) cfg.repos;
 
-  inherit (lib) mkIf mkOption mkEnableOption types;
-in {
+  inherit (lib)
+    mkIf
+    mkOption
+    mkEnableOption
+    types
+    ;
+in
+{
   options.mutable.enable = mkEnableOption "Stateful Data";
 
   options.mutable.repos = mkOption {
-    type = types.attrsOf (types.submodule {
-      options = {
-        branch = mkOption {type = types.str;};
-        repo = mkOption {type = types.str;};
-        target = mkOption {type = types.path;};
-      };
-    });
+    type = types.attrsOf (
+      types.submodule {
+        options = {
+          branch = mkOption { type = types.str; };
+          repo = mkOption { type = types.str; };
+          target = mkOption { type = types.path; };
+        };
+      }
+    );
   };
 
   config = mkIf cfg.enable {
     programs.git.enable = true;
 
-    home.activation.cloneStatefulRepos =
-      dag.entryAfter ["installPackages"]
-      (builtins.concatStringsSep "\n" cloneScripts);
+    home.activation.cloneStatefulRepos = dag.entryAfter [ "installPackages" ] (
+      builtins.concatStringsSep "\n" cloneScripts
+    );
   };
 }

@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   nix = {
     settings.substituters = [
       "https://nix-community.cachix.org"

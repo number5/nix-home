@@ -2,11 +2,13 @@
   unstable,
   self,
   ...
-}: {
+}:
+{
   config,
   pkgs,
   ...
-}: {
+}:
+{
   _file = ./bruce_at_chestnut.nix;
 
   imports = [

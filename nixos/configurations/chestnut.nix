@@ -1,9 +1,11 @@
-_: {
+_:
+{
   config,
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   _file = ./chestnut.nix;
 
   imports = [
@@ -40,7 +42,7 @@ _: {
       enable = true;
 
       description = "Suspend fix for ath11k_pci";
-      before = ["sleep.target"];
+      before = [ "sleep.target" ];
 
       unitConfig = {
         StopWhenUnneeded = "yes";
@@ -53,7 +55,7 @@ _: {
         ExecStop = "/run/current-system/sw/bin/modprobe ath11k_pci";
       };
 
-      wantedBy = ["sleep.target"];
+      wantedBy = [ "sleep.target" ];
     };
   };
 }

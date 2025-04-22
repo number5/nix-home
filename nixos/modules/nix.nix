@@ -1,19 +1,22 @@
-_: {
+_:
+{
   config,
   lib,
   ...
-}: let
+}:
+let
   allowed = config.nix.allowedUnfree;
   kibibyte = 1024;
   mibibyte = 1024 * kibibyte;
   gibibyte = 1024 * mibibyte;
-in {
+in
+{
   _file = ./nix.nix;
 
   options.nix = {
     allowedUnfree = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [];
+      default = [ ];
       description = ''
         Allows for  unfree packages by their name.
       '';
@@ -21,10 +24,15 @@ in {
   };
 
   config = lib.mkMerge [
-    (lib.mkIf (allowed != []) {nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed;})
-    {nix.settings.auto-optimise-store = lib.mkDefault true;}
+    (lib.mkIf (allowed != [ ]) {
+      nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed;
+    })
+    { nix.settings.auto-optimise-store = lib.mkDefault true; }
     {
-      nix.settings.trusted-users = lib.mkDefault ["root" "@wheel"];
+      nix.settings.trusted-users = lib.mkDefault [
+        "root"
+        "@wheel"
+      ];
       nix.settings.min-free = lib.mkDefault (5 * gibibyte);
       nix.settings.max-free = lib.mkDefault (25 * gibibyte);
       nix.settings.allow-import-from-derivation = lib.mkDefault false;

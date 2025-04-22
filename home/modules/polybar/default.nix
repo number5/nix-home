@@ -2,13 +2,15 @@
   unstable,
   self,
   ...
-}: {
+}:
+{
   config,
   pkgs,
   lib,
   ...
 }:
-with lib; let
+with lib;
+let
   timezoneModule = types.submodule {
     options = {
       timezone = mkOption {
@@ -42,13 +44,17 @@ with lib; let
       };
     };
   };
-in {
+in
+{
   options = {
     services.xserver.windowManager.bar = {
       enable = mkEnableOption "Enable polybar";
 
       location = mkOption {
-        type = types.enum ["top" "bottom"];
+        type = types.enum [
+          "top"
+          "bottom"
+        ];
         default = "top";
         description = "Location of the bar";
       };
@@ -127,8 +133,11 @@ in {
           };
           mountPoints = mkOption {
             type = types.listOf types.str;
-            default = ["/"];
-            example = ["/" "/home"];
+            default = [ "/" ];
+            example = [
+              "/"
+              "/home"
+            ];
             description = "The mount points of which the free space will be displayed. Currently, only the first mountpoint will be displayed";
           };
         };
@@ -149,14 +158,14 @@ in {
           };
           eth = mkOption {
             type = types.listOf types.str;
-            default = [];
-            example = ["eth0"];
+            default = [ ];
+            example = [ "eth0" ];
             description = "The physical network interfaces of which the status will be displayed.";
           };
           wlan = mkOption {
             type = types.listOf types.str;
-            default = [];
-            example = ["wlp5s0"];
+            default = [ ];
+            example = [ "wlp5s0" ];
             description = "The wireless network interfaces of which the status will be displayed.";
           };
         };
@@ -214,10 +223,9 @@ in {
   };
 
   config = {
-    services.polybar =
-      recursiveUpdate
-      (import ./polybar.lib.nix {inherit config pkgs lib;})
-      {enable = true;};
+    services.polybar = recursiveUpdate (import ./polybar.lib.nix { inherit config pkgs lib; }) {
+      enable = true;
+    };
 
     programs.autorandr.hooks.postswitch.restart-polybar = ''
       systemctl --no-block --user restart polybar.service

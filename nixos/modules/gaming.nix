@@ -1,8 +1,10 @@
-{self, ...}: {
+{ self, ... }:
+{
   pkgs,
   config,
   ...
-}: {
+}:
+{
   environment.systemPackages = with pkgs; [
     heroic
     steam

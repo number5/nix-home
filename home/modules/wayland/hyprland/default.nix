@@ -2,12 +2,14 @@
   self,
   nix-search,
   ...
-}: {
+}:
+{
   config,
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   fontPkgs = with pkgs; [
     font-awesome # awesome fonts
     material-design-icons # fonts with glyphs
@@ -28,7 +30,8 @@
     pulsemixer # pulseaudio mixer
   ];
 
-  packages = with pkgs;
+  packages =
+    with pkgs;
     [
       hyprsome
       brightnessctl # control laptop display brightness
@@ -41,7 +44,8 @@
     ]
     ++ fontPkgs
     ++ audioPkgs;
-in {
+in
+{
   imports = [
     ../../hyprlock
     ../../hyprpaper
@@ -79,10 +83,13 @@ in {
     enable = true;
     config = {
       common = {
-        default = ["hyprland"];
+        default = [ "hyprland" ];
       };
       hyprland = {
-        default = ["gtk" "hyprland"];
+        default = [
+          "gtk"
+          "hyprland"
+        ];
       };
     };
     extraPortals = with pkgs; [
@@ -97,7 +104,7 @@ in {
 
     systemd.enable = false;
 
-    plugins = [];
+    plugins = [ ];
     xwayland.enable = true;
   };
 }

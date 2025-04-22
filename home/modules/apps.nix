@@ -2,14 +2,20 @@
   unstable,
   self,
   ...
-}: {
+}:
+{
   config,
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   config = {
-    nixpkgs.allowedUnfree = ["steam" "logseq" "unrar"];
+    nixpkgs.allowedUnfree = [
+      "steam"
+      "logseq"
+      "unrar"
+    ];
 
     home.packages = with pkgs; [
       # wayland

@@ -23,37 +23,55 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = ["-f"]; # Override existing partition
+                extraArgs = [ "-f" ]; # Override existing partition
                 # Subvolumes must set a mountpoint in order to be mounted,
                 # unless their parent is mounted
                 subvolumes = {
                   "@" = {
                     mountpoint = "/";
-                    mountOptions = ["compress=zstd" "noatime"];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                   };
                   "@home" = {
                     mountpoint = "/home";
-                    mountOptions = ["compress=zstd" "noatime"];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                   };
                   "@nix" = {
                     mountpoint = "/nix";
-                    mountOptions = ["compress=zstd" "noatime"];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                   };
                   "@games" = {
                     mountpoint = "/Games";
-                    mountOptions = ["compress=zstd" "noatime"];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                   };
 
                   "@virtualMachines" = {
                     mountpoint = "/VMs";
-                    mountOptions = ["nodatacow" "noatime"];
+                    mountOptions = [
+                      "nodatacow"
+                      "noatime"
+                    ];
                   };
                   "@logs" = {
                     mountpoint = "/var/log";
-                    mountOptions = ["nodatacow" "noatime"];
+                    mountOptions = [
+                      "nodatacow"
+                      "noatime"
+                    ];
                   };
 
-                  "@snapshots" = {};
+                  "@snapshots" = { };
                   "@swap" = {
                     mountpoint = "/.swapvol";
                     swap.swapfile.size = "16G";

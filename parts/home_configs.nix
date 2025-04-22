@@ -4,117 +4,132 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.bw.homeConfigurations;
 
   configs = builtins.mapAttrs (_: config: config.finalHome) cfg;
 
   packages = builtins.attrValues (builtins.mapAttrs (_: config: config.packageModule) cfg);
-in {
+in
+{
   _file = ./home_configs.nix;
 
   options = {
     bw.homeConfigurations = lib.mkOption {
-      type = lib.types.attrsOf (lib.types.submodule ({
-        name,
-        config,
-        ...
-      }: {
-        options = {
-          nixpkgs = lib.mkOption {
-            type = lib.types.unspecified;
-            default = inputs.nixpkgs;
-          };
+      type = lib.types.attrsOf (
+        lib.types.submodule (
+          {
+            name,
+            config,
+            ...
+          }:
+          {
+            options = {
+              nixpkgs = lib.mkOption {
+                type = lib.types.unspecified;
+                default = inputs.nixpkgs;
+              };
 
-          system = lib.mkOption {type = lib.types.enum ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];};
+              system = lib.mkOption {
+                type = lib.types.enum [
+                  "x86_64-linux"
+                  "aarch64-linux"
+                  "x86_64-darwin"
+                  "aarch64-darwin"
+                ];
+              };
 
-          username = lib.mkOption {
-            type = lib.types.str;
-            default = builtins.elemAt (lib.strings.split "@" name) 0;
-          };
+              username = lib.mkOption {
+                type = lib.types.str;
+                default = builtins.elemAt (lib.strings.split "@" name) 0;
+              };
 
-          hostname = lib.mkOption {
-            type = lib.types.str;
-            default = builtins.elemAt (lib.strings.split "@" name) 2;
-          };
+              hostname = lib.mkOption {
+                type = lib.types.str;
+                default = builtins.elemAt (lib.strings.split "@" name) 2;
+              };
 
-          entryPoint = lib.mkOption {
-            type = lib.types.unspecified;
-            readOnly = true;
-          };
+              entryPoint = lib.mkOption {
+                type = lib.types.unspecified;
+                readOnly = true;
+              };
 
-          base = lib.mkOption {
-            type = lib.types.str;
-            readOnly = true;
-          };
+              base = lib.mkOption {
+                type = lib.types.str;
+                readOnly = true;
+              };
 
-          homeDirectory = lib.mkOption {
-            type = lib.types.str;
-            readOnly = true;
-          };
+              homeDirectory = lib.mkOption {
+                type = lib.types.str;
+                readOnly = true;
+              };
 
-          modules = lib.mkOption {
-            type = lib.types.listOf lib.types.unspecified;
-            default = [];
-          };
+              modules = lib.mkOption {
+                type = lib.types.listOf lib.types.unspecified;
+                default = [ ];
+              };
 
-          finalModules = lib.mkOption {
-            type = lib.types.listOf lib.types.unspecified;
-            readOnly = true;
-          };
+              finalModules = lib.mkOption {
+                type = lib.types.listOf lib.types.unspecified;
+                readOnly = true;
+              };
 
-          packageName = lib.mkOption {
-            type = lib.types.str;
-            readOnly = true;
-          };
+              packageName = lib.mkOption {
+                type = lib.types.str;
+                readOnly = true;
+              };
 
-          finalPackage = lib.mkOption {
-            type = lib.types.package;
-            readOnly = true;
-          };
+              finalPackage = lib.mkOption {
+                type = lib.types.package;
+                readOnly = true;
+              };
 
-          finalHome = lib.mkOption {
-            type = lib.types.unspecified;
-            readOnly = true;
-          };
+              finalHome = lib.mkOption {
+                type = lib.types.unspecified;
+                readOnly = true;
+              };
 
-          packageModule = lib.mkOption {
-            type = lib.types.unspecified;
-            readOnly = true;
-          };
-        };
+              packageModule = lib.mkOption {
+                type = lib.types.unspecified;
+                readOnly = true;
+              };
+            };
 
-        config = {
-          entryPoint = import "${self}/home/configurations/${config.username}_at_${config.hostname}.nix" (inputs // {inherit self;});
-          base =
-            if lib.strings.hasSuffix "-darwin" config.system
-            then "Users"
-            else "home";
-          homeDirectory = "/${config.base}/${config.username}";
+            config = {
+              entryPoint = import "${self}/home/configurations/${config.username}_at_${config.hostname}.nix" (
+                inputs // { inherit self; }
+              );
+              base = if lib.strings.hasSuffix "-darwin" config.system then "Users" else "home";
+              homeDirectory = "/${config.base}/${config.username}";
 
-          finalModules =
-            [
-              config.entryPoint
-              {home = {inherit (config) username homeDirectory;};}
-              {systemd.user.startServices = "sd-switch";}
-              inputs.sops-nix.homeManagerModules.sops
-              inputs.catppuccin.homeModules.catppuccin
-            ]
-            ++ config.modules
-            ++ builtins.attrValues self.homeModules
-            ++ builtins.attrValues self.mixedModules;
+              finalModules =
+                [
+                  config.entryPoint
+                  { home = { inherit (config) username homeDirectory; }; }
+                  { systemd.user.startServices = "sd-switch"; }
+                  inputs.sops-nix.homeManagerModules.sops
+                  inputs.catppuccin.homeModules.catppuccin
+                ]
+                ++ config.modules
+                ++ builtins.attrValues self.homeModules
+                ++ builtins.attrValues self.mixedModules;
 
-          packageName = "home/config/${name}";
-          finalPackage = config.finalHome.activationPackage;
+              packageName = "home/config/${name}";
+              finalPackage = config.finalHome.activationPackage;
 
-          packageModule = {${config.system}.${config.packageName} = config.finalPackage;};
+              packageModule = {
+                ${config.system}.${config.packageName} = config.finalPackage;
+              };
 
-          finalHome = inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = config.nixpkgs.legacyPackages.${config.system};
-            modules = config.finalModules;
-          };
-        };
-      }));
+              finalHome = inputs.home-manager.lib.homeManagerConfiguration {
+                pkgs = config.nixpkgs.legacyPackages.${config.system};
+                modules = config.finalModules;
+              };
+            };
+          }
+        )
+      );
     };
   };
 

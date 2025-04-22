@@ -4,7 +4,8 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+let
   # basic key combinations.
   alt = "Mod1";
   ctrl = "Control";
@@ -17,14 +18,15 @@ with lib; let
 
   nosid = "--no-startup-id";
   locker = "xset s activate";
-in {
+in
+{
   enable = true;
 
   config = {
-    bars = [];
+    bars = [ ];
 
     fonts = {
-      names = ["pango:Source Code Pro for Powerline"];
+      names = [ "pango:Source Code Pro for Powerline" ];
       size = 8.0;
     };
 
@@ -32,28 +34,40 @@ in {
       commands = [
         {
           command = "floating enable";
-          criteria = {class = "^Arandr";};
+          criteria = {
+            class = "^Arandr";
+          };
         }
         {
           command = "floating enable";
-          criteria = {class = "^Pavucontrol";};
+          criteria = {
+            class = "^Pavucontrol";
+          };
         }
         {
           command = "floating enable";
-          criteria = {class = "^ROX-Filer$";};
+          criteria = {
+            class = "^ROX-Filer$";
+          };
         }
         {
           command = "floating enable";
-          criteria = {class = "^Tor Browser";};
+          criteria = {
+            class = "^Tor Browser";
+          };
         }
         {
           command = "floating enable";
-          criteria = {class = "^net-filebot-Main$";};
+          criteria = {
+            class = "^net-filebot-Main$";
+          };
         }
       ];
     };
 
-    floating = {modifier = "${meta}";};
+    floating = {
+      modifier = "${meta}";
+    };
 
     focus = {
       # focus should not follow the mouse pointer
@@ -68,11 +82,11 @@ in {
     };
 
     assigns = {
-      "charles" = [{class = "^com-xk72-charles-gui-.*$";}];
-      "element" = [{class = "^Element$";}];
-      "keybase" = [{class = "^Keybase$";}];
-      "slack" = [{class = "^Slack$";}];
-      "tor" = [{class = "^Tor Browser";}];
+      "charles" = [ { class = "^com-xk72-charles-gui-.*$"; } ];
+      "element" = [ { class = "^Element$"; } ];
+      "keybase" = [ { class = "^Keybase$"; } ];
+      "slack" = [ { class = "^Slack$"; } ];
+      "tor" = [ { class = "^Tor Browser"; } ];
     };
 
     modifier = "Mod4";
@@ -146,7 +160,8 @@ in {
       "${meta}+d" = "focus child";
 
       # start a region screenshot
-      "${meta}+${shift}+4" = "exec ${getBin pkgs.flameshot}/bin/flameshot gui --delay 500 --path ${config.home.homeDirectory}/Desktop";
+      "${meta}+${shift}+4" =
+        "exec ${getBin pkgs.flameshot}/bin/flameshot gui --delay 500 --path ${config.home.homeDirectory}/Desktop";
 
       # focus the urgent window
       "${meta}+x" = "[urgent=latest] focus";
@@ -157,16 +172,22 @@ in {
       "${meta}+apostrophe" = "exec i3-input -F '[con_mark=\"%s\"] focus' -l 1 -P 'Go to: '";
 
       # volume support
-      "XF86AudioRaiseVolume" = "exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ false, exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
-      "XF86AudioLowerVolume" = "exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ false, exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
-      "XF86AudioMute" = "exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
-      "XF86AudioMicMute" = "exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+      "XF86AudioRaiseVolume" =
+        "exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ false, exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+      "XF86AudioLowerVolume" =
+        "exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ false, exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+      "XF86AudioMute" =
+        "exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+      "XF86AudioMicMute" =
+        "exec ${nosid} ${getBin pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
       # brightness support
       "XF86MonBrightnessUp" = "exec ${nosid} ${getBin pkgs.brightnessctl}/bin/brightnessctl s +5%";
       "XF86MonBrightnessDown" = "exec ${nosid} ${getBin pkgs.brightnessctl}/bin/brightnessctl s 5%-";
-      "${shift}+XF86MonBrightnessUp" = "exec ${nosid} ${getBin pkgs.brightnessctl}/bin/brightnessctl s +1%";
-      "${shift}+XF86MonBrightnessDown" = "exec ${nosid} ${getBin pkgs.brightnessctl}/bin/brightnessctl s 1%-";
+      "${shift}+XF86MonBrightnessUp" =
+        "exec ${nosid} ${getBin pkgs.brightnessctl}/bin/brightnessctl s +1%";
+      "${shift}+XF86MonBrightnessDown" =
+        "exec ${nosid} ${getBin pkgs.brightnessctl}/bin/brightnessctl s 1%-";
 
       # sleep support
       "XF86PowerOff" = "exec ${nosid} systemctl suspend";

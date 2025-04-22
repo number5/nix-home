@@ -2,12 +2,14 @@
   unstable,
   self,
   ...
-}: {
+}:
+{
   config,
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   config = {
     services.dunst = {
       enable = true;

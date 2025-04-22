@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   boot = {
     # use latest kernel
     kernelPackages = pkgs.linuxPackages_latest;
@@ -56,7 +57,7 @@
   };
   console = {
     font = "${pkgs.terminus_font}/share/consolefonts/ter-u32n.psf.gz";
-    packages = [pkgs.terminus_font];
+    packages = [ pkgs.terminus_font ];
     useXkbConfig = true;
   };
 
@@ -71,9 +72,17 @@
   environment = {
     # List packages installed in system profile. To search, run:
     # $ nix search wget
-    systemPackages = with pkgs; [git curl wget ripgrep openssh pciutils btrfs-progs];
+    systemPackages = with pkgs; [
+      git
+      curl
+      wget
+      ripgrep
+      openssh
+      pciutils
+      btrfs-progs
+    ];
 
-    defaultPackages = lib.mkForce [];
+    defaultPackages = lib.mkForce [ ];
 
     sessionVariables = rec {
       XDG_CACHE_HOME = "\${HOME}/.cache";

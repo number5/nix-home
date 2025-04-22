@@ -2,15 +2,18 @@
   unstable,
   programsdb,
   ...
-}: {
+}:
+{
   config,
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   base = "/etc/nixpkgs/channels";
   nixpkgsPath = "${base}/nixpkgs";
-in {
+in
+{
   _file = ./flake.nix;
 
   options.nix.flakes.enable = lib.mkEnableOption "nix flakes";
@@ -20,7 +23,10 @@ in {
 
     nix = {
       # package = lib.mkDefault nix.packages.${pkgs.system}.nix;
-      settings.experimental-features = ["nix-command" "flakes"];
+      settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
 
       registry.nixpkgs.flake = unstable;
 

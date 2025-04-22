@@ -3,11 +3,13 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   pointer = config.home.pointerCursor;
 
   cursorName = "Bibata-Modern-Classic-Hyprcursor";
-in {
+in
+{
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     env = [
@@ -132,7 +134,7 @@ in {
 
     debug = {
       disable_logs = false;
-      disable_scale_checks=true;
+      disable_scale_checks = true;
     };
   };
 }

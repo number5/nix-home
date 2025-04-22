@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   nix.settings = {
     substituters = [
       "https://ts-helper.cachix.org"

@@ -4,7 +4,10 @@
   eval = {
     # Example target for writing a package.
     target = {
-      args = ["-f" "default.nix"];
+      args = [
+        "-f"
+        "default.nix"
+      ];
       installable = "/flakeref#homeConfigurations.bruce";
     };
     # Force thunks
@@ -14,7 +17,7 @@
   options = {
     enable = true;
     target = {
-      args = [];
+      args = [ ];
       # Example installable for flake-parts, nixos, and home-manager
 
       # flake-parts

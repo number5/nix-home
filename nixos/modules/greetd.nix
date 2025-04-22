@@ -1,9 +1,11 @@
-{self, ...}: {
+{ self, ... }:
+{
   config,
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.dconf.enable = true;
 
   # tty service config
@@ -36,26 +38,28 @@
     # GTK theme config
     dbus = {
       enable = true;
-      packages = [pkgs.dconf];
+      packages = [ pkgs.dconf ];
     };
 
     # User's credentials manager
     gnome.gnome-keyring.enable = true;
 
     # greetd display manager
-    greetd = let
-      session = {
-        command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
-        user = "bruce";
+    greetd =
+      let
+        session = {
+          command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
+          user = "bruce";
+        };
+      in
+      {
+        enable = true;
+        settings = {
+          terminal.vt = 1;
+          default_session = session;
+          initial_session = session;
+        };
       };
-    in {
-      enable = true;
-      settings = {
-        terminal.vt = 1;
-        default_session = session;
-        initial_session = session;
-      };
-    };
 
     pipewire = {
       enable = true;
