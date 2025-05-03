@@ -56,7 +56,6 @@
 
       # throw sharing indicators away
       "workspace special silent, title:^(Firefox — Sharing Indicator)$"
-      "workspace special silent, title:^(Zen — Sharing Indicator)$"
       "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
 
       # idle inhibit while watching videos
@@ -75,6 +74,9 @@
 
       # don't render hyprbars on tiling windows
       "plugin:hyprbars:nobar, floating:0"
+
+      # steam
+      "scale 2, class:^(steam)$"
     ];
   };
 }

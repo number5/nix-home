@@ -10,17 +10,18 @@
   ...
 }:
 let
-  fontPkgs = with pkgs; [
-    font-awesome # awesome fonts
-    material-design-icons # fonts with glyphs
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.iosevka
-    sarasa-gothic
-    roboto-mono
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-  ];
+  # move font config to NixOS
+  # fontPkgs = with pkgs; [
+  #   font-awesome # awesome fonts
+  #   material-design-icons # fonts with glyphs
+  #   nerd-fonts.jetbrains-mono
+  #   iosevka-bin
+  #   sarasa-gothic
+  #   roboto-mono
+  #   noto-fonts
+  #   noto-fonts-cjk-sans
+  #   noto-fonts-emoji
+  # ];
 
   audioPkgs = with pkgs; [
     paprefs # pulseaudio preferences
@@ -42,14 +43,13 @@ let
       wl-clipboard # clipboard support
       wofi # app launcher
     ]
-    ++ fontPkgs
     ++ audioPkgs;
 in
 {
   imports = [
-    ../../hyprlock
-    ../../hyprpaper
-    ../../hypridle
+    ../hyprlock
+    ../hyprpaper
+    ../hypridle
     ./binds.nix
     ./rules.nix
     ./settings.nix

@@ -13,6 +13,8 @@ in
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     env = [
+      "NIXOS_OZONE_WL,1"
+      "MOZ_ENABLE_WAYLAND,1"
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
       "HYPRCURSOR_THEME,${cursorName}"
       "HYPRCURSOR_SIZE,${toString pointer.size}"
@@ -29,8 +31,8 @@ in
       "${pkgs.blueman}/bin/blueman-applet"
       "${pkgs.networkmanagerapplet}/bin/nm-applet --sm-disable --indicator"
       "${lib.getExe pkgs.pasystray}"
-      "uwsm app -- eww daemon"
-      "uwsm app -- eww open bar"
+      # "uwsm app -- eww daemon"
+      # "uwsm app -- eww open bar"
     ];
 
     general = {
@@ -130,7 +132,8 @@ in
       workspace_swipe_forever = true;
     };
 
-    xwayland.force_zero_scaling = true;
+    # xwayland.force_zero_scaling = true;
+    xwayland.use_nearest_neighbor = true;
 
     debug = {
       disable_logs = false;
