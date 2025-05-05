@@ -76,7 +76,7 @@
       "plugin:hyprbars:nobar, floating:0"
 
       # steam
-      "scale 2, class:^(steam)$"
+      # "xwayland:force_scale 1.5, class:^(Steam)$"
     ];
   };
 }
