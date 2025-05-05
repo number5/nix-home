@@ -4,12 +4,18 @@
   ...
 }:
 {
+  nixpkgs.overlays = [
+    (self: super: {
+      brotherMfcl8390cdw = super.callPackage ../../overlays/brother-mfcl8390cdw.nix { };
+    })
+  ];
   # Enable CUPS printing service
   services.printing = {
     enable = true;
     drivers = with pkgs; [
       brlaser # Open source driver that works with your MFC-L8390CDW
       cups-filters # For color support
+      self.brother-mfcl8390cdw
     ];
   };
 
