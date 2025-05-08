@@ -60,6 +60,8 @@
 
     # determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/3.0.0";
 
+    my-pkgs.url = "github:SardonicPelican/nix-packages";
+
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
   };
