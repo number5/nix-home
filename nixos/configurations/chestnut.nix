@@ -18,7 +18,7 @@ _:
     ../modules/system/xrdb.nix
     ../modules/system/zsh.nix
     ../modules/system/gui-support.nix
-    ../modules/keyd.nix
+    chestnut/keyd.nix
     ../../profiles/user-bruce.nix
   ];
 
