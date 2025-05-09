@@ -1,8 +1,5 @@
 {
-  inputs,
-  outputs,
   lib,
-  config,
   pkgs,
   ...
 }:
@@ -84,7 +81,7 @@
 
     defaultPackages = lib.mkForce [ ];
 
-    sessionVariables = rec {
+    sessionVariables = {
       XDG_CACHE_HOME = "\${HOME}/.cache";
       XDG_CONFIG_HOME = "\${HOME}/.config";
       XDG_BIN_HOME = "\${HOME}/.local/bin";

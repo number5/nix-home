@@ -11,7 +11,7 @@
 }:
 {
   config = {
-    nix.allowedUnfree = [
+    nixpkgs.allowedUnfree = [
       "steam"
       "logseq"
       "unrar"

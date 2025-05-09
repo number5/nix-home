@@ -6,5 +6,6 @@ inputs: {
   nix = import ./nix.nix inputs;
   greetd = import ./greetd.nix inputs;
   gnupg = import ./gnupg.nix inputs;
-  brother-printer = import ./brother-printer.nix inputs;
+  # need to fix unfree setup first
+  #brother-printer = import ./brother-printer.nix inputs;
 }
