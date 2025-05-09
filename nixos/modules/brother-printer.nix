@@ -5,11 +5,9 @@
 }:
 {
 
-  config = {
-    nixpkgs.allowedUnfree = [
-      "brother-mfcl8390cdw"
-    ];
-  };
+  nix.allowedUnfree = [
+    "brother-mfcl8390cdw"
+  ];
   # Enable CUPS printing service
   services.printing = {
     enable = true;
