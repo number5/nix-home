@@ -13,15 +13,17 @@ end
 
 config.enable_wayland = true
 -- config.color_scheme = "Catppuccin Macchiato"
-config.color_scheme = "Tokyo Night"
+-- config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "Dracula+"
+config.color_scheme = 'Gruvbox Material (Gogh)'
 
-config.font_size = 18.0
+config.font_size = 16.0
 
 config.font = wezterm.font_with_fallback({
-	"JetBrains Mono",
-  { family = "Iosevka Nerd Font", weight="ExtraLight", stretch="Normal"},
+  { family = "Iosevka Nerd Font", weight="Light", stretch="Normal"},
+  "JetBrainsMono Nerd Font Mono",
 	"Noto Color Emoji",
+  { family = "Font Awesome 6 Free", weight="Regular", stretch="Normal", style="Normal"}
 })
 
 config.keys = {

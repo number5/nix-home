@@ -1,7 +1,7 @@
 _:
 let
   dpmsSettings = {
-    timeout = 300;
+    timeout = 120;
     on-timeout = "hyprctl dispatch dpms off";
     on-resume = "hyprctl dispatch dpms on";
   };
@@ -18,7 +18,7 @@ in
 
       listener = [
         {
-          timeout = 120;
+          timeout = 130;
           on-timeout = "hyprlock";
         }
         dpmsSettings
