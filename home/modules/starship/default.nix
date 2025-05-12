@@ -4,6 +4,7 @@
 
   programs.starship = {
     enable = true;
+
     settings = {
       format = ''
         $os$directory$character

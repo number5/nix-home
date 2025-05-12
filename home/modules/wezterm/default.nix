@@ -7,7 +7,6 @@ _:
 {
   config = {
     home.packages = with pkgs; [
-      fira-code
       wezterm
     ];
 

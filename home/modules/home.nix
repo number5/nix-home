@@ -12,10 +12,6 @@
 {
   _file = ./default.nix;
 
-  imports = [
-    ./starship.nix
-  ];
-
   home =
     let
       cursor = {

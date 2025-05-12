@@ -76,7 +76,6 @@
       eza
       fzf
       fd
-      starship
       tmux
       sudo
     ];
