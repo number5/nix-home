@@ -1,4 +1,53 @@
 {
+
+  outputs =
+    { parts, ... }@inputs:
+    parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+
+      perSystem =
+        {
+          config,
+          self',
+          inputs',
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          # Per-system attributes can be defined here. The self' and inputs'
+          # module parameters provide easy access to attributes of the same
+          # system.
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [
+              inputs.fenix.overlays.default
+            ];
+          };
+        };
+
+      imports = [
+        ./parts/auxiliary.nix
+        ./parts/home_configs.nix
+        ./parts/system_configs.nix
+
+        ./nixos/configurations
+        ./home/configurations
+
+        # ./packages
+      ];
+
+      flake = {
+        nixosModules = import ./nixos/modules inputs;
+
+        homeModules = import ./home/modules inputs;
+
+        mixedModules = import ./mixed inputs;
+
+        checks.x86_64-linux = import ./checks inputs;
+      };
+    };
+
   inputs = {
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
@@ -64,53 +113,48 @@
 
     dotzsh.url = "github:number5/dotzsh";
     dotzsh.flake = false;
+
+    # ZSH Plugins as flake inputs
+    zsh-vim-mode = {
+      url = "github:softmoth/zsh-vim-mode";
+      flake = false;
+    };
+    zsh-completions = {
+      url = "github:zsh-users/zsh-completions";
+      flake = false;
+    };
+    alias-tips = {
+      url = "github:djui/alias-tips";
+      flake = false;
+    };
+    zsh-256color = {
+      url = "github:chrissicool/zsh-256color";
+      flake = false;
+    };
+    fast-syntax-highlighting = {
+      url = "github:zdharma-continuum/fast-syntax-highlighting";
+      flake = false;
+    };
+    zimfw-completion = {
+      url = "github:zimfw/completion";
+      flake = false;
+    };
+    zsh-no-ps2 = {
+      url = "github:romkatv/zsh-no-ps2";
+      flake = false;
+    };
+    zsh-autosuggestions = {
+      url = "github:zsh-users/zsh-autosuggestions";
+      flake = false;
+    };
+    zsh-history-substring-search = {
+      url = "github:zsh-users/zsh-history-substring-search";
+      flake = false;
+    };
+    git-open = {
+      url = "github:paulirish/git-open";
+      flake = false;
+    };
   };
 
-  outputs =
-    { parts, ... }@inputs:
-    parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-
-      perSystem =
-        {
-          config,
-          self',
-          inputs',
-          pkgs,
-          system,
-          ...
-        }:
-        {
-          # Per-system attributes can be defined here. The self' and inputs'
-          # module parameters provide easy access to attributes of the same
-          # system.
-          _module.args.pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = [
-              inputs.fenix.overlays.default
-            ];
-          };
-        };
-
-      imports = [
-        ./parts/auxiliary.nix
-        ./parts/home_configs.nix
-        ./parts/system_configs.nix
-
-        ./nixos/configurations
-        ./home/configurations
-
-        # ./packages
-      ];
-
-      flake = {
-        nixosModules = import ./nixos/modules inputs;
-
-        homeModules = import ./home/modules inputs;
-
-        mixedModules = import ./mixed inputs;
-
-        checks.x86_64-linux = import ./checks inputs;
-      };
-    };
 }
