@@ -1,6 +1,7 @@
 inputs: {
   "home" = import ./home.nix inputs;
   "zsh" = import ./zsh.nix inputs;
+  "starship" = import ./starship inputs;
   "wezterm" = import ./wezterm inputs;
   "nixpkgs" = import ./nixpkgs inputs;
   "mutablerepos" = import ./mutablerepos.nix inputs;
