@@ -115,26 +115,22 @@
     dotzsh.flake = false;
 
     # ZSH Plugins as flake inputs
-    zsh-vim-mode = {
-      url = "github:softmoth/zsh-vim-mode";
+    zsh-defer.url = "github:romkatv/zsh-defer";
+    zsh-defer.flake = false;
+
+    catppuccin-zsh-fsh.url = "github:catppuccin/zsh-fsh";
+    catppuccin-zsh-fsh.flake = false;
+
+    zsh-vi-mode = {
+      url = "github:jeffreytse/zsh-vi-mode";
       flake = false;
     };
-    zsh-completions = {
-      url = "github:zsh-users/zsh-completions";
-      flake = false;
-    };
-    alias-tips = {
-      url = "github:djui/alias-tips";
-      flake = false;
-    };
-    zsh-256color = {
-      url = "github:chrissicool/zsh-256color";
-      flake = false;
-    };
+
     fast-syntax-highlighting = {
       url = "github:zdharma-continuum/fast-syntax-highlighting";
       flake = false;
     };
+
     zimfw-completion = {
       url = "github:zimfw/completion";
       flake = false;
@@ -151,6 +147,7 @@
       url = "github:zsh-users/zsh-history-substring-search";
       flake = false;
     };
+
     git-open = {
       url = "github:paulirish/git-open";
       flake = false;

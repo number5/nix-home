@@ -15,6 +15,7 @@
       "steam"
       "logseq"
       "unrar"
+      "zsh-abbr"
     ];
 
     home.packages = with pkgs; [

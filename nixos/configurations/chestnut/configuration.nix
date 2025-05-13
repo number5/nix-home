@@ -77,6 +77,7 @@
       openssh
       pciutils
       btrfs-progs
+      rsync
     ];
 
     defaultPackages = lib.mkForce [ ];
