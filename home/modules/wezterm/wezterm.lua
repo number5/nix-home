@@ -12,6 +12,19 @@ if wezterm.config_builder then
 end
 
 config.enable_wayland = true
+
+config.webgpu_preferred_adapter = {
+        backend = "Vulkan",
+        device = 5761,
+        device_type = "IntegratedGpu",
+        driver = "AMD open-source driver",
+        driver_info = "2025.Q1.3 (LLPC)",
+        name = "AMD Radeon Graphics",
+        vendor = 4098,
+}
+
+
+config.front_end = "WebGpu"
 -- config.color_scheme = "Catppuccin Macchiato"
 -- config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "Dracula+"

@@ -35,7 +35,7 @@
       # Show dotfiles in complete menu
       setopt GLOB_DOTS
 
-      source ${zimfw-completion}/init.zsh
+      # source ''${zimfw-completion}/init.zsh
 
       ## zsh-defer
 
@@ -140,7 +140,7 @@
     enableCompletion = true;
     defaultKeymap = "viins";
     history = {
-      ignoreDups = true;
+      ignoreDups = false;
       expireDuplicatesFirst = true;
       extended = true;
       ignoreSpace = true;
