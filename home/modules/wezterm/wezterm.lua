@@ -11,6 +11,15 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+
+local onep_auth = string.format('%s/.1password/agent.sock', wezterm.home_dir)
+  -- Glob is being used here as an indirect way to check to see if
+  -- the socket exists or not. If it didn't, the length of the result
+  -- would be 0
+if #wezterm.glob(onep_auth) == 1 then
+  config.default_ssh_auth_sock = onep_auth
+end
+
 config.enable_wayland = true
 
 config.webgpu_preferred_adapter = {
@@ -46,6 +55,8 @@ config.keys = {
 }
 
 config.scrollback_lines = 200000
+config.warn_about_missing_glyphs = false
+config.use_fancy_tab_bar = false
 config.tab_max_width = 24
 config.use_dead_keys = false
 config.window_decorations = "RESIZE" -- no title bar

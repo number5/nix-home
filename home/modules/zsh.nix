@@ -103,6 +103,16 @@
 
       source ${zsh-history-substring-search}/zsh-history-substring-search.zsh
 
+      ## zsh-autosuggestions
+
+      export ZSH_AUTOSUGGEST_MANUAL_REBIND=true
+      export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+      export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+      export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
+      export ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=()
+
+      source ${zsh-autosuggestions}/zsh-autosuggestions.zsh
+
       ## zsh-abbr
 
       function _zsh-abbr-start() {
